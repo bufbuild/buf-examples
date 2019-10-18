@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package bufbuild.example.semver.v1;
+
+message Version {
+  uint64 major = 1;
+  uint64 minor = 2;
+  uint64 micro = 3;
+  string label = 4;
+}
