@@ -9,7 +9,7 @@ PROJECT := buf-example
 # the remote repository directly.
 REMOTE_GIT := https://github.com/bufbuild/buf-example.git
 # This controls the version of buf to install and use.
-BUF_VERSION := 0.3.0
+BUF_VERSION := 0.4.0
 
 ### Everything below this line is meant to be static, i.e. only adjust the above variables. ###
 
