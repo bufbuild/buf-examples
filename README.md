@@ -18,8 +18,9 @@ CI is set up for:
 The default `make` target is `make local`, which compares against the head of your
 local git master branch for breaking change detection.
 
-The `make` target `make remote` compares against the head of the remote git
-master branch, due to Travis not cloning any branch except for that under test.
+The `make` targets `make https` and `make ssh` compare against the head of the remote git
+master branch, due to Travis and CircleCI not cloning any branch except for that under test.
+We use `make https` in Travis and `make ssh` in CircleCI.
 
 For GitHub Actions, you can use `make local` with a trick that clones the branch
 you want first, and then creates a local head for it. See [ci.yaml](.github/workflows/ci.yaml)
