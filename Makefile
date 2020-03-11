@@ -20,7 +20,7 @@ HTTPS_GIT := https://github.com/bufbuild/buf-example.git
 # See https://buf.build/docs/inputs#ssh for more details.
 SSH_GIT := ssh://git@github.com/bufbuild/buf-example.git
 # This controls the version of buf to install and use.
-BUF_VERSION := 0.7.1
+BUF_VERSION := 0.8.0
 
 ### Everything below this line is meant to be static, i.e. only adjust the above variables. ###
 
