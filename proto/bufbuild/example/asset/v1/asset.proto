@@ -2,13 +2,16 @@ syntax = "proto3";
 
 package bufbuild.example.asset.v1;
 
+import "bufbuild/example/opt/v1/opt.proto";
 import "bufbuild/example/semver/v1/semver.proto";
+import "google/protobuf/timestamp.proto";
 
 message Asset {
-  string id = 1;
+  string id = 1 [(bufbuild.example.opt.v1.id) = true];
   string name = 2;
   bufbuild.example.semver.v1.Version version = 3;
   bytes data = 4;
+  google.protobuf.Timestamp create_time = 5;
 }
 
 message CreateAssetRequest {
