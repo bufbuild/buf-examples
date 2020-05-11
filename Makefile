@@ -20,7 +20,7 @@ HTTPS_GIT := https://github.com/bufbuild/buf-example.git
 # See https://buf.build/docs/inputs#ssh for more details.
 SSH_GIT := ssh://git@github.com/bufbuild/buf-example.git
 # This controls the version of buf to install and use.
-BUF_VERSION := 0.12.0
+BUF_VERSION := 0.12.1
 
 ### Everything below this line is meant to be static, i.e. only adjust the above variables. ###
 
@@ -91,3 +91,13 @@ ssh: $(BUF)
 clean:
 	git clean -xdf
 	rm -rf $(CACHE_BASE)
+
+# For updating this repository
+
+.PHONY: updateversion
+updateversion:
+ifndef VERSION
+	$(error "VERSION must be set")
+else
+	sed -i '' "s/BUF_VERSION := [0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*/BUF_VERSION := $(VERSION)/g" Makefile
+endif
