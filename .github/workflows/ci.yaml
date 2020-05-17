@@ -5,12 +5,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
+        if: success()
         uses: actions/checkout@v1
         with:
           ref: master
       - name: checkout-master
+        if: success()
         run: git checkout master
       - name: checkout
+        if: success()
         uses: actions/checkout@v1
+      # There is no need to do this if you are not installing from source
+      - name: setup
+        if: success()
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.14.2
       - name: make local
+        if: success()
         run: make local
