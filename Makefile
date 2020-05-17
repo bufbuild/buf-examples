@@ -41,6 +41,8 @@ CACHE_VERSIONS := $(CACHE)/versions
 export PATH := $(abspath $(CACHE_BIN)):$(PATH)
 # Update GOBIN to point to CACHE_BIN for source installations
 export GOBIN := $(abspath $(CACHE_BIN))
+# This is needed to allow versions to be added to Golang modules with go get
+export GO111MODULE := on
 
 # BUF points to the marker file for the installed version.
 #
