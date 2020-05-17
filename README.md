@@ -20,7 +20,7 @@ local git master branch for breaking change detection.
 
 The `make` targets `make https` and `make ssh` compare against the head of the remote git
 master branch, due to Travis and CircleCI not cloning any branch except for that under test.
-We use `make https` in Travis and `make ssh` in CircleCI.
+We use both in this example for Travis and CircleCI, but you only need to choose one.
 
 For GitHub Actions, you can use `make local` with a trick that clones the branch
 you want first, and then creates a local head for it. See [ci.yaml](.github/workflows/ci.yaml)

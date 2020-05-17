@@ -1,4 +1,6 @@
-# This can be minimal if not installing from source
+# This can be the language "minimal" if not installing from source
 language: go
+go:
+  - 1.14.x
 install: make deps
-script: make https
+script: make https ssh

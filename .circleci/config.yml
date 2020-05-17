@@ -10,4 +10,4 @@ jobs:
       - image: circleci/golang:1.14.2-buster
     steps:
       - checkout
-      - run: make ssh
+      - run: make https ssh
