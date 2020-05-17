@@ -3,4 +3,4 @@ language: go
 go:
   - 1.14.x
 install: make deps
-script: make https ssh
+script: make https
