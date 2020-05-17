@@ -21,6 +21,8 @@ HTTPS_GIT := https://github.com/bufbuild/buf-example.git
 SSH_GIT := ssh://git@github.com/bufbuild/buf-example.git
 # This controls the version of buf to install and use.
 BUF_VERSION := 0.12.1
+# If true, Buf is installed from source instead of from releases
+BUF_INSTALL_FROM_SOURCE := false
 
 ### Everything below this line is meant to be static, i.e. only adjust the above variables. ###
 
@@ -37,6 +39,8 @@ CACHE_VERSIONS := $(CACHE)/versions
 
 # Update the $PATH so we can use buf directly
 export PATH := $(abspath $(CACHE_BIN)):$(PATH)
+# Update GOBIN to point to CACHE_BIN for source installations
+export GOBIN := $(abspath $(CACHE_BIN))
 
 # BUF points to the marker file for the installed version.
 #
@@ -45,10 +49,16 @@ BUF := $(CACHE_VERSIONS)/buf/$(BUF_VERSION)
 $(BUF):
 	@rm -f $(CACHE_BIN)/buf
 	@mkdir -p $(CACHE_BIN)
+ifeq ($(BUF_INSTALL_FROM_SOURCE),true)
+	$(eval BUF_TMP := $(shell mktemp -d))
+	cd $(BUF_TMP); go get github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION)
+	@rm -rf $(BUF_TMP)
+else
 	curl -sSL \
 		"https://github.com/bufbuild/buf/releases/download/v$(BUF_VERSION)/buf-$(UNAME_OS)-$(UNAME_ARCH)" \
 		-o "$(CACHE_BIN)/buf"
 	chmod +x "$(CACHE_BIN)/buf"
+endif
 	@rm -rf $(dir $(BUF))
 	@mkdir -p $(dir $(BUF))
 	@touch $(BUF)
