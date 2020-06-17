@@ -20,7 +20,7 @@ HTTPS_GIT := https://github.com/bufbuild/buf-example.git
 # See https://buf.build/docs/inputs#ssh for more details.
 SSH_GIT := ssh://git@github.com/bufbuild/buf-example.git
 # This controls the version of buf to install and use.
-BUF_VERSION := 0.16.0
+BUF_VERSION := 0.17.0
 # If true, Buf is installed from source instead of from releases
 BUF_INSTALL_FROM_SOURCE := false
 
@@ -111,5 +111,5 @@ updateversion:
 ifndef VERSION
 	$(error "VERSION must be set")
 else
-	sed -i '' "s/BUF_VERSION := [0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*/BUF_VERSION := $(VERSION)/g" Makefile
+	sed -i "s/BUF_VERSION := [0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*/BUF_VERSION := $(VERSION)/g" Makefile
 endif
