@@ -5,7 +5,7 @@ PROJECT := buf-example
 # This controls the remote HTTPS git location to compare against for breaking changes in CI.
 #
 # Most CI providers only clone the branch under test and to a certain depth, so when
-# running buf check breaking in CI, it is generally preferable to compare against
+# running buf breaking in CI, it is generally preferable to compare against
 # the remote repository directly.
 #
 # Basic authentication is available, see https://buf.build/docs/inputs#https for more details.
@@ -20,7 +20,7 @@ HTTPS_GIT := https://github.com/bufbuild/buf-example.git
 # See https://buf.build/docs/inputs#ssh for more details.
 SSH_GIT := ssh://git@github.com/bufbuild/buf-example.git
 # This controls the version of buf to install and use.
-BUF_VERSION := 0.33.0
+BUF_VERSION := 0.34.0
 # If true, Buf is installed from source instead of from releases
 BUF_INSTALL_FROM_SOURCE := false
 
@@ -77,16 +77,16 @@ deps: $(BUF)
 
 .PHONY: local
 local: $(BUF)
-	buf check lint
-	buf check breaking --against '.git#branch=master'
+	buf lint
+	buf breaking --against '.git#branch=master'
 
 # https is what we run when testing in most CI providers.
 # This does breaking change detection against our remote HTTPS git repository.
 
 .PHONY: https
 https: $(BUF)
-	buf check lint
-	buf check breaking --against "$(HTTPS_GIT)#branch=master"
+	buf lint
+	buf breaking --against "$(HTTPS_GIT)#branch=master"
 
 # ssh is what we run when testing in CI providers that provide ssh public key authentication.
 # This does breaking change detection against our remote HTTPS ssh repository.
@@ -94,8 +94,8 @@ https: $(BUF)
 
 .PHONY: ssh
 ssh: $(BUF)
-	buf check lint
-	buf check breaking --against "$(SSH_GIT)#branch=master"
+	buf lint
+	buf breaking --against "$(SSH_GIT)#branch=master"
 
 # clean deletes any files not checked in and the cache for all platforms.
 
