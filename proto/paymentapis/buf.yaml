@@ -1,0 +1,13 @@
+version: v1beta1
+name: bufbuild.internal/bufexample/paymentapis
+deps:
+  - bufbuild.internal/local/googleapis
+build:
+  roots:
+    - .
+lint:
+  use:
+    - DEFAULT
+breaking:
+  use:
+    - FILE
