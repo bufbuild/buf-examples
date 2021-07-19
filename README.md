@@ -4,7 +4,7 @@
 [![CircleCI](https://img.shields.io/circleci/build/github/bufbuild/buf-example/master)](https://circleci.com/gh/bufbuild/buf-example)
 [![GitHub Actions](https://github.com/bufbuild/buf-example/workflows/CI/badge.svg)](https://github.com/bufbuild/buf-example/actions?workflow=CI)
 
-This is a simple example of [Buf](github.com/bufbuild/buf) usage that:
+This is a simple example of [Buf](https://github.com/bufbuild/buf) usage that:
 
 - Installs `buf` from GitHub Releases.
 - Runs linting and breaking change detection.
