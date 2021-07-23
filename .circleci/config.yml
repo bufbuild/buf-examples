@@ -7,7 +7,7 @@ jobs:
       # we use Golang for now.
       #
       # Choose the image that makes the most sense for your build.
-      - image: circleci/golang:1.14.2-buster
+      - image: circleci/golang:1.16.6-buster
     steps:
       - checkout
       - run: make https ssh
