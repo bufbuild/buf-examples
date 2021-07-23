@@ -78,7 +78,7 @@ deps: $(BUF)
 .PHONY: local
 local: $(BUF)
 	buf lint
-	buf breaking --against '.git#branch=master'
+	buf breaking --against '.git#branch=main'
 
 # https is what we run when testing in most CI providers.
 # This does breaking change detection against our remote HTTPS git repository.
@@ -86,7 +86,7 @@ local: $(BUF)
 .PHONY: https
 https: $(BUF)
 	buf lint
-	buf breaking --against "$(HTTPS_GIT)#branch=master"
+	buf breaking --against "$(HTTPS_GIT)#branch=main"
 
 # ssh is what we run when testing in CI providers that provide ssh public key authentication.
 # This does breaking change detection against our remote HTTPS ssh repository.
@@ -95,7 +95,7 @@ https: $(BUF)
 .PHONY: ssh
 ssh: $(BUF)
 	buf lint
-	buf breaking --against "$(SSH_GIT)#branch=master"
+	buf breaking --against "$(SSH_GIT)#branch=main"
 
 # clean deletes any files not checked in and the cache for all platforms.
 
