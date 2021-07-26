@@ -1,26 +1,16 @@
-name: CI
-on: push
+name: buf-pull-request
+on: pull_request
 jobs:
-  build:
+  validate-proto:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        if: success()
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      # Install and setup buf (default latest version)
+      - uses: bufbuild/buf-setup-action@v0.3.1
+      # Lint protocol buffers
+      - uses: bufbuild/buf-lint-action@v0.3.0
+      # Detect breaking changes against your protocol buffers
+      - uses: bufbuild/buf-breaking-action@v0.4.0
         with:
-          ref: main
-      - name: checkout-main
-        if: success()
-        run: git checkout main
-      - name: checkout
-        if: success()
-        uses: actions/checkout@v1
-      # There is no need to do this if you are not installing from source
-      - name: setup
-        if: success()
-        uses: actions/setup-go@v1
-        with:
-          go-version: 1.16.6
-      - name: make local
-        if: success()
-        run: make local
+          # The 'main' branch of the GitHub repository that defines the module
+          against: "https://github.com/${GITHUB_REPOSITORY}.git#branch=main"
