@@ -53,7 +53,7 @@ $(BUF):
 	@mkdir -p $(CACHE_BIN)
 ifeq ($(BUF_INSTALL_FROM_SOURCE),true)
 	$(eval BUF_TMP := $(shell mktemp -d))
-	cd $(BUF_TMP); go get github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION)
+	cd $(BUF_TMP); go get github.com/bufbuild/buf/cmd/buf@v$(BUF_VERSION)
 	@rm -rf $(BUF_TMP)
 else
 	curl -sSL \
