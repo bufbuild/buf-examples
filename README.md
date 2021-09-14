@@ -1,8 +1,7 @@
 # Buf Example
 
-[![Travis CI](https://img.shields.io/travis/com/bufbuild/buf-example/main)](https://travis-ci.com/bufbuild/buf-example)
-[![CircleCI](https://img.shields.io/circleci/build/github/bufbuild/buf-example/main)](https://circleci.com/gh/bufbuild/buf-example)
 [![GitHub Actions](https://github.com/bufbuild/buf-example/workflows/CI/badge.svg)](https://github.com/bufbuild/buf-example/actions?workflow=CI)
+[![CircleCI](https://img.shields.io/circleci/build/github/bufbuild/buf-example/main)](https://circleci.com/gh/bufbuild/buf-example)
 
 This is a simple example of [Buf](https://github.com/bufbuild/buf) usage that:
 
@@ -11,16 +10,15 @@ This is a simple example of [Buf](https://github.com/bufbuild/buf) usage that:
 
 CI is set up for:
 
-- [Travis CI](https://travis-ci.com/bufbuild/buf-example)
-- [CircleCI](https://circleci.com/gh/bufbuild/buf-example)
 - [GitHub Actions](https://github.com/bufbuild/buf-example/actions?workflow=CI)
+- [CircleCI](https://circleci.com/gh/bufbuild/buf-example)
 
 The default `make` target is `make local`, which compares against the head of your
 local git main branch for breaking change detection.
 
 The `make` targets `make https` and `make ssh` compare against the head of the remote git
-main branch, due to Travis and CircleCI not cloning any branch except for that under test.
-In this example, we use `https` for Travis, and both `https` and `ssh` for CircleCI, but you only
+main branch, due to CircleCI not cloning any branch except for that under test.
+In this example, we use both `https` and `ssh` for CircleCI, but you only
 need to choose one of `https` and `ssh`.
 
 For GitHub Actions, you can use `make local` with a trick that clones the branch

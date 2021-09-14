@@ -1,6 +1,0 @@
-# This can be the language "minimal" if not installing from source
-language: go
-go:
-  - 1.16.x
-install: make deps
-script: make https
