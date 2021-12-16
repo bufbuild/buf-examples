@@ -3,8 +3,8 @@ jobs:
   build:
     docker:
       # There is no need for a language-specific image for this repository if not
-      # installing from source, but since CircleCI does not provide a supported minimal image,
-      # we use Golang for now.
+      # installing from source, but since CircleCI does not provide a supported minimal
+      # image, we use Golang for now.
       #
       # Choose the image that makes the most sense for your build.
       - image: circleci/golang:1.16.6-buster
