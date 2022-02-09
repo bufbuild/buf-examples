@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: circleci
+    working_directory: ~/circleci/circleci
     docker:
       # There is no need for a language-specific image for this repository if not
       # installing from source, but since CircleCI does not provide a supported minimal
@@ -10,5 +10,6 @@ jobs:
       # Choose the image that makes the most sense for your build.
       - image: circleci/golang:1.16.6-buster
     steps:
-      - checkout
+      - checkout:
+          path: ~/circleci
       - run: make https ssh

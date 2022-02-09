@@ -1,9 +1,6 @@
 name: CI
 on: push
 jobs:
-  defaults:
-    run:
-      working-directory: github-actions
   build:
     runs-on: ubuntu-latest
     steps:
@@ -27,3 +24,4 @@ jobs:
       - name: make local
         if: success()
         run: make local
+        working-directory: github-actions
