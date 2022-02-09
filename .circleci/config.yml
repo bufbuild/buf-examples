@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    working_directory: circleci
     docker:
       # There is no need for a language-specific image for this repository if not
       # installing from source, but since CircleCI does not provide a supported minimal
