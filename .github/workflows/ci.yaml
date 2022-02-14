@@ -4,24 +4,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        if: success()
-        uses: actions/checkout@v1
-        with:
-          ref: main
-      - name: checkout-main
-        if: success()
-        run: git checkout main
-      - name: checkout
-        if: success()
-        uses: actions/checkout@v1
-      # There is no need to do this if you are not installing from source
-      - name: setup
-        if: success()
-        uses: actions/setup-go@v1
-        with:
-          go-version: 1.16.6
-      - name: make local
-        if: success()
-        run: make local
+      - name: Git checkout
+        uses: actions/checkout@v2
+      - name: `buf` CLI setup
+        uses: buf-setup-action@v0.5.0
+      - name: Lint Protobuf sources
+        uses: buf-lint-action@v1
         working-directory: github-actions
+      - name: Run breaking change detection against `main`
+        uses: buf-breaking-action@v1
+        working-directory: github-actions
+        with:
+          against: ../.git#branch=main
