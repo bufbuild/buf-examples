@@ -52,5 +52,5 @@ func printField(g *protogen.GeneratedFile, field *protogen.Field) {
 	kind := field.Desc.Kind()
 	jsonName := strings.ToLower(name)
 
-	g.P(fmt.Sprintf("        %s %s `json:\"%s\"", name, kind, jsonName))
+	g.P(fmt.Sprintf("        %s %s `json:\"%s\"`", name, kind, jsonName))
 }

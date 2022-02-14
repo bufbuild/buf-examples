@@ -3,5 +3,5 @@
 package plugin_go
 
 type Message struct {
-	Greeting string
+	Greeting string `json:"greeting"`
 }
