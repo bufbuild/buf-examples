@@ -12,6 +12,7 @@ Project | Directory | Category
 :-------|:----------|:--------
 Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
 Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD][ci]
+A [`protoc`][protoc] [plugin] written in [Go] | [`plugin-go`](./plugin-go) | [Plugin]
 
 [actions]: https://docs.github.com/actions
 [buf]: https://buf.build
@@ -19,4 +20,7 @@ Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD
 [circleci]: https://circleci.com
 [cli]: https://github.com/bufbuild/buf
 [docs]: https://docs.buf.build
+[go]: https://go.dev
+[plugin]: https://docs.buf.build/bsr/remote-generation/concepts#plugin
+[protoc]: https://github.com/protocolbuffers/protobuf
 [version]: https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc12
