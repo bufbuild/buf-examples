@@ -24,3 +24,4 @@ jobs:
       - name: make local
         if: success()
         run: make local
+        working-directory: github-actions
