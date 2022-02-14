@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package example;
+package example.v1;
 
 option go_package = "github.com/buf-examples/plugin-go";
 
-message Hello {
-  string hello = 1;
+message Message {
+  string greeting = 1;
 }

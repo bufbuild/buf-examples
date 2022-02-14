@@ -4,7 +4,7 @@ FROM golang:${goVersion} AS builder
 ENV GOOS=linux GOARCH=amd64 CGO_ENABLED=0
 WORKDIR /build
 COPY . ./
-RUN go build -a -installsuffix nocgo -o /plugin .
+RUN go build -a -installsuffix nocgo -o /plugin ./cmd/protoc-gen-go-example
 
 FROM scratch
 ARG pluginOwner pluginName pluginVersion

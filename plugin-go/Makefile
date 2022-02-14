@@ -21,5 +21,5 @@ push:
 generate:
 	go install ./cmd/protoc-gen-go-example
 	protoc \
-	--go-example_out=proto \
-	proto/testing.proto
+	--go-example_out=gen/go \
+	example/v1/testing.proto
