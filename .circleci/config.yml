@@ -1,26 +1,25 @@
 version: 2
 jobs:
-  checkout:
-    steps:
-      - checkout:
-          path: ~/circleci
   lint:
     working_directory: ~/circleci/circleci
     docker:
       - image: bufbuild/buf:1.0.0-rc12
     steps:
+      - checkout:
+          path: ~/circleci
       - run: buf lint
   breaking:
     working_directory: ~/circleci/circleci
     docker:
       - image: bufbuild/buf:1.0.0-rc12
     steps:
+      - checkout:
+          path: ~/circleci
       - run: buf breaking --against https://github.com/bufbuild/buf-example.git#branch=main,ref=HEAD~1,subdir=circleci
 
 workflows:
   version: 2
   protobuf_check:
     jobs:
-      - checkout
       - lint
       - breaking
