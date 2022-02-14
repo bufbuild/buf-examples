@@ -48,5 +48,9 @@ func printMessage(g *protogen.GeneratedFile, message *protogen.Message) {
 }
 
 func printField(g *protogen.GeneratedFile, field *protogen.Field) {
-	g.P(fmt.Sprintf("        %s %s `json:\"%s\"", field.GoName, field.Desc.Kind(), strings.ToLower(field.GoName)))
+	name := field.GoName
+	kind := field.Desc.Kind()
+	jsonName := strings.ToLower(name)
+
+	g.P(fmt.Sprintf("        %s %s `json:\"%s\"", name, kind, jsonName))
 }
