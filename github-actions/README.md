@@ -2,18 +2,18 @@
 
 [![GitHub Actions](https://github.com/bufbuild/buf-example/workflows/CI/badge.svg)](https://github.com/bufbuild/buf-example/actions?workflow=CI)
 
-This is a simple example of [Buf](https://github.com/bufbuild/buf) usage that:
+> The configuration for [GitHub Actions][actions] is in the [`.github`](../.github) directory in the root, as that's where GitHub expects it to be.
 
-- Installs `buf` from GitHub Releases.
-- Runs linting and breaking change detection.
+This example uses three Buf-specific GitHub Actions:
 
-CI is set up for  [GitHub Actions](https://github.com/bufbuild/buf-example/actions?workflow=CI).
+* [`buf-setup-action`][buf-setup] installs the [`buf` CLI][cli]
+* [`buf-lint-action`][buf-lint] [lints][lint] this Protobuf module
+* [`buf-breaking-action`][buf-breaking] runs [breaking change detection][breaking] against the current `main` branch
 
-The default `make` target is `make local`, which compares against the head of your
-local git main branch for breaking change detection.
-
-For GitHub Actions, you can use `make local` with a trick that clones the branch
-you want first, and then creates a local head for it. See [ci.yaml](.github/workflows/ci.yaml)
-for an example.
-
-See [buf.build](https://buf.build) for documentation.
+[actions]: https://docs.github.com/actions
+[breaking]: https://docs.buf.build/breaking
+[buf-breaking]: https://github.com/bufbuildc/buf-breaking-action
+[buf-lint]: https://github.com/bufbuildc/buf-lint-action
+[buf-setup]: https://github.com/bufbuildc/buf-setup-action
+[cli]: https://github.com/bufbuild/buf
+[lint]: https://docs.buf.build/lint
