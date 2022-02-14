@@ -19,7 +19,7 @@ push:
 	docker push $(TAG)
 
 generate:
-	go install
+	go install ./cmd/protoc-gen-go-example
 	protoc \
 	--go-example_out=proto \
 	proto/testing.proto
