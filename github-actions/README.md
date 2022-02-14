@@ -1,6 +1,6 @@
 # Buf on GitHub Actions example
 
-[![GitHub Actions](https://github.com/bufbuild/buf-example/workflows/CI/badge.svg)](https://github.com/bufbuild/buf-example/actions?workflow=CI)
+[![GitHub Actions](https://github.com/bufbuild/buf-examples/workflows/CI/badge.svg)](https://github.com/bufbuild/buf-examples/actions?workflow=CI)
 
 This example project shows you how to use Buf in a [GitHub Actions][actions] setting. The Actions pipeline here involves three Buf-specific GitHub Actions:
 

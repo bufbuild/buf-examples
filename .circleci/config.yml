@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout:
           path: ~/circleci
-      - run: buf breaking --against https://github.com/bufbuild/buf-example.git#branch=main,ref=HEAD~1,subdir=circleci
+      - run: buf breaking --against https://github.com/bufbuild/buf-examples.git#branch=main,ref=HEAD~1,subdir=circleci
 
 workflows:
   version: 2
