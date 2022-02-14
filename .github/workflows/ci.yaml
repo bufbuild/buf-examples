@@ -1,18 +1,24 @@
 name: CI
 on: push
 jobs:
-  build:
+  lint-and-breaking-change-detection:
     runs-on: ubuntu-latest
     steps:
-      - name: Git checkout
+      # Run `git checkout`
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: `buf` CLI setup
-        uses: buf-setup-action@v0.5.0
-      - name: Lint Protobuf sources
-        uses: buf-lint-action@v1
-        working-directory: github-actions
-      - name: Run breaking change detection against `main`
-        uses: buf-breaking-action@v1
-        working-directory: github-actions
+      # Install the `buf` CLI
+      - name: Setup
+        uses: bufbuild/buf-setup-action@v0.5.0
+      # Lint the Buf module in the `github-actions` directory
+      - name: Lint
+        uses: bufbuild/buf-lint-action@v1
         with:
-          against: ../.git#branch=main
+          input: github-actions
+      # Detect breaking changes for the Buf module in the `github-actions` directory
+      # against the current `main` branch
+      - name: Run breaking change detection against `main`
+        uses: bufbuild/buf-breaking-action@v1
+        with:
+          input: github-actions
+          against: https://github.com/bufbuild/buf-example.git#branch=main,ref=HEAD~1,subdir=github-actions
