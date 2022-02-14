@@ -1,28 +1,19 @@
-# Buf Example
+# Buf on CircleCI example
 
-[![GitHub Actions](https://github.com/bufbuild/buf-example/workflows/CI/badge.svg)](https://github.com/bufbuild/buf-example/actions?workflow=CI)
 [![CircleCI](https://img.shields.io/circleci/build/github/bufbuild/buf-example/main)](https://circleci.com/gh/bufbuild/buf-example)
 
-This is a simple example of [Buf](https://github.com/bufbuild/buf) usage that:
+This example project shows you how to use Buf in a [CircleCI][circle] setting. The workflow here involves two steps:
 
-- Installs `buf` from GitHub Releases.
-- Runs linting and breaking change detection.
+* [Linting][lint] this Protobuf module
+* Running [breaking change detection][breaking] against the current `main` branch
 
-CI is set up for:
+> The configuration for [CircleCI][circle] is in the [`.circleci`](../.circleci) directory in the root, as that's where CircleCI expects it to be.
 
-- [GitHub Actions](https://github.com/bufbuild/buf-example/actions?workflow=CI)
-- [CircleCI](https://circleci.com/gh/bufbuild/buf-example)
+## Other examples
 
-The default `make` target is `make local`, which compares against the head of your
-local git main branch for breaking change detection.
+See the [`github-actions`](../github-actions) project for another CI/CD example.
 
-The `make` targets `make https` and `make ssh` compare against the head of the remote git
-main branch, due to CircleCI not cloning any branch except for that under test.
-In this example, we use both `https` and `ssh` for CircleCI, but you only
-need to choose one of `https` and `ssh`.
-
-For GitHub Actions, you can use `make local` with a trick that clones the branch
-you want first, and then creates a local head for it. See [ci.yaml](.github/workflows/ci.yaml)
-for an example.
-
-See [buf.build](https://buf.build) for documentation.
+[breaking]: https://docs.buf.build/breaking
+[circle]: https://circleci.com
+[cli]: https://github.com/bufbuild/buf
+[lint]: https://docs.buf.build/lint
