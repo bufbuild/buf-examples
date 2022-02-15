@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package api.v1;
+
+import "google/protobuf/timestamp.proto";
+import "logs/v1/logs.proto";
+
+message GetLogsRequest {
+  google.protobuf.Timestamp start = 1;
+  google.protobuf.Timestamp end = 2;
+}
+
+message GetLogsResponse {
+  repeated logs.v1.Log log = 1;
+}
+
+service ObservabilityService {
+  rpc GetLogs (GetLogsRequest) returns (GetLogsResponse);
+}
