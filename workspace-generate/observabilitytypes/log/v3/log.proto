@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package log.v3;
+
+import "google/protobuf/timestamp.proto";
+
+enum Level {
+  LEVEL_UNKNOWN = 0;
+  LEVEL_TRACE = 1;
+  LEVEL_DEBUG = 2;
+  LEVEL_INFO = 3;
+  LEVEL_WARN = 4;
+  LEVEL_ERROR = 5;
+  LEVEL_FATAL = 6;
+}
+
+enum Format {
+  FORMAT_UNKNOWN = 0;
+  FORMAT_JSON = 1;
+  FORMAT_SYSLOG = 2;
+  FORMAT_KEY_VALUE = 3;
+}
+
+message Log {
+  string message = 1;
+  map<string, string> metadata = 2;
+  Level level = 3;
+  google.protobuf.Timestamp timestamp = 4;
+  Format format = 5;
+}
