@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package logs.v1;
+package log.v1;
 
 message Log {
   string message = 1;
