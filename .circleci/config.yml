@@ -3,7 +3,7 @@ jobs:
   lint:
     working_directory: ~/circleci/circleci
     docker:
-      - image: bufbuild/buf:1.0.0-rc12
+      - image: bufbuild/buf:1.0.0
     steps:
       - checkout:
           path: ~/circleci
@@ -11,7 +11,7 @@ jobs:
   breaking:
     working_directory: ~/circleci/circleci
     docker:
-      - image: bufbuild/buf:1.0.0-rc12
+      - image: bufbuild/buf:1.0.0
     steps:
       - checkout:
           path: ~/circleci
