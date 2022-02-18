@@ -10,6 +10,7 @@ The examples in this repo currently use version [1.0.0][version] of the [`buf` C
 
 Project | Directory | Category
 :-------|:----------|:--------
+[Breaking change detection][breaking] | [`breaking-change-detection`](./breaking-change-detection) | Maintenance
 Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
 Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD][ci]
 
@@ -19,4 +20,5 @@ Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD
 [circleci]: https://circleci.com
 [cli]: https://github.com/bufbuild/buf
 [docs]: https://docs.buf.build
+[breaking]: https://docs.buf.build/breaking
 [version]: https://github.com/bufbuild/buf/releases/tag/v1.0.0
