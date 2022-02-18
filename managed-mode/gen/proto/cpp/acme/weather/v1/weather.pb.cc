@@ -96,15 +96,16 @@ const char descriptor_table_protodef_acme_2fweather_2fv1_2fweather_2eproto[] PRO
   "ther.v1.ConditionR\tcondition*b\n\tConditio"
   "n\022\025\n\021CONDITION_UNKNOWN\020\000\022\023\n\017CONDITION_RA"
   "INY\020\001\022\023\n\017CONDITION_SUNNY\020\002\022\024\n\020CONDITION_"
-  "CLOUDY\020\003B\237\001\n\022io.acme.weather.v1B\014Weather"
-  "ProtoH\002Z\035foo/acme/weather/v1;weatherv1\242\002"
-  "\003AWX\252\002\017Acme.Weather.V1\312\002\017Acme\\Weather\\V1"
-  "\342\002\033Acme\\Weather\\V1\\GPBMetadata\352\002\021Acme::W"
-  "eather::V1b\006proto3"
+  "CLOUDY\020\003B\266\001\n\022io.acme.weather.v1B\014Weather"
+  "ProtoH\002Z4github.com/acme/weather/v1/acme"
+  "/weather/v1;weatherv1\242\002\003AWX\252\002\017Acme.Weath"
+  "er.V1\312\002\017Acme\\Weather\\V1\342\002\033Acme\\Weather\\V"
+  "1\\GPBMetadata\352\002\021Acme::Weather::V1b\006proto"
+  "3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_acme_2fweather_2fv1_2fweather_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_acme_2fweather_2fv1_2fweather_2eproto = {
-  false, false, 578, descriptor_table_protodef_acme_2fweather_2fv1_2fweather_2eproto, "acme/weather/v1/weather.proto", 
+  false, false, 601, descriptor_table_protodef_acme_2fweather_2fv1_2fweather_2eproto, "acme/weather/v1/weather.proto", 
   &descriptor_table_acme_2fweather_2fv1_2fweather_2eproto_once, nullptr, 0, 2,
   schemas, file_default_instances, TableStruct_acme_2fweather_2fv1_2fweather_2eproto::offsets,
   file_level_metadata_acme_2fweather_2fv1_2fweather_2eproto, file_level_enum_descriptors_acme_2fweather_2fv1_2fweather_2eproto, file_level_service_descriptors_acme_2fweather_2fv1_2fweather_2eproto,

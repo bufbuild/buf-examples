@@ -8,7 +8,7 @@ managed:
 
   # Go
   go_package_prefix:
-    default: foo
+    default: github.com/acme/weather/v1
 
   # Java
   java_multiple_files: false

@@ -33,10 +33,11 @@ namespace Acme.Weather.V1 {
             "Gi5hY21lLndlYXRoZXIudjEuQ29uZGl0aW9uUgljb25kaXRpb24qYgoJQ29u",
             "ZGl0aW9uEhUKEUNPTkRJVElPTl9VTktOT1dOEAASEwoPQ09ORElUSU9OX1JB",
             "SU5ZEAESEwoPQ09ORElUSU9OX1NVTk5ZEAISFAoQQ09ORElUSU9OX0NMT1VE",
-            "WRADQp8BChJpby5hY21lLndlYXRoZXIudjFCDFdlYXRoZXJQcm90b0gCWh1m",
-            "b28vYWNtZS93ZWF0aGVyL3YxO3dlYXRoZXJ2MaICA0FXWKoCD0FjbWUuV2Vh",
-            "dGhlci5WMcoCD0FjbWVcV2VhdGhlclxWMeICG0FjbWVcV2VhdGhlclxWMVxH",
-            "UEJNZXRhZGF0YeoCEUFjbWU6OldlYXRoZXI6OlYxYgZwcm90bzM="));
+            "WRADQrYBChJpby5hY21lLndlYXRoZXIudjFCDFdlYXRoZXJQcm90b0gCWjRn",
+            "aXRodWIuY29tL2FjbWUvd2VhdGhlci92MS9hY21lL3dlYXRoZXIvdjE7d2Vh",
+            "dGhlcnYxogIDQVdYqgIPQWNtZS5XZWF0aGVyLlYxygIPQWNtZVxXZWF0aGVy",
+            "XFYx4gIbQWNtZVxXZWF0aGVyXFYxXEdQQk1ldGFkYXRh6gIRQWNtZTo6V2Vh",
+            "dGhlcjo6VjFiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Acme.Weather.V1.Condition), }, null, new pbr::GeneratedClrTypeInfo[] {
