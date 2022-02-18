@@ -1,0 +1,24 @@
+version: v1
+managed:
+  enabled: true
+  optimize_for: CODE_SIZE
+
+  # C++
+  cc_enable_arenas: true
+
+  # Go
+  go_package_prefix:
+    default: github.com/acme/weather/private/gen/proto/go
+
+  # Java
+  java_multiple_files: false
+  java_package_prefix: io
+  java_string_check_utf8: false
+plugins:
+  - remote: buf.build/protocolbuffers/plugins/cpp
+    out: gen/proto/cpp
+  - remote: buf.build/protocolbuffers/plugins/go
+    out: gen/proto/go
+    opt: paths=source_relative
+  - remote: buf.build/protocolbuffers/plugins/java
+    out: gen/proto/java
