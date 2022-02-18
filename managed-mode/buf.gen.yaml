@@ -8,7 +8,7 @@ managed:
 
   # Go
   go_package_prefix:
-    default: github.com/acme/weather/private/gen/proto/go
+    default: foo
 
   # Java
   java_multiple_files: false
