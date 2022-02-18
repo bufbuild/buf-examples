@@ -10,6 +10,7 @@ The examples in this repo currently use version [1.0.0][version] of the [`buf` C
 
 Project | Directory | Category
 :-------|:----------|:--------
+Generating code stubs using [managed mode][managed] | [`managed-mode`](./managed-mode/) | Code generation
 Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
 Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD][ci]
 
@@ -19,4 +20,5 @@ Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD
 [circleci]: https://circleci.com
 [cli]: https://github.com/bufbuild/buf
 [docs]: https://docs.buf.build
+[managed]: https://docs.buf.build/generate/managed-mode
 [version]: https://github.com/bufbuild/buf/releases/tag/v1.0.0
