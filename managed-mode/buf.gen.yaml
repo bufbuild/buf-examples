@@ -17,8 +17,16 @@ managed:
 plugins:
   - remote: buf.build/protocolbuffers/plugins/cpp
     out: gen/proto/cpp
+  - remote: buf.build/protocolbuffers/plugins/csharp
+    out: gen/proto/csharp
   - remote: buf.build/protocolbuffers/plugins/go
     out: gen/proto/go
     opt: paths=source_relative
   - remote: buf.build/protocolbuffers/plugins/java
     out: gen/proto/java
+  - remote: buf.build/protocolbuffers/plugins/objc
+    out: gen/proto/objc
+  - remote: buf.build/protocolbuffers/plugins/php
+    out: gen/proto/php
+  - remote: buf.build/protocolbuffers/plugins/ruby
+    out: gen/proto/ruby
