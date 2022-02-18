@@ -8,7 +8,7 @@ To generate code stubs from the Protobuf sources in [`acme/weather/v1`](./acme/w
 buf generate
 ```
 
-When you run this command, the `buf` CLI generates code stubs using the configuration in [`buf.gen.yaml`](./buf.gen.yaml). As you can see in that config, managed mode is enabled and several managed mode options is set. See the [`gen/proto`](./gen/proto) directory for generated code in these languages:
+When you run this command, the `buf` CLI uses the configuration in [`buf.gen.yaml`](./buf.gen.yaml) to generate code stubs. As you can see in that config, [hosted plugins][plugins] are used, [managed mode][mm] is enabled, and several managed mode options are set. See the [`gen/proto`](./gen/proto) directory for generated code in these languages:
 
 * [C++](./gen/proto/cpp)
 * [C#](./gen/proto/csharp)
@@ -21,4 +21,5 @@ When you run this command, the `buf` CLI generates code stubs using the configur
 [arena]: https://developers.google.com/protocol-buffers/docs/reference/arenas
 [buf-gen-yaml]: https://docs.buf.build/configuration/v1/buf-gen-yaml#managed
 [mm]: https://docs.buf.build/generate/managed-mode
+[plugins]: https://docs.buf.build/bsr/remote-generation/overview#hosted-plugins
 [repo]: https://github.com/bufbuild/buf
