@@ -16,8 +16,8 @@ See the [`circleci`](../circleci) project for another CI/CD example.
 
 [actions]: https://docs.github.com/actions
 [breaking]: https://docs.buf.build/breaking
-[buf-breaking]: https://github.com/bufbuildc/buf-breaking-action
-[buf-lint]: https://github.com/bufbuildc/buf-lint-action
-[buf-setup]: https://github.com/bufbuildc/buf-setup-action
+[buf-breaking]: https://github.com/bufbuild/buf-breaking-action
+[buf-lint]: https://github.com/bufbuild/buf-lint-action
+[buf-setup]: https://github.com/bufbuild/buf-setup-action
 [cli]: https://github.com/bufbuild/buf
 [lint]: https://docs.buf.build/lint
