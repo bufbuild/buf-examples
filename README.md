@@ -4,7 +4,7 @@ This repo houses example projects for learning how to use [Buf]. For more inform
 
 ## Version
 
-The examples in this repo currently use version [1.0.0-rc12][version] of the [`buf` CLI][cli].
+The examples in this repo currently use version [1.0.0][version] of the [`buf` CLI][cli].
 
 ## Projects
 
@@ -23,4 +23,4 @@ A [`protoc`][protoc] [plugin] written in [Go] | [`plugin-go`](./plugin-go) | [Pl
 [go]: https://go.dev
 [plugin]: https://docs.buf.build/bsr/remote-generation/concepts#plugin
 [protoc]: https://github.com/protocolbuffers/protobuf
-[version]: https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc12
+[version]: https://github.com/bufbuild/buf/releases/tag/v1.0.0

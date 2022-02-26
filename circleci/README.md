@@ -1,6 +1,6 @@
 # Buf on CircleCI example
 
-[![CircleCI](https://img.shields.io/circleci/build/github/bufbuild/buf-example/main)](https://circleci.com/gh/bufbuild/buf-example)
+[![CircleCI](https://img.shields.io/circleci/build/github/bufbuild/buf-examples/main)](https://circleci.com/gh/bufbuild/buf-examples)
 
 This example project shows you how to use Buf in a [CircleCI][circle] setting. The workflow here involves two steps:
 

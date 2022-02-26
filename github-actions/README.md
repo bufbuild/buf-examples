@@ -1,6 +1,6 @@
 # Buf on GitHub Actions example
 
-[![GitHub Actions](https://github.com/bufbuild/buf-example/workflows/CI/badge.svg)](https://github.com/bufbuild/buf-example/actions?workflow=CI)
+[![GitHub Actions](https://github.com/bufbuild/buf-examples/workflows/CI/badge.svg)](https://github.com/bufbuild/buf-examples/actions?workflow=CI)
 
 This example project shows you how to use Buf in a [GitHub Actions][actions] setting. The Actions pipeline here involves three Buf-specific GitHub Actions:
 
@@ -16,8 +16,8 @@ See the [`circleci`](../circleci) project for another CI/CD example.
 
 [actions]: https://docs.github.com/actions
 [breaking]: https://docs.buf.build/breaking
-[buf-breaking]: https://github.com/bufbuildc/buf-breaking-action
-[buf-lint]: https://github.com/bufbuildc/buf-lint-action
-[buf-setup]: https://github.com/bufbuildc/buf-setup-action
+[buf-breaking]: https://github.com/bufbuild/buf-breaking-action
+[buf-lint]: https://github.com/bufbuild/buf-lint-action
+[buf-setup]: https://github.com/bufbuild/buf-setup-action
 [cli]: https://github.com/bufbuild/buf
 [lint]: https://docs.buf.build/lint
