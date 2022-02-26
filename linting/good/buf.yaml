@@ -1,0 +1,10 @@
+version: v1
+name: buf.build/acme/weather:bcdcd1dee95c4277b2edbae6c21332a2
+deps:
+  - buf.build/googleapis/googleapis
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT

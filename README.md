@@ -10,6 +10,7 @@ The examples in this repo currently use version [1.0.0][version] of the [`buf` C
 
 Project | Directory | Category
 :-------|:----------|:--------
+[Linting][lint] Protobuf sources | [`linting`](./linting) | Maintenance
 Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
 Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD][ci]
 
@@ -19,4 +20,5 @@ Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD
 [circleci]: https://circleci.com
 [cli]: https://github.com/bufbuild/buf
 [docs]: https://docs.buf.build
+[lint]: https://docs.buf.build/lint
 [version]: https://github.com/bufbuild/buf/releases/tag/v1.0.0
