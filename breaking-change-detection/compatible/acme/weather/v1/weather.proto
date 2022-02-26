@@ -30,7 +30,7 @@ message Area {
 message Weather {
   float temperature = 1;
   Location location = 2 [deprecated = true]; // Non-breaking addition of deprecation option
-  Condition condition = 3;
+  Condition condition = 3;                   // Non-breaking removal of deprecation option
   Area area = 4;
 
   reserved 5;
