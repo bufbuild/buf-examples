@@ -26,12 +26,12 @@ message Weather {
   bool flash_flood_warning = 5; // Breaking deletion of reserved range
 }
 
-// Non-breaking addition of message, but implicitly deletes GetWeatherRequest message
+// Non-breaking addition of message, but the GetWeatherRequest message has been removed (breaking)
 message GetCurrentWeatherRequest {
   Location location = 1;
 }
 
-// Non-breaking addition of message, but implicitly deletes GetWeatherResponse message
+// Non-breaking addition of message, but the GetWeatherResponse message has been removed (breaking)
 message GetCurrentWeatherResponse {
   Weather weather = 1;
 }
