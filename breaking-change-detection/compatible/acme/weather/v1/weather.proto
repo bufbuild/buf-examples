@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package acme.weather.v1;
+
+enum Condition {
+  CONDITION_UNSPECIFIED = 0;
+  CONDITION_SUNNY = 1;
+  CONDITION_RAINY = 2;
+}
+
+message Location {
+  float latitude = 1;
+  float longitude = 2;
+}
+
+message Weather {
+  float temperature = 1;
+  Location location = 2;
+  Condition condition = 3;
+
+  reserved 7 to 10;
+}
+
+message GetWeatherRequest {
+  Location location = 1;
+}
+
+message GetWeatherResponse {
+  Weather weather = 1;
+}
+
+service WeatherService {
+  rpc GetWeather (GetWeatherRequest) returns (GetWeatherResponse);
+}

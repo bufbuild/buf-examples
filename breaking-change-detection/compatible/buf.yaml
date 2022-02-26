@@ -5,4 +5,3 @@ breaking:
 lint:
   use:
     - DEFAULT
-  enum_zero_value_suffix: _UNKNOWN

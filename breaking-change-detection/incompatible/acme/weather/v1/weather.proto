@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package acme.weather.v1;
+
+message Weather {
+  float wind_speed = 1;
+}
