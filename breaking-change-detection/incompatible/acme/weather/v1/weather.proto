@@ -1,3 +1,6 @@
+// This API definition introduces several breaking changes compared to the `initial` definition.
+// All changes are indicated by comments.
+
 syntax = "proto3";
 
 package acme.weather.v1;
