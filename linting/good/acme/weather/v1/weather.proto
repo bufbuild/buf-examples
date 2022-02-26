@@ -1,42 +1,40 @@
 syntax = "proto3";
 
-// Should be acme.weather.v1 to match the directory structure and also to provide
-// version information
-package weather;
+package acme.weather.v1;
 
 import "google/protobuf/timestamp.proto";
 
 enum Condition {
-  sunny = 0; // Should be CONDITION_SUNNY. Also the 0 index should always be a *_UNSPECIFIED value
-  rainy = 1; // Should be CONDITION_RAINY
-  other = 2; // Should be CONDITION_OTHER
+  CONDITION_UNSPECIFIED = 0;
+  CONDITION_SUNNY = 1;
+  CONDITION_RAINY = 2;
+  CONDITION_OTHER = 3;
 }
 
-// This one is actually okay!
 message Location {
   float latitude = 1;
   float longitude = 2;
 }
 
-// Used as a response type and thus needs to be named CurrentWeatherResponse
-// Used as a response type for multiple RPCs (you should use separate types)
-message Weather {
+message CurrentWeatherRequest {
+  Location location = 1;
+}
+
+message CurrentWeatherResponse {
+  float temperature = 1;
+  Condition conditions = 3;
+}
+
+message ExpectedWeatherResponse {
   float temperate = 1;
   Condition conditions = 3;
 }
 
-// Should be named CurrentWeatherRequest
-message GetWeather {
-  Location location = 1;
-}
-
-// Should be named ExpectedWeatherRequest
-message Expected {
+message ExpectedWeatherRequest {
   google.protobuf.Timestamp time = 1;
 }
 
-// Service name is malformed (doesn't end with "Service")
-service WeatherVision {
-  rpc CurrentWeather (GetWeather) returns (Weather);
-  rpc ExpectedWeather (Expected) returns (Weather);
+service WeatherVisionService {
+  rpc CurrentWeather (CurrentWeatherRequest) returns (CurrentWeatherResponse);
+  rpc ExpectedWeather (ExpectedWeatherRequest) returns (ExpectedWeatherResponse);
 }
