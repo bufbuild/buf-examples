@@ -22,12 +22,12 @@ message CurrentWeatherRequest {
 
 message CurrentWeatherResponse {
   float temperature = 1;
-  Condition conditions = 3;
+  Condition conditions = 2;
 }
 
 message ExpectedWeatherResponse {
   float temperate = 1;
-  Condition conditions = 3;
+  Condition conditions = 2;
 }
 
 message ExpectedWeatherRequest {

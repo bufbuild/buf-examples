@@ -22,7 +22,7 @@ message Location {
 // Used as a response type for multiple RPCs (you should use separate types)
 message Weather {
   float temperature = 1;
-  Condition conditions = 3;
+  Condition conditions = 2;
 }
 
 // Should be named CurrentWeatherRequest
