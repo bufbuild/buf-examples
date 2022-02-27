@@ -1,0 +1,37 @@
+// This Protobuf API definition "works" but has a variety of formatting issues
+
+// These shouldn't be crammed together
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+package acme.weather.v1;
+
+// Service definitions should be at the bottom of the file
+service WeatherVisionService {
+  rpc CurrentWeather (CurrentWeatherRequest) returns (CurrentWeatherResponse);
+  rpc ExpectedWeather (ExpectedWeatherRequest) returns (ExpectedWeatherResponse);
+}
+
+// These message and enum definitions should have spaces between them
+message Location {
+  float latitude = 1;
+  float longitude = 2;
+}
+message CurrentWeatherRequest {
+    Location location = 1; } // The } should be on its own line
+message CurrentWeatherResponse {
+  float temperature = 1;
+  Condition conditions = 2;
+}
+message ExpectedWeatherResponse {
+  float temperate = 1;
+  Condition conditions = 2; } // The } should be on its own line
+message ExpectedWeatherRequest {
+  Location location = 1;
+  google.protobuf.Timestamp time = 2;
+}
+enum Condition {
+  CONDITION_UNSPECIFIED = 0;
+  CONDITION_SUNNY = 1;
+    CONDITION_RAINY = 2; // This line is indented two extra spaces
+  CONDITION_OTHER = 3;
+}

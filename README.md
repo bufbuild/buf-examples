@@ -10,6 +10,7 @@ The examples in this repo currently use version [1.0.0][version] of the [`buf` C
 
 Project | Directory | Category
 :-------|:----------|:--------
+Formatting Protobuf sources | [`formatting`](./formatting) | Maintenance
 Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
 Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD][ci]
 

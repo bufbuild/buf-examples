@@ -1,0 +1,8 @@
+version: v1
+name: buf.build/acme/weather
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT
