@@ -46,7 +46,7 @@ buf lint ./good
 
 [buf-yaml]: https://docs.buf.build/configuration/v1/buf-yaml
 [default]: https://docs.buf.build/lint/rules#default
-[inputs]: https://docs.buf.build/reference/inputsHeh
+[inputs]: https://docs.buf.build/reference/inputs
 [install]: https://docs.buf.build/installation
 [jsonl]: https://jsonlines.org
 [lint]: https://docs.buf.build/lint
