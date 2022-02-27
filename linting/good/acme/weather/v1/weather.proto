@@ -31,7 +31,8 @@ message ExpectedWeatherResponse {
 }
 
 message ExpectedWeatherRequest {
-  google.protobuf.Timestamp time = 1;
+  Location location = 1;
+  google.protobuf.Timestamp time = 2;
 }
 
 service WeatherVisionService {
