@@ -10,11 +10,11 @@ message CurrentWeatherRequest {
     Location location = 1; }
 message CurrentWeatherResponse {
   float temperature = 1;
-  Condition conditions = 2;
+  Condition condition = 2;
 }
 message ExpectedWeatherResponse {
   float temperate = 1;
-  Condition conditions = 2; }
+  Condition condition = 2; }
 message ExpectedWeatherRequest {
   Location location = 1;
   google.protobuf.Timestamp time = 2;
