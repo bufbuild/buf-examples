@@ -2,12 +2,6 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 package acme.weather.v1;
 
-service WeatherVisionService {
-  rpc CurrentWeather (CurrentWeatherRequest)
-    returns (CurrentWeatherResponse);
-  rpc ExpectedWeather (ExpectedWeatherRequest)
-    returns (ExpectedWeatherResponse);
-}
 message Location {
   float latitude = 1;
   float longitude = 2;
@@ -30,4 +24,13 @@ enum Condition {
   CONDITION_SUNNY = 1;
     CONDITION_RAINY = 2;
   CONDITION_OTHER = 3;
+}
+
+
+
+service WeatherVisionService {
+  rpc CurrentWeather (CurrentWeatherRequest)
+    returns (CurrentWeatherResponse);
+  rpc ExpectedWeather (ExpectedWeatherRequest)
+    returns (ExpectedWeatherResponse);
 }
