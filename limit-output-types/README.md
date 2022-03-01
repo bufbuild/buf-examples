@@ -335,7 +335,7 @@ The output:
 Thus far, we've only specified one type using the `--type` option, but you can also specify
 multiple:
 
-```sh {2,3}
+```sh
 buf build \
   --type auth.v1.User \
   --type auth.v1.AuthenticateResponse.Result \
