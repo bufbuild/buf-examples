@@ -332,6 +332,17 @@ The output:
 ```
 </details>
 
+Thus far, we've only specified one type using the `--type` option, but you can also specify
+multiple:
+
+```sh {2,3}
+buf build \
+  --type auth.v1.User \
+  --type auth.v1.AuthenticateResponse.Result \
+  --output -#format=json | \
+  jq '.file[0]'
+```
+
 [build]: https://docs.buf.build/build/usage
 [filedescriptorset]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
 [image]: https://docs.buf.build/reference/images
