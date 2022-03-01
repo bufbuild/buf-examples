@@ -8,7 +8,7 @@ This project shows Buf [breaking change detection][breaking] in action. There ar
 * An input called [`compatible`](./compatible/acme/weather/v1/weather.proto) that introduces **non-breaking** changes to `initial`. Inline comments indicate changes.
 * An input called [`incompatible`](./incompatible/acme/weather/v1/weather.proto) that introduces **breaking** changes to `initial`. Inline comments indicate changes.
 
-All three inputs are for the same `acme.weather.v1` package. Each input uses the default [`FILE`][file] breaking change rule, which detects breaking changes on a per-file basis and also verifies compatibility in how Protobuf definitions act across the wire (`WIRE`) and in the JSON representation of the definitions (`WIRE_JSON`).
+All three inputs are for the same `acme.weather.v1` package. Each input uses the default [`FILE`][file] breaking change rule, which detects breaking changes on a per-file basis and also verifies compatibility in how Protobuf definitions act across the wire (`WIRE`) and in the JSON representation of the definitions (`WIRE_JSON`).[^1]
 
 To verify that the `compatible` input introduces no breaking changes against `initial`:
 
@@ -42,3 +42,5 @@ incompatible/acme/weather/v1/weather.proto:36:1:Previously present RPC "GetWeath
 [file]: https://docs.buf.build/breaking/rules#categories
 [inputs]: https://docs.buf.build/reference/inputs
 [install]: https://docs.buf.build/installation
+
+[^1]: In cases where a breaking change configuration is specified in both the main input and the against input, the configuration in the main input is used.
