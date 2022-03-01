@@ -2,11 +2,11 @@
 
 > You need to have the [`buf` CLI][install] installed to follow along with this example.
 
-Buf enables you to [format] Protobuf sources using the `buf format` command. The formatter is _not_ configurable and uses only an opinionated set of rules.
+The `buf` CLI enables you to format Protobuf sources using the `buf format` command. It works just like formatters in other languages, such as [gofmt] for Go and [Prettier] for JavaScript. Please be aware, though, that the formatter is _not_ configurable and applies only an opinionated set of built-in rules.
 
-## Diffs
+## Creating diffs
 
-To output a diff:
+With `buf format`, you can output diffs that display which changes the formatter suggests. To output a diff:
 
 ```sh
 buf format --diff ./bad
@@ -72,11 +72,14 @@ diff -u bad/acme/weather/v1/weather.proto.orig bad/acme/weather/v1/weather.proto
 
 ## Fixing files in place
 
-To fix files in place:
+With `buf format`, you can also change Protobuf files in place:
 
 ```sh
 buf format --write ./bad
 ```
 
-[format]: https://docs.buf.build/format
+This rewrites all of the `.proto` files in the target input.
+
+[gofmt]: https://pkg.go.dev/cmd/gofmt
 [install]: https://docs.buf.build/installation
+[prettier]: https://prettier.io
