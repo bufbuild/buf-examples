@@ -1,4 +1,4 @@
-BUF_VERSION := 1.0.0
+BUF_VERSION := 1.1.0
 UNAME_OS := $(shell uname -s)
 FILES_TO_UPDATE := Makefile README.md .circleci/config.yml .github/workflows/ci.yaml
 

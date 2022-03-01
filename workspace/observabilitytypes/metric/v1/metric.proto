@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package metric.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message Counter {
+  uint64 value = 1;
+}
+
+message Gauge {
+  uint64 value = 1;
+}
+
+message Metric {
+  google.protobuf.Timestamp timestamp = 1;
+  
+  oneof value {
+    Counter counter = 2;
+    Gauge gauge = 3;
+  }
+}
