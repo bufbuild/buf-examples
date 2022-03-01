@@ -10,7 +10,7 @@ The examples in this repo currently use version [1.1.0][version] of the [`buf` C
 
 Project | Directory | Category
 :-------|:----------|:--------
-[Limit output types][limit-types] | [`limit-types`](./limit-types) | CLI
+[Limit output types][limit-types] for `buf build` | [`limit-output-types`](./limit-types) | CLI
 Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
 Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD][ci]
 
