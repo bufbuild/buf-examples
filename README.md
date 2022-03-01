@@ -4,7 +4,7 @@ This repo houses example projects for learning how to use [Buf]. For more inform
 
 ## Version
 
-The examples in this repo currently use version [1.0.0][version] of the [`buf` CLI][cli].
+The examples in this repo currently use version [1.1.0][version] of the [`buf` CLI][cli].
 
 ## Projects
 
@@ -21,4 +21,4 @@ Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD
 [cli]: https://github.com/bufbuild/buf
 [docs]: https://docs.buf.build
 [lint]: https://docs.buf.build/lint
-[version]: https://github.com/bufbuild/buf/releases/tag/v1.0.0
+[version]: https://github.com/bufbuild/buf/releases/tag/v1.1.0
