@@ -55,7 +55,7 @@ buf lint observabilitytypes
 
 ## Breaking change detection
 
-To perform [breaking change detection][breaking] against the `main` branch of this repository:
+To perform [breaking change detection][breaking] against the previous commit to the `main` branch of this repository:
 
 ```sh
 buf breaking \
