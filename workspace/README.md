@@ -61,6 +61,12 @@ buf breaking observabilitytypes \
 --against ../.git#branch=main,ref=HEAD~1,subdir=workspace-modules
 ```
 
+To [generate code stubs][generate] for all modules in the workspace:
+
+```sh
+buf generate
+```
+
 [breaking]: https://docs.buf.build/breaking
 [buf-work-yaml]: https://docs.buf.build/configuration/v1/buf-work-yaml
 [generate]: https://docs.buf.build/generate
