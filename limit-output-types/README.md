@@ -70,6 +70,9 @@ buf build \
 We can see that the output here is much more involved and includes type definitions for the parent
 `AuthenticateResponse` message as well as the `User` message and a `Result` enum:
 
+<details>
+ <summary>JSON output for the <code>AuthenticateResponse</code> type</summary>
+
 ```json
 {
   "name": "auth/v1/auth.proto",
@@ -167,6 +170,7 @@ We can see that the output here is much more involved and includes type definiti
   }
 }
 ```
+</details>
 
 Finally, let's look at the output for the [`AuthenticationService`](./auth/v1#L32-34) type, which
 uses all of the available child types in the module:
