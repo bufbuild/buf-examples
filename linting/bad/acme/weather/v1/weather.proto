@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+// Should be acme.weather.v1 to match the directory structure and also to provide
+// version information
+package weather;
+
+import "google/protobuf/timestamp.proto";
+
+enum Condition {
+  sunny = 0; // Should be CONDITION_SUNNY. Also the 0 index should always be a *_UNSPECIFIED value
+  rainy = 1; // Should be CONDITION_RAINY
+  other = 2; // Should be CONDITION_OTHER
+}
+
+// This one is actually okay!
+message Location {
+  float latitude = 1;
+  float longitude = 2;
+}
+
+// Used as a response type and thus needs to be named CurrentWeatherResponse
+// Used as a response type for multiple RPCs (you should use separate types)
+message Weather {
+  float temperature = 1;
+  Condition conditions = 2;
+}
+
+// Should be named CurrentWeatherRequest
+message GetWeather {
+  Location location = 1;
+}
+
+// Should be named ExpectedWeatherRequest
+message Expected {
+  Location location = 1;
+  google.protobuf.Timestamp time = 2;
+}
+
+// Service name is malformed (doesn't end with "Service")
+service WeatherVision {
+  rpc CurrentWeather (GetWeather) returns (Weather);
+  rpc ExpectedWeather (Expected) returns (Weather);
+}
