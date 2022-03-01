@@ -69,6 +69,8 @@ buf breaking observabilitytypes \
 --against ../.git#branch=main,ref=HEAD~1,subdir=workspace
 ```
 
+In this case, the `--against` flag targets the root of this repository using `../.git` and then this directory using `subdir=workspace`.
+
 ## Code generation
 
 To [generate code stubs][generate] for all modules in the workspace using the plugins defined in [`buf.gen.yaml`](./buf.gen.yaml):
