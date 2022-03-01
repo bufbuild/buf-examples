@@ -10,6 +10,7 @@ The examples in this repo currently use version [1.1.0][version] of the [`buf` C
 
 Project | Directory | Category
 :-------|:----------|:--------
+[Limit output types][limit-types] for `buf build` | [`limit-output-types`](./limit-output-types) | CLI
 [Linting][lint] Protobuf sources | [`linting`](./linting) | Maintenance
 Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
 Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD][ci]
@@ -20,5 +21,6 @@ Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD
 [circleci]: https://circleci.com
 [cli]: https://github.com/bufbuild/buf
 [docs]: https://docs.buf.build
+[limit-types]: https://docs.buf.build/build/usage#limit-to-specific-types
 [lint]: https://docs.buf.build/lint
 [version]: https://github.com/bufbuild/buf/releases/tag/v1.1.0
