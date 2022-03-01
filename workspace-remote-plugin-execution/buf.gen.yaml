@@ -1,9 +1,0 @@
-version: v1
-managed:
-  enabled: true
-  go_package_prefix:
-    default: github.com/observability/gen/proto/go
-plugins:
-  - remote: buf.build/protocolbuffers/plugins/go
-    out: gen/proto/go
-    opt: paths=source_relative

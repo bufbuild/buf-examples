@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package log.v1;
-
-message Log {
-  string message = 1;
-  map<string, string> metadata = 2;
-}
