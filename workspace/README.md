@@ -66,7 +66,7 @@ As with `buf lint`, `buf breaking` detects breaking changes amongst all modules.
 
 ```sh
 buf breaking observabilitytypes \
---against ../.git#branch=main,ref=HEAD~1,subdir=workspace-modules
+--against ../.git#branch=main,ref=HEAD~1,subdir=workspace
 ```
 
 ## Code generation
