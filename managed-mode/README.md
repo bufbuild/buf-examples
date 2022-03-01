@@ -1,6 +1,6 @@
 # Managed mode
 
-This example shows Buf's [managed mode][managed] in practice. Managed mode is a configuration option that you can set in your [`buf.gen.yaml`][buf-gen-yaml] configuration file. If you set `enabled` to `true`, it instructs the [`buf` CLI][repo] to use an opinionated set of values for each of `protoc`'s natively supported languages, such as Go, Java, and C#. These options are written on the fly into your Protobuf sources so that you don't need to include them in your `.proto` files directly.
+This example shows Buf's [managed mode][managed] in practice. Managed mode is a configuration option that you can set in your [`buf.gen.yaml`][buf-gen-yaml] configuration file. If you set `enabled` to `true`, it instructs the [`buf` CLI][repo] to use an opinionated set of values for each of `protoc`'s file options for natively supported languages, such as Go, Java, and C#. These options are written on the fly into your Protobuf sources so that you don't need to include them in your `.proto` files directly.
 
 To generate code stubs from the Protobuf sources in [`acme/weather/v1`](./acme/weather/v1):
 
