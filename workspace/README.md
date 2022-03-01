@@ -69,7 +69,12 @@ buf breaking observabilitytypes \
 --against ../.git#branch=main,ref=HEAD~1,subdir=workspace
 ```
 
-In this case, the `--against` flag targets the root of this repository using `../.git` and then this directory using `subdir=workspace`.
+In this case, the `--against` flag targets the root of this repository using `../.git` and then this directory using `subdir=workspace`. In most projects, you would likely be able to use a more straightforward target, like this:
+
+```sh
+buf breaking observabilitytypes \
+--against .git#branch=main,ref=HEAD~1
+```
 
 ## Code generation
 
