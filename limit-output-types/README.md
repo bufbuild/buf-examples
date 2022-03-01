@@ -1,7 +1,7 @@
 # Limit types
 
-> You need to install the [`buf` CLI][install] to follow along with this example. Requires v1.1.0 or
-> above.
+> You need to install the [`buf` CLI][install] and [jq] to follow along with this example. Requires
+> v1.1.0 or above.
 
 The [`buf build`][build] command creates a [Buf image][image] (or
 [`FileDescriptorSet`][filedescriptorset]) out of a [Buf input][input]. By default, the image or
@@ -14,44 +14,59 @@ In this example project, we can use `buf build --type` to view different represe
 for various Protobuf types in the [`auth/v1`](./auth/v1) module.
 
 Amongst other types, the `auth/v1` module has a [`User`](./auth/v1#L5-9) message with no
-dependencies. To display a JSON representation of this type:
+dependencies. To display the full JSON representation of this type:
 
 ```sh
 buf build \
   --type auth.v1.User \
   --output -#format=json | \
-  jq '.file[0].messageType[0]'
+  jq .
 ```
 
 The output:
 
 ```javascript
 {
-  "name": "User",
-  "field": [
+  "file": [
     {
-      "name": "user_id",
-      "number": 1,
-      "label": "LABEL_OPTIONAL", // All fields are implicitly optional in proto3
-      "type": "TYPE_STRING",
-      "jsonName": "userId",
-      "options": {
-        "deprecated": true
+      "name": "auth/v1/auth.proto",
+      "package": "auth.v1",
+      "messageType": [
+        {
+          "name": "User",
+          "field": [
+            {
+              "name": "user_id",
+              "number": 1,
+              "label": "LABEL_OPTIONAL", // All fields are implicitly optional in proto3
+              "type": "TYPE_STRING",
+              "jsonName": "userId",
+              "options": {
+                "deprecated": true
+              }
+            },
+            {
+              "name": "username",
+              "number": 2,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_STRING",
+              "jsonName": "username"
+            },
+            {
+              "name": "email",
+              "number": 3,
+              "label": "LABEL_OPTIONAL",
+              "type": "TYPE_STRING",
+              "jsonName": "email"
+            }
+          ]
+        }
+      ],
+      "syntax": "proto3",
+      "bufExtension": {
+        "isImport": false,
+        "isSyntaxUnspecified": false
       }
-    },
-    {
-      "name": "username",
-      "number": 2,
-      "label": "LABEL_OPTIONAL",
-      "type": "TYPE_STRING",
-      "jsonName": "username"
-    },
-    {
-      "name": "email",
-      "number": 3,
-      "label": "LABEL_OPTIONAL",
-      "type": "TYPE_STRING",
-      "jsonName": "email"
     }
   ]
 }
@@ -348,4 +363,5 @@ buf build \
 [image]: https://docs.buf.build/reference/images
 [input]: https://docs.buf.build/reference/inputs
 [install]: https://docs.buf.build/installation
+[jq]: https://stedolan.github.io/jq
 [type]: https://docs.buf.build/build/usage#limit-to-specific-types
