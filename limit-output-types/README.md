@@ -13,8 +13,17 @@ and their required dependencies.
 In this example project, we can use `buf build --type` to view different representations (as JSON)
 for various Protobuf types in the [`auth/v1`](./auth/v1) module.
 
-Amongst other types, the `auth/v1` module has a [`User`](./auth/v1#L5-9) message with no
-dependencies. To display the full JSON representation of this type:
+First, let's see what JSON output we get if we don't specify a type:
+
+```sh
+buf build \
+  --output -#format=json | \
+  jq .
+```
+
+This outputs a large JSON object with 1227 lines! Let's make things more specific. The `auth/v1`
+module has a [`User`](./auth/v1#L5-9) message with no dependencies. To display the full JSON
+representation of this type:
 
 ```sh
 buf build \
@@ -23,7 +32,7 @@ buf build \
   jq .
 ```
 
-The output:
+The full output:
 
 ```javascript
 {
@@ -72,6 +81,25 @@ The output:
 }
 ```
 
+If we refine the [jq] query a bit, we can confirm that the output only contains the `User` type:
+
+```sh
+buf build \
+  --type auth.v1.User \
+  --output -#format=json | \
+  jq '.file[] | { messages: .messageType | map(.name) }'
+```
+
+The output:
+
+```json
+{
+  "messages": [
+    "User"
+  ]
+}
+```
+
 Now, let's look at the output for the [`AuthenticateResponse`](./auth/v1#L18-30) message, which
 has dependencies on other types in the module:
 
@@ -79,20 +107,38 @@ has dependencies on other types in the module:
 buf build \
   --type auth.v1.AuthenticateResponse \
   --output -#format=json | \
-  jq '.file[0]'
+  jq '.file[] | { messages: .messageType | map(.name) }'
 ```
 
-We can see that the output here is much more involved and includes type definitions for the parent
-`AuthenticateResponse` message as well as the `User` message and a `Result` enum:
+We can see that
+
+```json
+{
+  "messages": [
+    "User",
+    "AuthenticateResponse"
+  ]
+}
+```
+
+To see the full output for the `AuthenticateResponse` type:
+
+```sh
+buf build \
+  --type auth.v1.AuthenticateResponse \
+  --output -#format=json | \
+  jq '.file[] | { messages: .messageType }'
+```
+
+We can see that the output here is more involved and includes type definitions for the parent
+`AuthenticateResponse` message as well as the `User` message and `Result` enum:
 
 <details>
  <summary>JSON output for the <code>AuthenticateResponse</code> type</summary>
 
 ```json
 {
-  "name": "auth/v1/auth.proto",
-  "package": "auth.v1",
-  "messageType": [
+  "messages": [
     {
       "name": "User",
       "field": [
@@ -177,12 +223,7 @@ We can see that the output here is much more involved and includes type definiti
         }
       ]
     }
-  ],
-  "syntax": "proto3",
-  "bufExtension": {
-    "isImport": false,
-    "isSyntaxUnspecified": false
-  }
+  ]
 }
 ```
 </details>
@@ -191,7 +232,10 @@ Finally, let's look at the output for the [`AuthenticationService`](./auth/v1#L3
 uses all of the available child types in the module:
 
 ```sh
-buf build --type auth.v1.AuthenticationService --output -#format=json | jq '.file[0]'
+buf build \
+  --type auth.v1.AuthenticationService \
+  --output -#format=json | \
+  jq '.file[] | { services: .service, messages: .messageType }'
 ```
 
 The output:
@@ -201,9 +245,20 @@ The output:
 
 ```json
 {
-  "name": "auth/v1/auth.proto",
-  "package": "auth.v1",
-  "messageType": [
+  "services": [
+    {
+      "name": "AuthenticationService",
+      "method": [
+        {
+          "name": "Authenticate",
+          "inputType": ".auth.v1.AuthenticateRequest",
+          "outputType": ".auth.v1.AuthenticateResponse",
+          "options": {}
+        }
+      ]
+    }
+  ],
+  "messages": [
     {
       "name": "User",
       "field": [
@@ -324,25 +379,7 @@ The output:
         }
       ]
     }
-  ],
-  "service": [
-    {
-      "name": "AuthenticationService",
-      "method": [
-        {
-          "name": "Authenticate",
-          "inputType": ".auth.v1.AuthenticateRequest",
-          "outputType": ".auth.v1.AuthenticateResponse",
-          "options": {}
-        }
-      ]
-    }
-  ],
-  "syntax": "proto3",
-  "bufExtension": {
-    "isImport": false,
-    "isSyntaxUnspecified": false
-  }
+  ]
 }
 ```
 </details>
@@ -353,9 +390,7 @@ multiple:
 ```sh
 buf build \
   --type auth.v1.User \
-  --type auth.v1.AuthenticateResponse.Result \
-  --output -#format=json | \
-  jq '.file[0]'
+  --type auth.v1.AuthenticateResponse.Result
 ```
 
 [build]: https://docs.buf.build/build/usage
