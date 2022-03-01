@@ -6,15 +6,15 @@
 The [`buf build`][build] command creates a [Buf image][image] (or
 [`FileDescriptorSet`][filedescriptorset]) out of a [Buf input][input]. By default, the image or
 `FileDescriptorSet` includes _all_ of the Protobuf types—messages, enums, and services—in the input.
-But the `buf build` command offers [`--type`][type] option that enables you to supply fully
-qualified Protobuf type names and limit the output to only the Protobuf descriptors required to
-represent those types and their required dependencies.
+But `buf build` offers a [`--type`][type] option that enables you to supply fully qualified Protobuf
+type names and limit the output to only the Protobuf descriptors required to represent those types
+and their required dependencies.
 
-In this example, we can use `buf build --type` to view different representations (as JSON) for
-various Protobuf types in the [`auth/v1`](./auth/v1) module.
+In this example project, we can use `buf build --type` to view different representations (as JSON)
+for various Protobuf types in the [`auth/v1`](./auth/v1) module.
 
-The `auth/v1` module has a [`User`](./auth/v1#L5-9) message with no dependencies. To display a JSON
-representation of this type:
+Amongst other types, the `auth/v1` module has a [`User`](./auth/v1#L5-9) message with no
+dependencies. To display a JSON representation of this type:
 
 ```sh
 buf build \
@@ -67,9 +67,8 @@ buf build \
   jq '.file[0]'
 ```
 
-We can see that the output is more involved, including type definitions for the parent
-`AuthenticateResponse` message but also the `User` message, as above, and a `Result` enum:
-above, but also 
+We can see that the output here is much more involved and includes type definitions for the parent
+`AuthenticateResponse` message as well as the `User` message and a `Result` enum:
 
 ```json
 {
@@ -169,7 +168,7 @@ above, but also
 }
 ```
 
-Finally, let's look at the output for the [`AuthenticationService`](./auth/v1#L32-34) service, which
+Finally, let's look at the output for the [`AuthenticationService`](./auth/v1#L32-34) type, which
 uses all of the available child types in the module:
 
 ```sh
@@ -177,6 +176,9 @@ buf build --type auth.v1.AuthenticationService --output -#format=json | jq '.fil
 ```
 
 The output:
+
+<details>
+ <summary>JSON output for the <code>AuthenticationService</code> type</summary>
 
 ```json
 {
@@ -324,6 +326,7 @@ The output:
   }
 }
 ```
+</details>
 
 [build]: https://docs.buf.build/build/usage
 [filedescriptorset]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
