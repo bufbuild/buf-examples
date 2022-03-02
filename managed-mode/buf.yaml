@@ -1,0 +1,9 @@
+version: v1
+name: buf.build/acme/weather
+lint:
+  use:
+    - DEFAULT
+  enum_zero_value_suffix: _UNKNOWN
+breaking:
+  use:
+    - FILE  

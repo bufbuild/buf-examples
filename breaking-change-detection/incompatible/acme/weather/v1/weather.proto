@@ -1,0 +1,42 @@
+// This API definition introduces several breaking changes compared to the `initial` definition.
+// All changes are indicated by comments.
+
+syntax = "proto3";
+
+package acme.weather.v1;
+
+enum Condition {
+  CONDITION_UNSPECIFIED = 0;
+  CONDITION_FOGGY = 1;       // Breaking change of enum value name
+  CONDITION_RAINY = 2;
+}
+
+message Location {
+  float latitude_min = 1;  // Breaking change of field name
+  float latitude_max = 2;  // Breaking change of field name
+  float longitude_min = 3; // Non-breaking addition of field
+  float longitude_max = 4; // Non-breaking addition of field
+}
+
+message Weather {
+  float temperature = 1;
+  Location location = 2;
+  Condition condition = 3;
+  bool lightning_warning = 4;   // Non-breaking addition of field
+  bool flash_flood_warning = 5; // Breaking deletion of reserved range
+}
+
+// Non-breaking addition of message, but the GetWeatherRequest message has been removed (breaking)
+message GetCurrentWeatherRequest {
+  Location location = 1;
+}
+
+// Non-breaking addition of message, but the GetWeatherResponse message has been removed (breaking)
+message GetCurrentWeatherResponse {
+  Weather weather = 1;
+}
+
+service WeatherService {
+  // Non-breaking change of service method name and request/return message names
+  rpc GetCurrentWeather (GetCurrentWeatherRequest) returns (GetCurrentWeatherResponse);
+}

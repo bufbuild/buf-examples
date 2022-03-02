@@ -1,0 +1,13 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/acme/observability
+plugins:
+  - remote: buf.build/protocolbuffers/plugins/go:v1.27.1-1
+    out: gen/proto/go
+    opt: paths=source_relative
+  - remote: buf.build/protocolbuffers/plugins/java:v3.19.3-1
+    out: gen/proto/java
+  - remote: buf.build/protocolbuffers/plugins/python:v3.19.3-1
+    out: gen/proto/python
