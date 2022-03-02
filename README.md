@@ -10,14 +10,16 @@ The examples in this repo currently use version [1.1.0][version] of the [`buf` C
 
 Project | Directory | Category
 :-------|:----------|:--------
-Generating code stubs using [managed mode][managed] | [`managed-mode`](./managed-mode/) | Code generation
 Buf [workspace] | [`workspace-modules`](./workspace) | Code organization
 [Linting][lint] Protobuf sources | [`linting`](./linting) | Maintenance
+[Breaking change detection][breaking] | [`breaking-change-detection`](./breaking-change-detection) | Maintenance
+Generating code stubs using [managed mode][managed] | [`managed-mode`](./managed-mode/) | Code generation
 [Limit output types][limit-types] for `buf build` | [`limit-output-types`](./limit-output-types) | CLI
 Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
 Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD][ci]
 
 [actions]: https://docs.github.com/actions
+[breaking]: https://docs.buf.build/breaking
 [buf]: https://buf.build
 [ci]: https://docs.buf.build/ci-cd
 [circleci]: https://circleci.com
