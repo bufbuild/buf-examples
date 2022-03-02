@@ -43,4 +43,4 @@ incompatible/acme/weather/v1/weather.proto:36:1:Previously present RPC "GetWeath
 [inputs]: https://docs.buf.build/reference/inputs
 [install]: https://docs.buf.build/installation
 
-[^1]: In cases where a breaking change configuration is specified in both the main input and the against input, the configuration in the main input is used.
+[^1]: In cases where a breaking change configuration is specified in both the main input and the against input, the configuration in the main input is used. If input `a` and `b` both have `breaking` configs, then the configuration for `a` would be used if you run `buf breaking a --against b`.
