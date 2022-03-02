@@ -6,6 +6,7 @@ PLUGIN         = $(OWNER)/$(NAME)
 PLUGIN_VERSION =  v0.1.0
 TAG            := $(PREFIX)/$(PLUGIN):$(PLUGIN_VERSION)
 
+.PHONY: build
 build:
 	docker build \
 	--tag $(TAG) \
@@ -15,11 +16,11 @@ build:
 	--build-arg pluginVersion=$(PLUGIN_VERSION) \
 	$(CURDIR)
 
+.PHONY: push
 push:
 	docker push $(TAG)
 
+.PHONY: generate
 generate:
 	go install ./cmd/protoc-gen-go-example
-	protoc \
-	--go-example_out=gen/go \
-	example/v1/testing.proto
+	buf generate
