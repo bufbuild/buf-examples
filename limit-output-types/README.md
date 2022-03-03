@@ -11,7 +11,8 @@ type names and limit the output to only the Protobuf descriptors required to rep
 and their required dependencies.
 
 In this example project, we can use `buf build --type` to view different representations (as JSON)
-for various Protobuf types in the [`auth/v1`](./auth/v1) module.
+for various Protobuf types in the [`auth/v1`](./auth/v1) module, which is available on the [Buf
+Schema Registry][bsr] as [`buf.build/buf-examples/limit-output-types`][bsr-mod]
 
 First, let's see what JSON output we get if we don't specify a type:
 
@@ -393,6 +394,8 @@ buf build \
   --type auth.v1.AuthenticateResponse.Result
 ```
 
+[bsr]: https://docs.buf.build/bsr
+[bsr-mod]: https://buf.build/buf-examples/limit-output-types
 [build]: https://docs.buf.build/build/usage
 [filedescriptorset]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
 [image]: https://docs.buf.build/reference/images
