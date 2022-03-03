@@ -7,14 +7,14 @@ import "google/protobuf/timestamp.proto";
 // Entities
 message Order {
   string order_id = 1;
-  Product product = 2;
-  float price = 3;
+  float price = 2;
+  Product product = 3;
 }
 
 message Product {
   string product_id = 1;
   string vendor_name = 2;
-  string vendor_address = 3;
+  map<string,string> product_metadata = 3;
 }
 
 // Event types
@@ -62,16 +62,19 @@ message Source {
 // Event service
 service EventService {
   rpc HandleEvent(HandleEventRequest) returns (HandleEventResponse);
+  rpc GetEvent(GetEventRequest) returns (GetEventResponse);
+  rpc GetEvents(GetEventsRequest) returns (stream GetEventsResponse);
 }
 
-// Service request
+// Event handling request
 message HandleEventRequest {
   Event event = 1;
   Source source = 2;
 }
 
-// Service response
+// Event handling response
 message HandleEventResponse {
+  // Available API errors
   enum ErrorCode {
     ERROR_CODE_UNSPECIFIED = 0;
     // The event emitter source is unknown to the handler
@@ -87,4 +90,25 @@ message HandleEventResponse {
   // Provide error information if not successful
   string error_message = 2;
   ErrorCode error_code = 3;
+}
+
+// Event fetching request
+message GetEventRequest {
+  string event_id = 1;
+}
+
+// Event fetching response
+message GetEventResponse {
+  Event event = 1;
+}
+
+// Multiple event fetch request (within time range)
+message GetEventsRequest {
+  google.protobuf.Timestamp begin = 1;
+  google.protobuf.Timestamp end = 2;
+}
+
+// Multiple event fetch response
+message GetEventsResponse {
+  repeated Event events = 1;
 }
