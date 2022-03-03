@@ -17,9 +17,7 @@ message Product {
   string vendor_address = 3;
 }
 
-/// Actions
-
-// Order actions
+// Event types
 message OrderPlaced {
   Order order = 1;
 }
@@ -28,7 +26,6 @@ message OrderPaid {
   Order order = 1;
 }
 
-// Product actions
 message ProductAdded {
   Product product = 1;
 }
@@ -39,46 +36,60 @@ message ProductRemoved {
 
 // Core event type
 message Event {
-  google.protobuf.Timestamp timestamp = 1;
-  map<string, string> metadata = 2;
+  // A unique ID for the event
+  string event_id = 1;
 
+  // The time of the event
+  google.protobuf.Timestamp event_time = 2;
+
+  // Arbitrary metadata attached to the event
+  map<string, string> event_metadata = 3;
+
+  // The source of the event
+  Source event_source = 4;
+
+  // The event
   oneof event {
-    OrderPlaced order_placed = 3;
-    OrderPaid order_paid = 4;
-    ProductAdded product_added = 5;
-    ProductRemoved product_removed = 6;
+    OrderPlaced order_placed = 5;
+    OrderPaid order_paid = 6;
+    ProductAdded product_added = 7;
+    ProductRemoved product_removed = 8;
   }
+}
+
+// Info about the source emitting the event
+message Source {
+  string source_id = 1;
+  string source_url = 2;
 }
 
 // Event service
 service EventService {
-  rpc HandleEvent (HandleEventRequest) returns (HandleEventResponse) {}
+  rpc HandleEvent (HandleEventRequest) returns (HandleEventResponse);
 }
 
 // Service request
 message HandleEventRequest {
   Event event = 1;
+  Source source = 2;
 }
 
 // Service response
 message HandleEventResponse {
-  enum Status {
-    STATUS_UNSPECIFIED = 0;
-    STATUS_ACCEPTED = 1;
-    STATUS_ERROR = 2;
+  enum ErrorCode {
+    ERROR_CODE_UNSPECIFIED = 0;
+    // The event emitter source is unknown to the handler
+    ERROR_CODE_SOURCE_UNKNOWN = 1;
+    // This event is missing required information
+    ERROR_CODE_MALFORMED_EVENT = 2;
+    // This event has already been handled
+    ERROR_CODE_ALREADY_EXISTS = 3;
   }
 
-  message Success {
-    Status status = 1;
-  }
+  // Provide a transaction ID if successful
+  string transaction_id = 1;
 
-  message Error {
-    Status status = 1;
-    string error = 2;
-  }
-
-  oneof result {
-    Success success = 1;
-    Error error = 2;
-  }
+  // Provide error information if not successful
+  string error_message = 2;
+  ErrorCode error_code = 3;
 }
