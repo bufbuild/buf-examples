@@ -12,7 +12,7 @@ and their required dependencies.
 
 In this example project, we can use `buf build --type` to view different representations (as JSON)
 for various Protobuf types in the [`auth/v1`](./auth/v1) module, which is available on the [Buf
-Schema Registry][bsr] as [`buf.build/buf-examples/limit-output-types`][bsr-mod]
+Schema Registry][bsr] as [`buf.build/buf-examples/limit-output-types`][bsr-mod].
 
 First, let's see what JSON output we get if we don't specify a type:
 
