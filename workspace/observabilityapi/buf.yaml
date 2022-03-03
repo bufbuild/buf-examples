@@ -1,5 +1,7 @@
 version: v1
-name: buf.build/acme/observabilityapi
+name: buf.build/buf-examples/observabilityapi
+deps:
+  - buf.build/buf-examples/observabilitytypes
 breaking:
   use:
     - FILE

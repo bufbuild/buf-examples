@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/acme/observabilitytypes
+name: buf.build/buf-examples/observabilitytypes
 breaking:
   use:
     - FILE
