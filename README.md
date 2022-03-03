@@ -17,6 +17,7 @@ Generating code stubs using [managed mode][managed] | [`managed-mode`](./managed
 [Limit output types][limit-types] for `buf build` | [`limit-output-types`](./limit-output-types) | CLI
 Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
 Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD][ci]
+Using Protobuf for [event sourcing][event] | [`event-sourcing`](./event-sourcing) | Data modeling
 
 [actions]: https://docs.github.com/actions
 [breaking]: https://docs.buf.build/breaking
@@ -25,6 +26,7 @@ Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD
 [circleci]: https://circleci.com
 [cli]: https://github.com/bufbuild/buf
 [docs]: https://docs.buf.build
+[event]: https://www.eventstore.com/event-sourcing
 [limit-types]: https://docs.buf.build/build/usage#limit-to-specific-types
 [lint]: https://docs.buf.build/lint
 [managed]: https://docs.buf.build/generate/managed-mode

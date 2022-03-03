@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package acme.events.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Entities
+message Order {
+  string order_id = 1;
+  Product product = 2;
+  float price = 3;
+}
+
+message Product {
+  string product_id = 1;
+  string vendor_name = 2;
+  string vendor_address = 3;
+}
+
+/// Actions
+
+// Order actions
+message OrderPlaced {
+  Order order = 1;
+}
+
+message OrderPaid {
+  Order order = 1;
+}
+
+// Product actions
+message ProductAdded {
+  Product product = 1;
+}
+
+message ProductRemoved {
+  Product product = 1;
+}
+
+// Core event type
+message Event {
+  google.protobuf.Timestamp timestamp = 1;
+  map<string, string> metadata = 2;
+
+  oneof event {
+    OrderPlaced order_placed = 3;
+    OrderPaid order_paid = 4;
+    ProductAdded product_added = 5;
+    ProductRemoved product_removed = 6;
+  }
+}
+
+// Event service
+service EventService {
+  rpc HandleEvent (HandleEventRequest) returns (HandleEventResponse) {}
+}
+
+// Service request
+message HandleEventRequest {
+  Event event = 1;
+}
+
+// Service response
+message HandleEventResponse {
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_ACCEPTED = 1;
+    STATUS_ERROR = 2;
+  }
+
+  message Success {
+    Status status = 1;
+  }
+
+  message Error {
+    Status status = 1;
+    string error = 2;
+  }
+
+  oneof result {
+    Success success = 1;
+    Error error = 2;
+  }
+}
