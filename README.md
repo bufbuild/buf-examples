@@ -18,8 +18,13 @@ Generating code stubs using [managed mode][managed] | [`managed-mode`](./managed
 Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
 Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD][ci]
 
+Several of these projects available as modules on the [Buf Schema Registry][bsr] under the
+[`buf-examples`][bsr-org] organization.
+
 [actions]: https://docs.github.com/actions
 [breaking]: https://docs.buf.build/breaking
+[bsr]: https://docs.buf.build/bsr
+[bsr-org]: https://buf.build/buf-examples
 [buf]: https://buf.build
 [ci]: https://docs.buf.build/ci-cd
 [circleci]: https://circleci.com

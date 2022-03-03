@@ -7,6 +7,11 @@ This directory provides an example of a Buf [workspace] that contains multiple B
 * [`observabilityapi`](./observabilityapi) defines an observability-related service.
 * [`observabilitytypes`](./observabilitytypes) defines many of the types used by the service in the `observabilityapi` module.
 
+Both modules are available on the [Buf Schema Registry][bsr]:
+
+* [`buf.build/buf-examples/observabilityapi`][bsr-api]
+* [`buf.build/buf-examples/observabilitytypes`][bsr-types]
+
 ## Structure
 
 The basic structure of this workspace:
@@ -92,6 +97,9 @@ buf generate observabilitytypes
 ```
 
 [breaking]: https://docs.buf.build/breaking
+[bsr]: https://docs.buf.build/bsr
+[bsr-api]: https://buf.build/buf-examples/observabilityapi
+[bsr-types]: https://buf.build/buf-examples/observabilitytypes
 [buf-work-yaml]: https://docs.buf.build/configuration/v1/buf-work-yaml
 [generate]: https://docs.buf.build/generate
 [install]: https://docs.buf.build/installation

@@ -7,7 +7,10 @@ Buf enables you to [lint] Protobuf sources in accordance with [lint rules][rules
 * The [`bad`](./bad) input is a [module] that violates a whole host of lint rules. This module "works" but it ain't pretty.
 * The [`good`](./good) module, on the other hand, violates no lint rules and is thus a much better citizen of the Protobuf universe.
 
-Both inputs use the [`DEFAULT`][default] lint rules.
+Both inputs use the [`DEFAULT`][default] lint rules and are available on the [Buf Schema Registry][bsr]:
+
+* [`buf.build/buf-examples/linting-bad`][bsr-bad]
+* [`buf.build/buf-examples/linting-good`][bsr-good]
 
 To lint the [`bad`](./bad) input:
 
@@ -44,6 +47,9 @@ buf lint ./good
 
 ✅  Much better! This project has a clean bill of health.
 
+[bsr]: https://docs.buf.build/bsr
+[bsr-bad]: https://buf.build/buf-examples/linting-bad
+[bsr-good]: https://buf.build/buf-examples/linting-good
 [buf-yaml]: https://docs.buf.build/configuration/v1/buf-yaml
 [default]: https://docs.buf.build/lint/rules#default
 [inputs]: https://docs.buf.build/reference/inputs

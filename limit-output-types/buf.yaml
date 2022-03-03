@@ -1,4 +1,5 @@
 version: v1
+name: buf.build/buf-examples/limit-output-types
 breaking:
   use:
     - FILE
