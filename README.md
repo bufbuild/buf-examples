@@ -13,8 +13,8 @@ Project | Directory | Category
 Buf [workspace] | [`workspace-modules`](./workspace) | Code organization
 [Linting][lint] Protobuf sources | [`linting`](./linting) | Maintenance
 [Breaking change detection][breaking] | [`breaking-change-detection`](./breaking-change-detection) | Maintenance
-[Remote plugin execution][remote] | [`remote-plugin-execution`](./remote-plugin-execution) | Code generation 
-[Local plugin execution][plugin] | [`local-plugin-execution`](./local-plugin-execution) | Code generation
+[Remote plugin execution][remote] | [`plugin-execution-remote`](./plugin-execution-remote) | Code generation 
+[Local plugin execution][plugin] | [`plugin-execution-local`](./plugin-execution-local) | Code generation
 Generating code stubs using [managed mode][managed] | [`managed-mode`](./managed-mode/) | Code generation
 [Limit output types][limit-types] for `buf build` | [`limit-output-types`](./limit-output-types) | CLI
 Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
