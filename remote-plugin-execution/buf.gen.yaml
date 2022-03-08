@@ -1,0 +1,10 @@
+version: v1
+managed:
+  enabled: true
+
+  # Go
+  go_package_prefix:
+    default: github.com/buf-examples/observabilityapi
+plugins:
+  - remote: buf.build/protocolbuffers/plugins/go:v1.27.1-1
+    out: gen/proto/go
