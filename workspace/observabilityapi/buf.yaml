@@ -1,0 +1,11 @@
+version: v1
+name: buf.build/buf-examples/observabilityapi
+deps:
+  - buf.build/buf-examples/observabilitytypes
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT
+  rpc_allow_google_protobuf_empty_responses: true

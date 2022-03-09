@@ -1,0 +1,9 @@
+version: v1
+name: buf.build/buf-examples/observabilitytypes
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT
+  enum_zero_value_suffix: _UNKNOWN

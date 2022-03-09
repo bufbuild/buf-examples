@@ -1,0 +1,16 @@
+version: v1
+managed:
+  enabled: true
+
+  # Go
+  go_package_prefix:
+    default: github.com/buf-examples/observabilityapi
+  
+  # Java
+  java_multiple_files: false
+  java_string_check_utf8: false
+plugins:
+  - remote: buf.build/protocolbuffers/plugins/go:v1.27.1-1
+    out: gen/proto/go
+  - remote: buf.build/protocolbuffers/plugins/java:v3.19.3-1
+    out: gen/proto/java

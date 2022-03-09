@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package acme.weather.v1;
+
+message Location {
+  float latitude = 1;
+  float longitude = 2;
+}
+
+enum Condition {
+  CONDITION_UNKNOWN = 0;
+  CONDITION_RAINY = 1;
+  CONDITION_SUNNY = 2;
+  CONDITION_CLOUDY = 3;
+}
+
+message Weather {
+  Location location = 1;
+  float temperature = 2;
+  float wind_speed = 3;
+  Condition condition = 4;
+}
