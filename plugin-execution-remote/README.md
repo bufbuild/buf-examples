@@ -9,4 +9,5 @@ buf generate buf.build/buf-examples/observabilityapi
 Borrowed from the [workspace] example.
 
 [install]: https://docs.buf.build/installation
+[module]: https://buf.build/buf-examples/observabilityapi
 [workspace]: ../workspace
