@@ -13,6 +13,8 @@ Project | Directory | Category
 Buf [workspace] | [`workspace-modules`](./workspace) | Code organization
 [Linting][lint] Protobuf sources | [`linting`](./linting) | Maintenance
 [Breaking change detection][breaking] | [`breaking-change-detection`](./breaking-change-detection) | Maintenance
+[Remote plugin execution][remote] | [`plugin-execution-remote`](./plugin-execution-remote) | Code generation 
+[Local plugin execution][plugin] | [`plugin-execution-local`](./plugin-execution-local) | Code generation
 Generating code stubs using [managed mode][managed] | [`managed-mode`](./managed-mode/) | Code generation
 [Limit output types][limit-types] for `buf build` | [`limit-output-types`](./limit-output-types) | CLI
 Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
@@ -34,6 +36,7 @@ Several of these projects available as modules on the [Buf Schema Registry][bsr]
 [lint]: https://docs.buf.build/lint
 [managed]: https://docs.buf.build/generate/managed-mode
 [modules]: https://docs.buf.build/bsr/overview#modules
+[plugin]: https://docs.buf.build/bsr/remote-generation/concepts#plugins
 [remote]: https://docs.buf.build/bsr/remote-generation/remote-plugin-execution
 [version]: https://github.com/bufbuild/buf/releases/tag/v1.1.0
 [workspace]: https://docs.buf.build/reference/workspaces

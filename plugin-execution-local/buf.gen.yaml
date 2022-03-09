@@ -1,0 +1,12 @@
+version: v1
+managed:
+  enabled: true
+
+  # Go
+  go_package_prefix:
+    default: github.com/buf-examples/observabilityapi
+plugins:
+  - name: go # Invokes the protoc-gen-go executable
+    out: gen/proto/go
+  - name: rust # Invokes the protoc-gen-rust executable
+    out: gen/proto/rust
