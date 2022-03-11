@@ -23,4 +23,4 @@ jobs:
         uses: bufbuild/buf-breaking-action@v1
         with:
           input: proto
-          against: https://github.com/bufbuild/buf-examples.git#branch=main,subdir=proto
+          against: https://github.com/bufbuild/buf-examples.git#branch=main,ref=HEAD~1,subdir=proto
