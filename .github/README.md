@@ -6,7 +6,7 @@ This example project shows you how to use Buf in a [GitHub Actions][actions] set
 
 * [`buf-setup-action`][buf-setup] installs the [`buf` CLI][cli]
 * [`buf-lint-action`][buf-lint] [lints][lint] the Protobuf module in the [`proto`](../proto) directory
-* [`buf-breaking-action`][buf-breaking] runs [breaking change detection][breaking] against the current `main` branch
+* [`buf-breaking-action`][buf-breaking] runs [breaking change detection][breaking] against the `proto` module on the current `main` branch
 
 The configuration for [GitHub Actions][actions] is in [`workflows/ci.yaml`](./workflows/ci.yaml).
 
