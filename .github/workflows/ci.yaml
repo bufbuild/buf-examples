@@ -12,15 +12,15 @@ jobs:
         uses: bufbuild/buf-setup-action@v0.5.0
         with:
           version: '1.1.0'
-      # Lint the Buf module in the `proto` directory
+      # Lint the Buf module in the `github-actions` directory
       - name: Lint
         uses: bufbuild/buf-lint-action@v1
         with:
-          input: proto
-      # Detect breaking changes for the Buf module in the `proto` directory
+          input: github-actions
+      # Detect breaking changes for the Buf module in the `github-actions` directory
       # against the current `main` branch
       - name: Breaking change detection against `main`
         uses: bufbuild/buf-breaking-action@v1
         with:
-          input: proto
-          against: https://github.com/bufbuild/buf-examples.git#branch=main,ref=HEAD~1,subdir=proto
+          input: github-actions
+          against: https://github.com/bufbuild/buf-examples.git#branch=main,ref=HEAD~1,subdir=github-actions

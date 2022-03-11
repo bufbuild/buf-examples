@@ -5,14 +5,14 @@
 This example project shows you how to use Buf in a [GitHub Actions][actions] setting. The Actions pipeline here involves three Buf-specific GitHub Actions:
 
 * [`buf-setup-action`][buf-setup] installs the [`buf` CLI][cli]
-* [`buf-lint-action`][buf-lint] [lints][lint] the Protobuf module in the [`proto`](../proto) directory
+* [`buf-lint-action`][buf-lint] [lints][lint] this Protobuf module
 * [`buf-breaking-action`][buf-breaking] runs [breaking change detection][breaking] against the current `main` branch
 
-The configuration for [GitHub Actions][actions] is in [`workflows/ci.yaml`](./workflows/ci.yaml).
+> The configuration for [GitHub Actions][actions] is in the [`.github`](../.github) directory in the root, as that's where GitHub expects it to be.
 
-## Other CI/CD examples
+## Other examples
 
-See the [`.circleci`](../.circleci) project for another CI/CD example.
+See the [`circleci`](../circleci) project for another CI/CD example.
 
 [actions]: https://docs.github.com/actions
 [breaking]: https://docs.buf.build/breaking
