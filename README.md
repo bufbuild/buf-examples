@@ -17,8 +17,8 @@ Buf [workspace] | [`workspace-modules`](./workspace) | Code organization
 [Local plugin execution][plugin] | [`plugin-execution-local`](./plugin-execution-local) | Code generation
 Generating code stubs using [managed mode][managed] | [`managed-mode`](./managed-mode/) | Code generation
 [Limit output types][limit-types] for `buf build` | [`limit-output-types`](./limit-output-types) | CLI
-Buf on [CircleCI] | [`circleci`](./circleci) | [CI/CD][ci]
-Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD][ci]
+Buf on [CircleCI] | [`.circleci`](./.circleci) | [CI/CD][ci]
+Buf on [GitHub Actions][actions] | [`.github`](./.github) | [CI/CD][ci]
 
 Several of these projects available as modules on the [Buf Schema Registry][bsr] under the
 [`buf-examples`][bsr-org] organization.

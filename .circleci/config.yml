@@ -4,16 +4,14 @@ jobs:
     docker:
       - image: bufbuild/buf:1.1.0
     steps:
-      - checkout:
-          path: ~/circleci
+      - checkout
       - run: buf lint
   breaking:
     docker:
       - image: bufbuild/buf:1.1.0
     steps:
-      - checkout:
-          path: ~/circleci
-      - run: buf breaking --against https://github.com/bufbuild/buf-examples.git#branch=main,ref=HEAD~1,subdir=proto
+      - checkout
+      - run: buf breaking proto --against https://github.com/bufbuild/buf-examples.git#branch=main,ref=HEAD~1,subdir=proto
 
 workflows:
   version: 2
