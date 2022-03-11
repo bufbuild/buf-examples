@@ -4,14 +4,14 @@
 
 This example project shows you how to use Buf in a [CircleCI][circle] setting. The workflow here involves two steps:
 
-* [Linting][lint] this Protobuf module
+* [Linting][lint] the Protobuf module in the [`proto`](../proto) directory
 * Running [breaking change detection][breaking] against the current `main` branch
 
-> The configuration for [CircleCI][circle] is in the [`.circleci`](../.circleci) directory in the root, as that's where CircleCI expects it to be.
+The configuration for [CircleCI][circle] is in [`config.yml`](./config.yml).
 
-## Other examples
+## Other CI/CD examples
 
-See the [`github-actions`](../github-actions) project for another CI/CD example.
+See the [`github`](../.github) project for another CI/CD example.
 
 [breaking]: https://docs.buf.build/breaking
 [circle]: https://circleci.com
