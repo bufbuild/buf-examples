@@ -5,7 +5,7 @@ jobs:
       - image: bufbuild/buf:1.1.0
     steps:
       - checkout
-      - run: buf lint
+      - run: buf lint proto
   breaking:
     docker:
       - image: bufbuild/buf:1.1.0
