@@ -4,7 +4,7 @@ This repo houses example projects for learning how to use [Buf]. For more inform
 
 ## Version
 
-The examples in this repo currently use version [1.2.0][version] of the [`buf` CLI][cli].
+The examples in this repo currently use version [1.2.1][version] of the [`buf` CLI][cli].
 
 ## Projects
 
@@ -38,5 +38,5 @@ Several of these projects available as modules on the [Buf Schema Registry][bsr]
 [modules]: https://docs.buf.build/bsr/overview#modules
 [plugin]: https://docs.buf.build/bsr/remote-generation/concepts#plugins
 [remote]: https://docs.buf.build/bsr/remote-generation/remote-plugin-execution
-[version]: https://github.com/bufbuild/buf/releases/tag/v1.2.0
+[version]: https://github.com/bufbuild/buf/releases/tag/v1.2.1
 [workspace]: https://docs.buf.build/reference/workspaces
