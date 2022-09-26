@@ -10,10 +10,6 @@ This example project shows you how to use Buf in a [GitHub Actions][actions] set
 
 > The configuration for [GitHub Actions][actions] is in the [`.github`](../.github) directory in the root, as that's where GitHub expects it to be.
 
-## Other examples
-
-See the [`circleci`](../circleci) project for another CI/CD example.
-
 [actions]: https://docs.github.com/actions
 [breaking]: https://docs.buf.build/breaking
 [buf-breaking]: https://github.com/bufbuild/buf-breaking-action

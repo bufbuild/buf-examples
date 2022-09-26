@@ -1,9 +1,0 @@
-syntax = "proto2";
-
-package bufbuild.example.opt.v1;
-
-import "google/protobuf/descriptor.proto";
-
-extend google.protobuf.FieldOptions {
-  optional bool id = 65114;
-}
