@@ -29,13 +29,13 @@ buf breaking ./incompatible --against ./initial
 ```
 incompatible/acme/weather/v1/weather.proto:1:1:Previously present message "GetWeatherRequest" was deleted from file.
 incompatible/acme/weather/v1/weather.proto:1:1:Previously present message "GetWeatherResponse" was deleted from file.
-incompatible/acme/weather/v1/weather.proto:7:21:Enum value "1" on enum "Condition" changed name from "CONDITION_SUNNY" to "CONDITION_FOGGY".
-incompatible/acme/weather/v1/weather.proto:12:3:Field "1" with name "latitude_min" on message "Location" changed option "json_name" from "latitude" to "latitudeMin".
-incompatible/acme/weather/v1/weather.proto:12:9:Field "1" on message "Location" changed name from "latitude" to "latitude_min".
-incompatible/acme/weather/v1/weather.proto:13:3:Field "2" with name "latitude_max" on message "Location" changed option "json_name" from "longitude" to "latitudeMax".
-incompatible/acme/weather/v1/weather.proto:13:9:Field "2" on message "Location" changed name from "longitude" to "latitude_max".
-incompatible/acme/weather/v1/weather.proto:18:1:Previously present reserved range "[5]" on message "Weather" was deleted.
-incompatible/acme/weather/v1/weather.proto:36:1:Previously present RPC "GetWeather" on service "WeatherService" was deleted.
+incompatible/acme/weather/v1/weather.proto:10:21:Enum value "1" on enum "Condition" changed name from "CONDITION_SUNNY" to "CONDITION_FOGGY".
+incompatible/acme/weather/v1/weather.proto:15:3:Field "1" with name "latitude_min" on message "Location" changed option "json_name" from "latitude" to "latitudeMin".
+incompatible/acme/weather/v1/weather.proto:15:9:Field "1" on message "Location" changed name from "latitude" to "latitude_min".
+incompatible/acme/weather/v1/weather.proto:16:3:Field "2" with name "latitude_max" on message "Location" changed option "json_name" from "longitude" to "latitudeMax".
+incompatible/acme/weather/v1/weather.proto:16:9:Field "2" on message "Location" changed name from "longitude" to "latitude_max".
+incompatible/acme/weather/v1/weather.proto:21:1:Previously present reserved range "[5]" on message "Weather" was deleted.
+incompatible/acme/weather/v1/weather.proto:39:1:Previously present RPC "GetWeather" on service "WeatherService" was deleted
 ```
 
 [breaking]: https://docs.buf.build
