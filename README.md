@@ -4,7 +4,7 @@ This repo houses example projects for learning how to use [Buf]. For more inform
 
 ## Version
 
-The examples in this repo currently use version [1.5.0][version] of the [`buf` CLI][cli].
+The examples in this repo currently use version [1.8.0][version] of the [`buf` CLI][cli].
 
 ## Projects
 

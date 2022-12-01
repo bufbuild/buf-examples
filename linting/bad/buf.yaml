@@ -1,7 +1,7 @@
 version: v1
 name: buf.build/buf-examples/linting-bad
 deps:
-  - buf.build/googleapis/googleapis:bcdcd1dee95c4277b2edbae6c21332a2
+  - buf.build/googleapis/googleapis:783e4b5374fa488ab068d08af9658438
 breaking:
   use:
     - FILE

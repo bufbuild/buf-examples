@@ -15,18 +15,17 @@ managed:
   java_package_prefix: io
   java_string_check_utf8: false
 plugins:
-  - remote: buf.build/protocolbuffers/plugins/cpp
+  - plugin: buf.build/protocolbuffers/cpp
     out: gen/proto/cpp
-  - remote: buf.build/protocolbuffers/plugins/csharp
+  - plugin: buf.build/protocolbuffers/csharp
     out: gen/proto/csharp
-  - remote: buf.build/protocolbuffers/plugins/go
+  - plugin: buf.build/protocolbuffers/go
     out: gen/proto/go
-    opt: paths=source_relative
-  - remote: buf.build/protocolbuffers/plugins/java
+  - plugin: buf.build/protocolbuffers/java
     out: gen/proto/java
-  - remote: buf.build/protocolbuffers/plugins/objc
+  - plugin: buf.build/protocolbuffers/objc
     out: gen/proto/objc
-  - remote: buf.build/protocolbuffers/plugins/php
+  - plugin: buf.build/protocolbuffers/php
     out: gen/proto/php
-  - remote: buf.build/protocolbuffers/plugins/ruby
+  - plugin: buf.build/protocolbuffers/ruby
     out: gen/proto/ruby
