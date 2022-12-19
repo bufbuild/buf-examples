@@ -9,23 +9,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: bufbuild/buf-setup-action@v1.9.0
-      - uses: bufbuild/buf-push-action@v1.0.1
+      - uses: bufbuild/buf-push-action@v1.1.1
         with:
           input: 'limit-output-types'
           buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1.0.1
+      - uses: bufbuild/buf-push-action@v1.1.1
         with:
           input: 'linting/bad'
           buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1.0.1
+      - uses: bufbuild/buf-push-action@v1.1.1
         with:
           input: 'linting/good'
           buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1.0.1
+      - uses: bufbuild/buf-push-action@v1.1.1
         with:
           input: 'workspace/observabilitytypes'
           buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1.0.1
+      - uses: bufbuild/buf-push-action@v1.1.1
         with:
           input: 'workspace/observabilityapi'
           buf_token: ${{ secrets.BUF_TOKEN }}
