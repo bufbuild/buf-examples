@@ -36,5 +36,5 @@ Several of these projects available as modules on the [Buf Schema Registry][bsr]
 [modules]: https://docs.buf.build/bsr/overview#modules
 [plugin]: https://docs.buf.build/bsr/remote-generation/concepts#plugins
 [remote]: https://docs.buf.build/bsr/remote-generation/remote-plugin-execution
-[version]: https://github.com/bufbuild/buf/releases/tag/v1.5.0
+[version]: https://github.com/bufbuild/buf/releases/tag/v1.8.0
 [workspace]: https://docs.buf.build/reference/workspaces
