@@ -6,7 +6,7 @@ jobs:
     steps:
       # Run `git checkout`
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       # Install the `buf` CLI
       - name: Setup
         uses: bufbuild/buf-setup-action@v1.11.0
