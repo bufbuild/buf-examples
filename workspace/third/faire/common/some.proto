@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+package api.v2;
+
+import "faire.common.collection2.proto";
+import "faire.common.collection.proto";
