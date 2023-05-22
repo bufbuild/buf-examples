@@ -47,7 +47,7 @@ func (s *service) GetLogs(
 	*connect.Response[apiv2.GetLogsResponse],
 	error,
 ) {
-	return nil, ErrorNeedsImplementation
+	return nil, ErrNeedsImplementation
 }
 
 func (s *service) PutLogs(
@@ -57,7 +57,7 @@ func (s *service) PutLogs(
 	*connect.Response[emptypb.Empty],
 	error,
 ) {
-	return nil, ErrorNeedsImplementation
+	return nil, ErrNeedsImplementation
 }
 
 func (s *service) GetMetrics(
@@ -67,5 +67,5 @@ func (s *service) GetMetrics(
 	*connect.Response[apiv2.GetMetricsResponse],
 	error,
 ) {
-	return nil, ErrorNeedsImplementation
+	return nil, ErrNeedsImplementation
 }
