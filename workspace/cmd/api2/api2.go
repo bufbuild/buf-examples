@@ -15,7 +15,7 @@ import (
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
-var ErrorNeedsImplementation = connect.NewError(connect.CodeUnimplemented, errors.New("needs implementation"))
+var ErrNeedsImplementation = connect.NewError(connect.CodeUnimplemented, errors.New("needs implementation"))
 
 func main() {
 	addr := flag.String("listen", "127.0.0.1:8080", "listen to address on")
