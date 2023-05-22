@@ -2,11 +2,11 @@ version: v1
 managed:
   enabled: true
   go_package_prefix:
-    default: github.com/buf-examples/observability
+    default: github.com/bufbuild/buf-examples/workspace/gen/proto/go
 plugins:
   - plugin: buf.build/protocolbuffers/go:v1.28.1
+    opt: paths=source_relative
     out: gen/proto/go
-  - plugin: buf.build/protocolbuffers/java:v21.9
-    out: gen/proto/java
-  - plugin: buf.build/protocolbuffers/python:v21.9
-    out: gen/proto/python
+  - plugin: buf.build/bufbuild/connect-go:v1.7.0
+    opt: paths=source_relative
+    out: gen/proto/go
