@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"errors"
+	"flag"
 	"log"
 	"net/http"
 
@@ -14,23 +15,22 @@ import (
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
-var ErrorNeedsImplementation = errors.New("needs implementation")
+var ErrNeedsImplementation = connect.NewError(connect.CodeUnimplemented, errors.New("needs implementation"))
 
 func main() {
-	const addr = "127.0.0.1:8080"
+	addr := flag.String("listen", "127.0.0.1:8080", "listen to address on")
+	flag.Parse()
 
 	log.Printf("Observability service starting")
 
-	mux := http.NewServeMux()
-
 	path, handler := apiv2connect.NewObservabilityServiceHandler(&service{})
-	mux.Handle(path, handler)
+	http.Handle(path, handler)
 	log.Printf("Handling connect service at prefix: %v", path)
 
-	log.Printf("Listening on: %v", addr)
+	log.Printf("Listening on: %v", *addr)
 	err := http.ListenAndServe(
-		addr,
-		h2c.NewHandler(mux, &http2.Server{}),
+		*addr,
+		h2c.NewHandler(http.DefaultServeMux, &http2.Server{}),
 	)
 
 	if err != http.ErrServerClosed {
@@ -47,7 +47,7 @@ func (s *service) GetLogs(
 	*connect.Response[apiv2.GetLogsResponse],
 	error,
 ) {
-	return nil, ErrorNeedsImplementation
+	return nil, ErrNeedsImplementation
 }
 
 func (s *service) PutLogs(
@@ -57,7 +57,7 @@ func (s *service) PutLogs(
 	*connect.Response[emptypb.Empty],
 	error,
 ) {
-	return nil, ErrorNeedsImplementation
+	return nil, ErrNeedsImplementation
 }
 
 func (s *service) GetMetrics(
@@ -67,5 +67,5 @@ func (s *service) GetMetrics(
 	*connect.Response[apiv2.GetMetricsResponse],
 	error,
 ) {
-	return nil, ErrorNeedsImplementation
+	return nil, ErrNeedsImplementation
 }
