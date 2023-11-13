@@ -11,23 +11,23 @@ jobs:
       - uses: bufbuild/buf-setup-action@v1.27.2
         with:
           github_token: ${{ github.token }}
-      - uses: bufbuild/buf-push-action@v1.1.1
+      - uses: bufbuild/buf-push-action@v1.2.0
         with:
           input: 'limit-output-types'
           buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1.1.1
+      - uses: bufbuild/buf-push-action@v1.2.0
         with:
           input: 'linting/bad'
           buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1.1.1
+      - uses: bufbuild/buf-push-action@v1.2.0
         with:
           input: 'linting/good'
           buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1.1.1
+      - uses: bufbuild/buf-push-action@v1.2.0
         with:
           input: 'workspace/observabilitytypes'
           buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1.1.1
+      - uses: bufbuild/buf-push-action@v1.2.0
         with:
           input: 'workspace/observabilityapi'
           buf_token: ${{ secrets.BUF_TOKEN }}
