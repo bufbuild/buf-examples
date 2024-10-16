@@ -1,5 +1,6 @@
 # Breaking change detection
 
+> [!NOTE]
 > You need to have the [`buf` CLI][install] installed to follow along with this example.
 
 This project shows Buf [breaking change detection][breaking] in action. There are three different [Buf inputs][inputs] in play here:

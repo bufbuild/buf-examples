@@ -1,7 +1,7 @@
 # Limit types
 
-> You need to install the [`buf` CLI][install] and [jq] to follow along with this example. Requires
-> v1.1.0 or above.
+> [!NOTE]
+> You need to install the [`buf` CLI][install] and [jq] to follow along with this example.
 
 The [`buf build`][build] command creates a [Buf image][image] (or
 [`FileDescriptorSet`][filedescriptorset]) out of a [Buf input][input]. By default, the image or

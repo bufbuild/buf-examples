@@ -1,8 +1,10 @@
 # Buf workspace example
 
+> [!NOTE]
 > You need to have the [`buf` CLI][install] installed to follow along with this example.
 
-This directory provides an example of a Buf [workspace] that contains multiple Buf [modules] that are meant to be consumed as dependencies by other Protobuf projects. There are two modules in this workspace:
+This directory provides an example of a Buf [workspace][modules-and-workspaces] that contains multiple Buf [modules][modules-and-workspaces] that are meant to be consumed as dependencies by other Protobuf projects.
+There are two modules in this workspace:
 
 * [`observabilityapi`](./observabilityapi) defines an observability-related service.
 * [`observabilitytypes`](./observabilitytypes) defines many of the types used by the service in the `observabilityapi` module.
@@ -19,16 +21,14 @@ The basic structure of this workspace:
 ```
 .
 ├── buf.gen.yaml
-├── buf.work.yaml
+├── buf.yaml
 ├── observabilityapi
 │   ├── api
 │   │   ├── v1
 │   │   │   └── api.proto
 │   │   └── v2
 │   │       └── api.proto
-│   └── buf.yaml
 └── observabilitytypes
-    ├── buf.yaml
     ├── log
     │   ├── v1
     │   │   └── log.proto
@@ -41,7 +41,7 @@ The basic structure of this workspace:
             └── metric.proto
 ```
 
-The [workspace configuration][buf-work-yaml] is defined in [`buf.work.yaml`](./buf.work.yaml).
+The workspace configuration is defined in [`buf.yaml`](./buf.yaml).
 
 ## Linting
 
@@ -100,9 +100,7 @@ buf generate observabilitytypes
 [bsr]: https://docs.buf.build/bsr
 [bsr-api]: https://buf.build/buf-examples/observabilityapi
 [bsr-types]: https://buf.build/buf-examples/observabilitytypes
-[buf-work-yaml]: https://docs.buf.build/configuration/v1/buf-work-yaml
 [generate]: https://docs.buf.build/generate
 [install]: https://docs.buf.build/installation
 [lint]: https://docs.buf.build/lint
-[modules]: https://docs.buf.build/bsr/overview#module
-[workspace]: https://docs.buf.build/reference/workspaces
+[modules-and-workspaces]: https://buf.build/docs/concepts/modules-workspaces

@@ -1,5 +1,6 @@
 version: v2
-name: buf.build/buf-examples/limit-output-types
+modules:
+  - path: proto
 lint:
   use:
     - DEFAULT

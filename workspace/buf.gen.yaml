@@ -1,12 +1,13 @@
-version: v1
+version: v2
 managed:
   enabled: true
-  go_package_prefix:
-    default: github.com/bufbuild/buf-examples/workspace/gen/proto/go
+  override:
+    - file_option: go_package_prefix
+      value: github.com/bufbuild/buf-examples/workspace/gen/proto/go
 plugins:
-  - plugin: buf.build/protocolbuffers/go:v1.28.1
-    opt: paths=source_relative
+  - remote: buf.build/protocolbuffers/go:v1.28.1
     out: gen/proto/go
-  - plugin: buf.build/bufbuild/connect-go:v1.7.0
     opt: paths=source_relative
+  - remote: buf.build/bufbuild/connect-go:v1.7.0
     out: gen/proto/go
+    opt: paths=source_relative

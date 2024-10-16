@@ -1,5 +1,6 @@
 # Protobuf linting
 
+> [!NOTE]
 > You need to have the [`buf` CLI][install] installed to follow along with this example.
 
 Buf enables you to [lint] Protobuf sources in accordance with [lint rules][rules] that you specify in your [`buf.yaml`][buf-yaml] configuration file. This project shows linting in action with two different [Buf inputs][inputs]:
@@ -50,7 +51,7 @@ buf lint ./good
 [bsr]: https://docs.buf.build/bsr
 [bsr-bad]: https://buf.build/buf-examples/linting-bad
 [bsr-good]: https://buf.build/buf-examples/linting-good
-[buf-yaml]: https://docs.buf.build/configuration/v1/buf-yaml
+[buf-yaml]: https://docs.buf.build/configuration/v2/buf-yaml
 [default]: https://docs.buf.build/lint/rules#default
 [inputs]: https://docs.buf.build/reference/inputs
 [install]: https://docs.buf.build/installation

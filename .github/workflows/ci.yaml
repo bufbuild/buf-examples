@@ -4,23 +4,10 @@ jobs:
   lint-and-breaking-change-detection:
     runs-on: ubuntu-latest
     steps:
-      # Run `git checkout`
       - name: Checkout
         uses: actions/checkout@v4
-      # Install the `buf` CLI
-      - name: Setup
-        uses: bufbuild/buf-setup-action@v1.27.2
-        with:
-          github_token: ${{ github.token }}
-      # Lint the Buf module in the `github-actions` directory
-      - name: Lint
-        uses: bufbuild/buf-lint-action@v1
+      - name: Buf Action
+        uses: bufbuild/buf-action@v1
         with:
           input: github-actions
-      # Detect breaking changes for the Buf module in the `github-actions` directory
-      # against the current `main` branch
-      - name: Breaking change detection against `main`
-        uses: bufbuild/buf-breaking-action@v1
-        with:
-          input: github-actions
-          against: https://github.com/bufbuild/buf-examples.git#branch=main,ref=HEAD~1,subdir=github-actions
+          token: ${{ secrets.BUF_TOKEN }}

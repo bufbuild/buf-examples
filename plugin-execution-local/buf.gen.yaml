@@ -1,12 +1,11 @@
-version: v1
+version: v2
 managed:
   enabled: true
-
-  # Go
-  go_package_prefix:
-    default: github.com/buf-examples/observabilityapi
+  override:
+    - file_option: go_package_prefix
+      value: github.com/buf-examples/observabilityapi
 plugins:
-  - plugin: go # Invokes the protoc-gen-go executable
+  - local: protoc-gen-go
     out: gen/proto/go
-  - plugin: rust # Invokes the protoc-gen-rust executable
+  - protoc_builtin: rust
     out: gen/proto/rust

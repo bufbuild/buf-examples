@@ -1,8 +1,15 @@
-version: v1
+version: v2
 name: buf.build/acme/weather
-breaking:
-  use:
-    - FILE
 lint:
   use:
     - DEFAULT
+  except:
+    - FIELD_NOT_REQUIRED
+    - PACKAGE_NO_IMPORT_CYCLE
+  disallow_comment_ignores: true
+breaking:
+  use:
+    - FILE
+  except:
+    - EXTENSION_NO_DELETE
+    - FIELD_SAME_DEFAULT

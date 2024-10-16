@@ -1,31 +1,31 @@
-version: v1
+version: v2
 managed:
   enabled: true
-  optimize_for: CODE_SIZE
-
-  # C++
-  cc_enable_arenas: true
-
-  # Go
-  go_package_prefix:
-    default: github.com/acme/weather/v1
-
-  # Java
-  java_multiple_files: false
-  java_package_prefix: io
-  java_string_check_utf8: false
+  override:
+    - file_option: cc_enable_arenas
+      value: true
+    - file_option: java_multiple_files
+      value: false
+    - file_option: java_string_check_utf8
+      value: false
+    - file_option: java_package_prefix
+      value: io
+    - file_option: optimize_for
+      value: CODE_SIZE
+    - file_option: go_package_prefix
+      value: github.com/acme/weather/v1
 plugins:
-  - plugin: buf.build/protocolbuffers/cpp
+  - remote: buf.build/protocolbuffers/cpp
     out: gen/proto/cpp
-  - plugin: buf.build/protocolbuffers/csharp
+  - remote: buf.build/protocolbuffers/csharp
     out: gen/proto/csharp
-  - plugin: buf.build/protocolbuffers/go
+  - remote: buf.build/protocolbuffers/go
     out: gen/proto/go
-  - plugin: buf.build/protocolbuffers/java
+  - remote: buf.build/protocolbuffers/java
     out: gen/proto/java
-  - plugin: buf.build/protocolbuffers/objc
+  - remote: buf.build/protocolbuffers/objc
     out: gen/proto/objc
-  - plugin: buf.build/protocolbuffers/php
+  - remote: buf.build/protocolbuffers/php
     out: gen/proto/php
-  - plugin: buf.build/protocolbuffers/ruby
+  - remote: buf.build/protocolbuffers/ruby
     out: gen/proto/ruby
