@@ -21,7 +21,7 @@ When you run this command, the `buf` CLI uses the configuration in [`buf.gen.yam
 * [Ruby](./gen/proto/ruby)
 
 [arena]: https://developers.google.com/protocol-buffers/docs/reference/arenas
-[buf-gen-yaml]: https://docs.buf.build/configuration/v1/buf-gen-yaml#managed
+[buf-gen-yaml]: https://docs.buf.build/configuration/v2/buf-gen-yaml#managed
 [install]: https://docs.buf.build/installation
 [managed]: https://docs.buf.build/generate/managed-mode
 [plugins]: https://docs.buf.build/bsr/remote-generation/overview#hosted-plugins

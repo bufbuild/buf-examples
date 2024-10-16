@@ -4,13 +4,14 @@ This repo houses example projects for learning how to use [Buf]. For more inform
 
 ## Version
 
-The examples in this repo currently use version [1.8.0][version] of the [`buf` CLI][cli].
+The examples in this repo use [v2 `buf.yaml`][v2-buf-yaml] and [v2 `buf.gen.yaml`][v2-buf-gen-yaml]
+configurations. All examples require the `buf` CLI at version [v1.32.0][min-version] or higher.
 
 ## Projects
 
 Project | Directory | Category
 :-------|:----------|:--------
-Buf [workspace] | [`workspace-modules`](./workspace) | Code organization
+Buf [workspace] | [`workspace`](./workspace) | Code organization
 [Linting][lint] Protobuf sources | [`linting`](./linting) | Maintenance
 [Breaking change detection][breaking] | [`breaking-change-detection`](./breaking-change-detection) | Maintenance
 [Remote plugin execution][remote] | [`plugin-execution-remote`](./plugin-execution-remote) | Code generation
@@ -36,5 +37,7 @@ Several of these projects available as modules on the [Buf Schema Registry][bsr]
 [modules]: https://docs.buf.build/bsr/overview#modules
 [plugin]: https://docs.buf.build/bsr/remote-generation/concepts#plugins
 [remote]: https://docs.buf.build/bsr/remote-generation/remote-plugin-execution
-[version]: https://github.com/bufbuild/buf/releases/tag/v1.8.0
 [workspace]: https://docs.buf.build/reference/workspaces
+[min-version]: https://github.com/bufbuild/buf/releases/tag/v1.32.0
+[v2-buf-yaml]: https://buf.build/docs/configuration/v2/buf-yaml
+[v2-buf-gen-yaml]: https://buf.build/docs/configuration/v2/buf-gen-yaml
