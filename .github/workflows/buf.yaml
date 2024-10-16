@@ -8,26 +8,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: bufbuild/buf-setup-action@v1
-        with:
-          github_token: ${{ github.token }}
-      - uses: bufbuild/buf-push-action@v1
+      - uses: bufbuild/buf-action@v1
         with:
           input: 'limit-output-types'
-          buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1
+          token: ${{ secrets.BUF_TOKEN }}
+      - uses: bufbuild/buf-action@v1
         with:
           input: 'linting/bad'
-          buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1
+          token: ${{ secrets.BUF_TOKEN }}
+      - uses: bufbuild/buf-action@v1
         with:
           input: 'linting/good'
-          buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1
+          token: ${{ secrets.BUF_TOKEN }}
+      - uses: bufbuild/buf-action@v1
         with:
           input: 'workspace/observabilitytypes'
-          buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1
+          token: ${{ secrets.BUF_TOKEN }}
+      - uses: bufbuild/buf-action@v1
         with:
           input: 'workspace/observabilityapi'
-          buf_token: ${{ secrets.BUF_TOKEN }}
+          token: ${{ secrets.BUF_TOKEN }}
