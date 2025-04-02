@@ -10,12 +10,13 @@ This repository houses example projects and code for products in the [Buf][buf] 
 
 ## Buf Schema Registry
 
-[Example code and quickstart guides](bsr) for the [Buf Schema Registry (BSR)][bsr] demonstrate how the BSR manages schemas, dependencies, and governance at scale.
+[A quickstart guide](bsr) for the [Buf Schema Registry (BSR)][bsr] demonstrates how the BSR manages schemas, dependencies, and governance at scale.
 
 ## Integrations
 
 [Integrations](integrations) contains example code supporting Buf's documentation regarding integration with CI/CD pipelines.
 
 [buf]: https://buf.build
+[bsr]: https://buf.build/docs/bsr/
 [cli-documentation]: https://buf.build/docs/cli/
 [docs]: https://buf.build/docs
