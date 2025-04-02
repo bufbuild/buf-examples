@@ -1,43 +1,17 @@
-# Buf example projects
+![The Buf logo](https://raw.githubusercontent.com/bufbuild/buf-examples/main/.github/buf-logo.svg)
 
-This repo houses example projects for learning how to use [Buf]. For more information, we recommend checking out the [official docs][docs].
+# Buf examples
 
-## Version
+This repository houses example projects and code for products in the [Buf][buf] ecosystem. For more information, we recommend checking out the [official docs][docs].
 
-The examples in this repo use [v2 `buf.yaml`][v2-buf-yaml] and [v2 `buf.gen.yaml`][v2-buf-gen-yaml]
-configurations. All examples require the `buf` CLI at version [v1.32.0][min-version] or higher.
+## The Buf CLI
 
-## Projects
+[This directory](cli) contains examples that demonstrate key functions and usage for the [Buf CLI](https://github.com/bufbuild/buf).
 
-Project | Directory | Category
-:-------|:----------|:--------
-Buf [workspace] | [`workspace`](./workspace) | Code organization
-[Linting][lint] Protobuf sources | [`linting`](./linting) | Maintenance
-[Breaking change detection][breaking] | [`breaking-change-detection`](./breaking-change-detection) | Maintenance
-[Remote plugin execution][remote] | [`plugin-execution-remote`](./plugin-execution-remote) | Code generation
-[Local plugin execution][plugin] | [`plugin-execution-local`](./plugin-execution-local) | Code generation
-Generating code stubs using [managed mode][managed] | [`managed-mode`](./managed-mode/) | Code generation
-[Limit output types][limit-types] for `buf build` | [`limit-output-types`](./limit-output-types) | CLI
-Buf on [GitHub Actions][actions] | [`github-actions`](./github-actions) | [CI/CD][ci]
+## Integrations
 
-Several of these projects available as modules on the [Buf Schema Registry][bsr] under the
-[`buf-examples`][bsr-org] organization.
+[Integrations](integrations) contains example code supporting Buf's documentation regarding integration with CI/CD pipelines.
 
-[actions]: https://docs.github.com/actions
-[breaking]: https://docs.buf.build/breaking
-[bsr]: https://docs.buf.build/bsr
-[bsr-org]: https://buf.build/buf-examples
 [buf]: https://buf.build
-[ci]: https://docs.buf.build/ci-cd
-[cli]: https://github.com/bufbuild/buf
-[docs]: https://docs.buf.build
-[limit-types]: https://docs.buf.build/build/usage#limit-to-specific-types
-[lint]: https://docs.buf.build/lint
-[managed]: https://docs.buf.build/generate/managed-mode
-[modules]: https://docs.buf.build/bsr/overview#modules
-[plugin]: https://docs.buf.build/bsr/remote-generation/concepts#plugins
-[remote]: https://docs.buf.build/bsr/remote-generation/remote-plugin-execution
-[workspace]: https://docs.buf.build/reference/workspaces
-[min-version]: https://github.com/bufbuild/buf/releases/tag/v1.32.0
-[v2-buf-yaml]: https://buf.build/docs/configuration/v2/buf-yaml
-[v2-buf-gen-yaml]: https://buf.build/docs/configuration/v2/buf-gen-yaml
+[cli-documentation]: https://buf.build/docs/cli/
+[docs]: https://buf.build/docs

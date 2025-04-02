@@ -1,3 +1,5 @@
+![The Buf logo](https://raw.githubusercontent.com/bufbuild/buf-examples/main/.github/buf-logo.svg)
+
 # Managed mode
 
 > You need to have the [`buf` CLI][install] installed to follow along with this example.

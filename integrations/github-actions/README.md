@@ -1,3 +1,5 @@
+![The Buf logo](https://raw.githubusercontent.com/bufbuild/buf-examples/main/.github/buf-logo.svg)
+
 # Buf on GitHub Actions example
 
 [![GitHub Actions](https://github.com/bufbuild/buf-examples/workflows/CI/badge.svg)](https://github.com/bufbuild/buf-examples/actions?workflow=CI)

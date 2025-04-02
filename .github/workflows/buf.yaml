@@ -10,21 +10,21 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bufbuild/buf-action@v1
         with:
-          input: 'limit-output-types'
+          input: 'cli/limit-output-types'
           token: ${{ secrets.BUF_TOKEN }}
       - uses: bufbuild/buf-action@v1
         with:
-          input: 'linting/bad'
+          input: 'cli/linting/bad'
           token: ${{ secrets.BUF_TOKEN }}
       - uses: bufbuild/buf-action@v1
         with:
-          input: 'linting/good'
+          input: 'cli/linting/good'
           token: ${{ secrets.BUF_TOKEN }}
       - uses: bufbuild/buf-action@v1
         with:
-          input: 'workspace/observabilitytypes'
+          input: 'cli/workspace/observabilitytypes'
           token: ${{ secrets.BUF_TOKEN }}
       - uses: bufbuild/buf-action@v1
         with:
-          input: 'workspace/observabilityapi'
+          input: 'cli/workspace/observabilityapi'
           token: ${{ secrets.BUF_TOKEN }}
