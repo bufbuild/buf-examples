@@ -9,5 +9,5 @@ jobs:
       - name: Buf Action
         uses: bufbuild/buf-action@v1
         with:
-          input: github-actions
+          input: integrations/github-actions
           token: ${{ secrets.BUF_TOKEN }}
