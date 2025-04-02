@@ -1,3 +1,5 @@
+![The Buf logo](https://raw.githubusercontent.com/bufbuild/buf-examples/main/.github/buf-logo.svg)
+
 # Buf workspace example
 
 > [!NOTE]
