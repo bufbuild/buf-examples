@@ -1,4 +1,4 @@
-![The Buf logo](https://raw.githubusercontent.com/bufbuild/buf-quickstarts/main/.github/buf-logo.svg)
+![The Buf logo](https://raw.githubusercontent.com/bufbuild/buf-examples/main/.github/buf-logo.svg)
 
 # Buf Schema Registry examples
 
