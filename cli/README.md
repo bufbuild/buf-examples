@@ -14,11 +14,11 @@ The Buf CLI is a helpful tool for managing Protobuf schemas. This directory supp
 
 ## Remote plugin execution
 
-[Example code](./breaking-change-detection) for [remote plugin execution][remote] provides an example of code generation using plugins hosted on the Buf Schema Registry (BSR).
+[Example code](./plugin-execution-remote) for [remote plugin execution][remote] provides an example of code generation using plugins hosted on the Buf Schema Registry (BSR).
 
 ## Managed mode
 
-[Example code](./managed-mode/) for [generating code stubs using managed mode][managed] provides an example of controlling file and field options without adding language-specific options to Protobuf files.
+[Example code](./managed-mode) for [generating code stubs using managed mode][managed] provides an example of controlling file and field options without adding language-specific options to Protobuf files.
 
 ## Breaking change detection
 

@@ -10,9 +10,7 @@ The [Buf CLI](cli) is the all-in-one Protobuf toolchain that underlies the entir
 
 ## Integrations
 
-[Integration examples][integrations] contains example code supporting Buf's documentation for integrations with CI/CD pipelines, build systems, and other facets of your toolchain.
+[Integration examples](integrations) contains example code supporting Buf's documentation for integrations with CI/CD pipelines, build systems, and other facets of your toolchain.
 
 [buf]: https://buf.build
-[cli]: (./cli)
-[integrations]: (./integrations)
 [docs]: https://buf.build/docs
