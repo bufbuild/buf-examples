@@ -2,7 +2,7 @@
 
 # Buf CLI examples
 
-The Buf CLI is a crucial tool for managing Protobuf schemas. This directory supplements its [documentation][documentation] with examples showing how to use its features for code generation, breaking change detection, and linting tasks.  
+The [Buf CLI][cli] is a crucial tool for managing Protobuf schemas. This directory supplements its [documentation][documentation] with examples showing how to use its features for code generation, breaking change detection, and linting tasks.  
 
 ## Workspaces
 
