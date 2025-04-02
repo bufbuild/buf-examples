@@ -2,7 +2,7 @@
 
 # Buf CLI examples
 
-The Buf CLI is a helpful tool for managing Protobuf schemas. This directory supplements its [documentation][documentation] with examples showing how to use its features for code generation, breaking change detection, and linting tasks.  
+The [Buf CLI][cli] is a crucial tool for managing Protobuf schemas. This directory supplements its [documentation][documentation] with examples showing how to use its features for code generation, breaking change detection, and linting tasks.  
 
 ## Workspaces
 
@@ -10,7 +10,7 @@ The Buf CLI is a helpful tool for managing Protobuf schemas. This directory supp
 
 ## Local plugin execution
 
-[Example code](./plugin-execution-local) for [local plugin execution][plugin] provides an example of code generation using local protoc plugins. 
+[Example code](./plugin-execution-local) for [local plugin execution][plugin] provides an example of code generation using local `protoc` plugins. 
 
 ## Remote plugin execution
 
@@ -32,6 +32,7 @@ The Buf CLI is a helpful tool for managing Protobuf schemas. This directory supp
 
 [Example code](./limit-output-types) for the [buf build][limit-types] command showing how to limit output types with `--type`.
 
+[cli]: https://github.com/bufbuild/buf
 [documentation]: https://buf.build/docs/cli/
 [lint]: https://buf.build/docs/lint/overview/
 [breaking]: https://buf.build/docs/breaking/overview/

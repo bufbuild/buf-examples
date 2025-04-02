@@ -6,7 +6,7 @@ This repository houses example projects and code for products in the [Buf][buf] 
 
 ## The Buf CLI
 
-The [Buf CLI](cli) is the all-in-one Protobuf toolchain that underlies the entire Buf ecosystem. The examples here demonstrate its key functions and usage.
+[This directory](cli) contains examples that demonstrate key functions and usage for the [Buf CLI](https://github.com/bufbuild/buf).
 
 ## Buf Schema Registry
 
@@ -14,8 +14,8 @@ The [Buf CLI](cli) is the all-in-one Protobuf toolchain that underlies the entir
 
 ## Integrations
 
-[Integration examples](integrations) contains example code supporting Buf's documentation for integrations with CI/CD pipelines, build systems, and other facets of your toolchain.
+[Integrations](integrations) contains example code supporting Buf's documentation regarding integration with CI/CD pipelines.
 
 [buf]: https://buf.build
+[cli-documentation]: https://buf.build/docs/cli/
 [docs]: https://buf.build/docs
-[bsr]: https://buf.build/docs/bsr/

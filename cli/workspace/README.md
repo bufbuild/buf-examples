@@ -25,19 +25,19 @@ The basic structure of this workspace:
 ├── buf.gen.yaml
 ├── buf.yaml
 ├── observabilityapi
-│   ├── api
-│   │   ├── v1
-│   │   │   └── api.proto
-│   │   └── v2
-│   │       └── api.proto
+│   ├── api
+│   │   ├── v1
+│   │   │   └── api.proto
+│   │   └── v2
+│   │       └── api.proto
 └── observabilitytypes
     ├── log
-    │   ├── v1
-    │   │   └── log.proto
-    │   ├── v2
-    │   │   └── log.proto
-    │   └── v3
-    │       └── log.proto
+    │   ├── v1
+    │   │   └── log.proto
+    │   ├── v2
+    │   │   └── log.proto
+    │   └── v3
+    │       └── log.proto
     └── metric
         └── v1
             └── metric.proto
