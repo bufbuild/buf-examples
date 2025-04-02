@@ -10,20 +10,3 @@ Within this directory, you'll find example code supporting Buf's documentation f
 
 [actions]: https://docs.github.com/actions
 [buf-action]: https://github.com/marketplace/actions/buf-action
-[breaking]: https://docs.buf.build/breaking
-[bsr]: https://docs.buf.build/bsr
-[bsr-org]: https://buf.build/buf-examples
-[buf]: https://buf.build
-[ci]: https://docs.buf.build/ci-cd
-[cli]: https://github.com/bufbuild/buf
-[docs]: https://docs.buf.build
-[limit-types]: https://docs.buf.build/build/usage#limit-to-specific-types
-[lint]: https://docs.buf.build/lint
-[managed]: https://docs.buf.build/generate/managed-mode
-[modules]: https://docs.buf.build/bsr/overview#modules
-[plugin]: https://docs.buf.build/bsr/remote-generation/concepts#plugins
-[remote]: https://docs.buf.build/bsr/remote-generation/remote-plugin-execution
-[workspace]: https://docs.buf.build/reference/workspaces
-[min-version]: https://github.com/bufbuild/buf/releases/tag/v1.32.0
-[v2-buf-yaml]: https://buf.build/docs/configuration/v2/buf-yaml
-[v2-buf-gen-yaml]: https://buf.build/docs/configuration/v2/buf-gen-yaml
