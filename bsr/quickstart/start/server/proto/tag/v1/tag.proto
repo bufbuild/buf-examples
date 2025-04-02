@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package tag.v1;
+
+// A simple "tag" collection - a set of strings to associate with an entity
+message Tags {
+  repeated string tag = 1;
+}

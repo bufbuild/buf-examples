@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package invoice.v1;
+
+import "tag/v1/tag.proto";
+
+// Invoice is a collection of goods or services sold to a customer.
+message Invoice {
+  string invoice_id = 1;
+  string customer_id = 2;
+  repeated LineItem line_items = 3;
+}
+
+// LineItem is an individual good or service added to an invoice.
+message LineItem {
+  string line_item_id = 1;
+  string product_id = 2;
+  uint64 quantity = 3;
+  uint64 unit_price = 4;
+}
+
+// CreateInvoiceRequest is a request to create an invoice.
+message CreateInvoiceRequest {
+  Invoice invoice = 1;
+  tag.v1.Tags tags = 2;
+}
+
+// CreateInvoiceResponse is the response from creating an invoice.
+message CreateInvoiceResponse {
+  string invoice_id = 1;
+}
+
+// InvoiceService is a simple CRUD service for managing invoices.
+service InvoiceService {
+  // CreateInvoice creates a new invoice.
+  rpc CreateInvoice(CreateInvoiceRequest) returns (CreateInvoiceResponse);
+}
