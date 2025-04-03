@@ -1,0 +1,6 @@
+version: v2
+inputs:
+  - directory: proto
+plugins:
+  - remote: buf.build/bufbuild/es:v2.2.3
+    out: gen
