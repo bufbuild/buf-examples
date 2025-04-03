@@ -74,7 +74,6 @@ func run(ctx context.Context, config app.Config) error {
 	}
 }
 
-// TODO: Maybe just remove this entirely.
 func handleEmailUpdated(message *demov1.EmailUpdated) error {
 	var suffix string
 	if old := message.GetOldEmailAddress(); old == "" {

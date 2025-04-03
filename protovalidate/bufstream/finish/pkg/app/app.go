@@ -76,7 +76,6 @@ func parseConfig() (Config, error) {
 		},
 	}
 
-	// TODO: Why do all of these need short names?
 	flagSet.StringArrayVarP(
 		&config.Kafka.BootstrapServers,
 		"bootstrap",

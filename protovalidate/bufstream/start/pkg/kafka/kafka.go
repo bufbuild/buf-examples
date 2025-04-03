@@ -33,7 +33,6 @@ import (
 type Config struct {
 	// BootstrapServers are the bootstrap servers to call.
 	//
-	// TODO: A good explanation and links to docs as to what this does.
 	BootstrapServers []string
 	RootCAPath       string
 	Group            string
