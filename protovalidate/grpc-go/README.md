@@ -11,4 +11,4 @@ This directory contains companion code for [the Protovalidate in gRPC and Go qui
 
 Its `start` directory is the starting state for code exercise, and `finish` contains a working solution.
 
-[documentation]: https://buf.build/docs/protovalidate/how-to/grpc-go/
+[documentation]: https://buf.build/docs/protovalidate/quickstart/grpc-go/
