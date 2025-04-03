@@ -11,4 +11,4 @@ This directory contains companion code for the [using Protovalidate in Kafka wit
 
 Its `start` directory is the starting state for code exercise, and `finish` contains a working solution.
 
-[documentation]: https://buf.build/docs/protovalidate/how-to/bufstream
+[documentation]: https://buf.build/docs/protovalidate/quickstart/bufstream
