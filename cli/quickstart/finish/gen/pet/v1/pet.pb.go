@@ -7,7 +7,7 @@
 package petv1
 
 import (
-	_type "github.com/bufbuild/buf-tour/gen/google/type"
+	_type "github.com/bufbuild/buf-examples/gen/google/type"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

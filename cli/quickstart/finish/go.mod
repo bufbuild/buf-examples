@@ -1,4 +1,4 @@
-module github.com/bufbuild/buf-tour
+module github.com/bufbuild/buf-examples
 
 go 1.22.2
 
