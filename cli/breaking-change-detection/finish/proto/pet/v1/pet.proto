@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package pet.v1;
+
+import "pet/v1/pet_type.proto";
+
+// Pet represents a pet in the pet store.
+message Pet {
+  PetType pet_type = 1;
+  string pet_id = 2;
+  string name = 3;
+}
+
+message GetPetRequest {
+  string pet_id = 1;
+}
+
+message GetPetResponse {
+  Pet pet = 1;
+}
+
+message PutPetRequest {
+  PetType pet_type = 1;
+  string name = 2;
+}
+
+message PutPetResponse {
+  Pet pet = 1;
+}
+
+message DeletePetRequest {
+  string pet_id = 1;
+}
+
+message DeletePetResponse {}
+
+service PetStoreService {
+  rpc GetPet(GetPetRequest) returns (GetPetResponse) {}
+  rpc PutPet(PutPetRequest) returns (PutPetResponse) {}
+  rpc DeletePet(DeletePetRequest) returns (DeletePetResponse) {}
+}

@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package pet.v1;
+
+import "google/type/datetime.proto";
+
+// PetType represents the different types of pets in the pet store.
+enum PetType {
+  PET_TYPE_UNSPECIFIED = 0;
+  PET_TYPE_CAT = 1;
+  PET_TYPE_DOG = 2;
+  PET_TYPE_SNAKE = 3;
+  PET_TYPE_HAMSTER = 4;
+}
+
+// Pet represents a pet in the pet store.
+message Pet {
+  PetType pet_type = 1;
+  string pet_id = 2;
+  string name = 3;
+  google.type.DateTime created_at = 4;
+}
+
+message GetPetRequest {
+  string pet_id = 1;
+}
+
+message GetPetResponse {
+  Pet pet = 1;
+}
+
+message PutPetRequest {
+  PetType pet_type = 1;
+  string name = 2;
+}
+
+message PutPetResponse {
+  Pet pet = 1;
+}
+
+message DeletePetRequest {
+  string pet_id = 1;
+}
+
+message DeletePetResponse {}
+
+service PetStoreService {
+  rpc GetPet(GetPetRequest) returns (GetPetResponse) {}
+  rpc PutPet(PutPetRequest) returns (PutPetResponse) {}
+  rpc DeletePet(DeletePetRequest) returns (DeletePetResponse) {}
+}
