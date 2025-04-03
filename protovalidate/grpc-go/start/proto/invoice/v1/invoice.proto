@@ -1,0 +1,53 @@
+// Copyright 2020-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package invoice.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Invoice is a collection of goods or services sold to a customer.
+message Invoice {
+  // invoice_id is a unique identifier for this invoice.
+  string invoice_id = 1;
+
+  // account_id is the unique identifier for the account purchasing goods.
+  string account_id = 2;
+
+  // invoice_date is the date for an invoice. It should represent a date and
+  // have no values for time components.
+  google.protobuf.Timestamp invoice_date = 3;
+
+  // line_items represent individual items on this invoice.
+  repeated LineItem line_items = 4;
+}
+
+// LineItem is an individual good or service added to an invoice.
+message LineItem {
+  // line_item_id is a unique identifier for this LineItem.
+  string line_item_id = 1;
+
+  // product_id is the unique identifier for the good or service on this line.
+  string product_id = 2;
+
+  // quantity is the unit count of the good or service provided.
+  uint64 quantity = 3;
+
+  // unit_price is the price per unit. Note that it is an integer:
+  // if this system is using U.S. Dollars, it would represent one cent. We are
+  // not working towards internationalization or fractions of a cent within
+  // this example.
+  uint64 unit_price = 4;
+}

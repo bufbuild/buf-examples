@@ -1,0 +1,41 @@
+// Copyright 2020-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package invoice.v1;
+
+import "invoice/v1/invoice.proto";
+
+// InvoiceService is a simple CRUD service for managing invoices.
+service InvoiceService {
+  // CreateInvoice creates a new invoice.
+  rpc CreateInvoice(CreateInvoiceRequest) returns (CreateInvoiceResponse);
+}
+
+// CreateInvoiceRequest is a request to create an invoice.
+message CreateInvoiceRequest {
+  // invoice is the Invoice to create.
+  Invoice invoice = 1;
+}
+
+// CreateInvoiceResponse is the response from creating an invoice.
+message CreateInvoiceResponse {
+  // invoice_id is the id of the invoice created.
+  string invoice_id = 1;
+
+  // version is the version of the invoice created. It is intended to be used
+  // for CQRS lookups of this invoice and optimistic locking.
+  uint64 version = 2;
+}

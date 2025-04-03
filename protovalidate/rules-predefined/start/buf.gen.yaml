@@ -1,0 +1,16 @@
+version: v2
+inputs:
+  - directory: proto
+plugins:
+  # Go (Connect) Example - start
+  - remote: buf.build/protocolbuffers/go
+    out: gen
+    opt: paths=source_relative
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/bufbuild/buf-examples/protovalidate/rules-predefined/start/gen
+  disable:
+    - file_option: go_package
+      module: buf.build/bufbuild/protovalidate
