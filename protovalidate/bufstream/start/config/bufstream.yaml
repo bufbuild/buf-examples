@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=schema/buf.bufstream.config.v1alpha1.BufstreamConfig.schema.json
+cluster: demo
+zone: localhost
+in_memory: true
+kafka:
+  address:
+    host: 0.0.0.0
+    port: 9092
+  public_address:
+    host: 0.0.0.0
+    port: 9092
+observability:
+  trace_exporter: NONE
+  metrics_exporter: NONE
+  log_level: INFO
+  log_format: TEXT
+  debug_address:
+    host: 0.0.0.0
+data_enforcement:
+  schema_registries:
+    - name: csr
+      confluent:
+        url: "https://demo.buf.dev/integrations/confluent/bufstream-demo"
+        instance_name: "bufstream-demo"
+  produce:
+    - topics: { all: true }
+      schema_registry: csr
+      values:
+        on_parse_error: REJECT_BATCH
+  fetch:
+    - topics: { all: true }
+      schema_registry: csr
+      values:
+        on_parse_error: FILTER_RECORD
+        redaction:
+          debug_redact: true
