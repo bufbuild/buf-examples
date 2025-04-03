@@ -12,11 +12,16 @@ This repository houses example projects and code for products in the [Buf][buf] 
 
 [A quickstart guide](bsr) for the [Buf Schema Registry (BSR)][bsr] demonstrates how the BSR manages schemas, dependencies, and governance at scale.
 
+## Protovalidate
+
+[Quickstart guides and examples](protovalidate) for [Protovalidate][protovalidate] show how standard annotations and custom CEL expressions can be used to validate Protobuf messages.
+
 ## Integrations
 
 [Integrations](integrations) contains example code supporting Buf's documentation regarding integration with CI/CD pipelines.
 
 [buf]: https://buf.build
 [bsr]: https://buf.build/docs/bsr/
+[protovalidate]: https://buf.build/docs/protovalidate/
 [cli-documentation]: https://buf.build/docs/cli/
 [docs]: https://buf.build/docs
