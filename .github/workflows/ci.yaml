@@ -24,7 +24,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version-file: quickstart-go/finish/go.mod
+          go-version-file: protovalidate/quickstart-go/finish/go.mod
       - name: Install Java
         uses: actions/setup-java@v4
         with:
