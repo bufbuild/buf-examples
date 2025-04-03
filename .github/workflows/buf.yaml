@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bufbuild/buf-action@v1
         with:
-          input: 'cli/limit-output-types'
+          input: cli/limit-output-types
           token: ${{ secrets.BUF_TOKEN }}
   lint:
     runs-on: ubuntu-latest
