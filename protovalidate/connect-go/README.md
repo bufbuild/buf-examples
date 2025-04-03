@@ -11,4 +11,4 @@ This directory contains companion code for [the Protovalidate in Connect and Go 
 
 Its `start` directory is the starting state for code exercise, and `finish` contains a working solution.
 
-[documentation]: https://buf.build/docs/protovalidate/how-to/connect-go/
+[documentation]: https://buf.build/docs/protovalidate/quickstart/connect-go/

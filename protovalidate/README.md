@@ -52,11 +52,11 @@ Quickstart code showing how to use Protovalidate in unary RPCs is available in t
 [predefined-rules]: https://buf.build/docs/protovalidate/schemas/predefined-rules/
 [standard-rules]: https://buf.build/docs/protovalidate/schemas/standard-rules/
 [custom-rules]: https://buf.build/docs/protovalidate/schemas/custom-rules/
-[connect-go]: https://buf.build/docs/protovalidate/how-to/connect-go
-[grpc-go]: https://buf.build/docs/protovalidate/how-to/grpc-go
-[grpc-java]: https://buf.build/docs/protovalidate/how-to/grpc-java
-[grpc-python]: https://buf.build/docs/protovalidate/how-to/grpc-python
-[bufstream]: https://buf.build/docs/protovalidate/how-to/bufstream
+[connect-go]: https://buf.build/docs/protovalidate/quickstart/connect-go
+[grpc-go]: https://buf.build/docs/protovalidate/quickstart/grpc-go
+[grpc-java]: https://buf.build/docs/protovalidate/quickstart/grpc-java
+[grpc-python]: https://buf.build/docs/protovalidate/quickstart/grpc-python
+[bufstream]: https://buf.build/docs/protovalidate/quickstart/bufstream
 
 [protoc-gen-validate]: https://github.com/bufbuild/protoc-gen-validate
 [yup]: https://github.com/jquense/yup
