@@ -2,29 +2,53 @@ name: buf
 on:
   push:
     branches: ["main"]
+  delete:
   workflow_dispatch: {} # support manual runs
+permissions:
+  contents: read
 jobs:
-  push:
+  breaking:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
       - uses: bufbuild/buf-action@v1
         with:
-          input: 'cli/limit-output-types'
+          input: cli/breaking-change-detection/start/proto
           token: ${{ secrets.BUF_TOKEN }}
+  limit-types:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
       - uses: bufbuild/buf-action@v1
         with:
-          input: 'cli/linting/bad'
+          input: cli/limit-output-types
           token: ${{ secrets.BUF_TOKEN }}
+  lint:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
       - uses: bufbuild/buf-action@v1
         with:
-          input: 'cli/linting/good'
+          input: cli/linting/finish/proto
           token: ${{ secrets.BUF_TOKEN }}
+  workspace-api:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
       - uses: bufbuild/buf-action@v1
         with:
-          input: 'cli/workspace/observabilitytypes'
+          input: cli/workspace/observabilityapi
           token: ${{ secrets.BUF_TOKEN }}
+  workspace-types:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
       - uses: bufbuild/buf-action@v1
         with:
-          input: 'cli/workspace/observabilityapi'
+          input: cli/workspace/observabilitypes
           token: ${{ secrets.BUF_TOKEN }}

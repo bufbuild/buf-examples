@@ -1,0 +1,17 @@
+version: v2
+modules:
+  - path: proto
+    name: buf.build/tutorials/create-buf-plugin
+lint:
+  use:
+    - STANDARD
+    - RPC_SUFFIX
+breaking:
+  use:
+    - FILE
+plugins:
+   - plugin: rpc-suffix
+     options:
+       forbidden_rpc_suffixes:
+         - Method
+         - RPC
