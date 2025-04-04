@@ -1,3 +1,6 @@
+# This Makefile is not intended to be used as part of the Protovalidate
+# quickstart. It exists only for CI purposes.
+
 # See https://tech.davis-hansson.com/p/make/
 SHELL := bash
 .DELETE_ON_ERROR:
