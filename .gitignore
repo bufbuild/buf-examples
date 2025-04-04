@@ -37,3 +37,8 @@ go.work.sum
 .gradle
 
 .DS_Store
+
+# Spark
+spark-warehouse
+.ipynb_checkpoints
+.Trash-*
