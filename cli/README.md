@@ -38,12 +38,12 @@ The [Buf CLI][cli] is a crucial tool for managing Protobuf schemas. This directo
 
 [Example code](./workspace) for the [Buf CLI][cli] provides an example of using one `buf.gen.yaml` file to manage multiple modules of Protobuf files in one repository.
 
-[breaking]: https://buf.build/docs/breaking/quickstart/
+[breaking]: https://buf.build/docs/breaking/tutorial/
 [cli]: https://github.com/bufbuild/buf
 [cli-docs]: https://buf.build/docs/cli/
 [cli-quickstart]: https://buf.build/docs/cli/quickstart/
 [limit-types]: https://buf.build/docs/reference/cli/buf/build/#flags
-[lint]: https://buf.build/docs/lint/quickstart/
+[lint]: https://buf.build/docs/lint/tutorial/
 [managed]: https://buf.build/docs/generate/managed-mode/
 [plugin]: https://buf.build/docs/generate/tutorial/#generate-code-using-local-plugins
 [remote]: https://buf.build/docs/generate/tutorial/#generate-code-using-remote-plugins
