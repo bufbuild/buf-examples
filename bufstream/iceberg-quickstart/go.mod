@@ -1,4 +1,4 @@
-module github.com/bufbuild/buf-quickstart/bufstream/iceberg-quickstart
+module github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart
 
 go 1.22
 

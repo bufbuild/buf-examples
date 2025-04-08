@@ -20,8 +20,8 @@ package app
 
 import (
 	"context"
-	"github.com/bufbuild/buf-quickstart/bufstream/iceberg-quickstart/pkg/csr"
-	"github.com/bufbuild/buf-quickstart/bufstream/iceberg-quickstart/pkg/kafka"
+	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/csr"
+	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/kafka"
 	"log/slog"
 	"os"
 	"os/signal"

@@ -116,7 +116,7 @@ const file_bufstream_demo_v1_demo_proto_rawDesc = "" +
 	"\x11new_email_address\x18\x03 \x01(\tB\n" +
 	"\xbaH\a\xc8\x01\x01r\x02`\x01R\x0fnewEmailAddress:(\xb2H%\n" +
 	"\x0ebufstream-demo\x12\x13email-updated-valueB\xe2\x01\n" +
-	"\x15com.bufstream.demo.v1B\tDemoProtoP\x01ZXgithub.com/bufbuild/buf-quickstart/bufstream/iceberg-quickstart/bufstream/demo/v1;demov1\xa2\x02\x03BDX\xaa\x02\x11Bufstream.Demo.V1\xca\x02\x11Bufstream\\Demo\\V1\xe2\x02\x1dBufstream\\Demo\\V1\\GPBMetadata\xea\x02\x13Bufstream::Demo::V1b\x06proto3"
+	"\x15com.bufstream.demo.v1B\tDemoProtoP\x01ZXgithub.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/bufstream/demo/v1;demov1\xa2\x02\x03BDX\xaa\x02\x11Bufstream.Demo.V1\xca\x02\x11Bufstream\\Demo\\V1\xe2\x02\x1dBufstream\\Demo\\V1\\GPBMetadata\xea\x02\x13Bufstream::Demo::V1b\x06proto3"
 
 var (
 	file_bufstream_demo_v1_demo_proto_rawDescOnce sync.Once
