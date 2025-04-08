@@ -55,9 +55,9 @@ func run(ctx context.Context, config app.Config) error {
 		config.Kafka.Topic,
 	)
 
-	msgs := 100
+	const msgs = 100
 	slog.Info("Creating messages", "max", msgs)
-	for i := 0; i < msgs; i++ {
+	for i := range msgs {
 		id := newID()
 		msg := newSemanticallyValidEmailUpdated(id)
 		// Produces semantically-valid EmailUpdated message, where both email

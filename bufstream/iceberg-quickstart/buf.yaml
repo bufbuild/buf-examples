@@ -7,8 +7,8 @@ modules:
   - path: proto
 deps:
   # We import "buf/confluent/v1/extensions.proto" within our example files, which
-  # comes from the demo.buf.dev/bufbuild/protovalidate module.
+  # comes from the buf.build/bufbuild/confluent module.
   - buf.build/bufbuild/confluent
   # We import "buf/validate/validate.proto" within our example files, which
-  # comes from the demo.buf.dev/bufbuild/protovalidate module.
+  # comes from the buf.build/bufbuild/protovalidate module.
   - buf.build/bufbuild/protovalidate
