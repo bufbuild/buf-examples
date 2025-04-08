@@ -1,6 +1,6 @@
 module github.com/bufbuild/buf-quickstart/bufstream/iceberg-quickstart
 
-go 1.22
+go 1.24.2
 
 require (
 	buf.build/gen/go/bufbuild/confluent/protocolbuffers/go v1.36.5-20240926213411-65369e65bbcd.1
