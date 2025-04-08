@@ -50,5 +50,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bufbuild/buf-action@v1
         with:
-          input: cli/workspace/observabilitypes
+          input: cli/workspace/observabilitytypes
           token: ${{ secrets.BUF_TOKEN }}
