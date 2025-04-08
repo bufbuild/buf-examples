@@ -14,7 +14,7 @@ This repository houses example projects and code for products in the [Buf][buf] 
 
 ## Bufstream
 
-[A quickstart guide](bufstream/iceberg-quickstart) for [Bufstream][bufstream] demonstrates how to archive Kafka messages to Iceberg tables and perform analytical queries with Spark.
+A [quickstart guide](bufstream/iceberg-quickstart) for [Bufstream][bufstream] demonstrates how to archive Kafka messages to Iceberg tables and perform analytical queries with Spark.
 
 ## Protovalidate
 
