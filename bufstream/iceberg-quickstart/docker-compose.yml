@@ -1,0 +1,148 @@
+# This docker-compose.yml file provides a development-appropriate
+# orchestration of containers that allow a query engine (Spark) to query
+# Bufstream (Kafka) topic data archived to object storage (MinIO) in
+# Iceberg-compatible format through a REST Iceberg catalog.
+#
+# For production-suitable deployments of Bufstream, refer to its documentation
+# at http://buf.build/docs/bufstream.
+services:
+  # Object storage: MinIO and its controller (mc)
+  minio:
+    image: minio/minio
+    container_name: minio
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=password
+      - MINIO_DOMAIN=minio
+    networks:
+      iceberg_net:
+        aliases:
+          - warehouse.minio
+    ports:
+      - 9001:9001
+      - 9000:9000
+    command: ["server", "/data", "--console-address", ":9001"]
+  mc:
+    depends_on:
+      - minio
+    image: minio/mc
+    container_name: mc
+    networks:
+      iceberg_net:
+    environment:
+      - AWS_ACCESS_KEY_ID=admin
+      - AWS_SECRET_ACCESS_KEY=password
+      - AWS_REGION=us-east-1
+#       /usr/bin/mc rm -r --force minio/warehouse;
+    entrypoint: >
+      /bin/sh -c "
+      until (/usr/bin/mc config host add minio http://minio:9000 admin password) do echo '...waiting...' && sleep 1; done;
+      /usr/bin/mc mb minio/warehouse;
+      /usr/bin/mc anonymous set public minio/warehouse;
+      tail -f /dev/null
+      "
+
+  # A REST Iceberg catalog backed by MinIO
+  rest:
+    image: apache/iceberg-rest-fixture
+    container_name: iceberg-rest
+    networks:
+      iceberg_net:
+    ports:
+      - 8181:8181
+    environment:
+      - AWS_ACCESS_KEY_ID=admin
+      - AWS_SECRET_ACCESS_KEY=password
+      - AWS_REGION=us-east-1
+      - CATALOG_WAREHOUSE=s3://warehouse/
+      - CATALOG_IO__IMPL=org.apache.iceberg.aws.s3.S3FileIO
+      - CATALOG_S3_ENDPOINT=http://minio:9000
+
+  # The Bufstream broker, relying on MinIO for object storage and the REST
+  # Iceberg catalog for archival. Additional configuration is in
+  # config/bufstream.yaml.
+  bufstream:
+    image: bufbuild/bufstream:0.3.17
+    hostname: localhost
+    container_name: bufstream
+    networks:
+      iceberg_net:
+    depends_on:
+      - minio
+      - rest
+    ports:
+      # We'll expose bufstream on the host at port 9092.
+      - "9092:9092"
+      - "9089:9089"
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/bufstream", "admin", "status", "--exit-code", "--url", "http://127.0.0.1:9089"]
+      start_period: 15s
+      interval: 5s
+      timeout: 10s
+      retries: 10
+    # Edit bufstream.yaml within this repository to change configuration.
+    volumes:
+      - ./config/bufstream.yaml:/bufstream.yaml
+    command: [
+      "serve",
+      "--config", "/bufstream.yaml",
+      "--config.kafka.address.host", "localhost",
+      "--config.kafka.public_address.host", "localhost",
+    ]
+
+  # A GUI for Bufstream's Kafka broker. See https://akhq.io
+  #
+  # Browse to http://localhost:8282 on your machine.
+  akhq:
+    image: tchiotludo/akhq:0.25.0
+    container_name: akhq
+    stop_signal: SIGKILL
+    networks:
+      iceberg_net:
+    depends_on:
+      - bufstream
+    healthcheck:
+      test: nc -z akhq 8080 || exit -1
+      start_period: 15s
+      interval: 5s
+      timeout: 10s
+      retries: 10
+    ports:
+      - "8282:8080"
+    environment:
+      AKHQ_CONFIGURATION: |
+        akhq:
+          connections:
+            bufstream-local:
+              properties:
+                bootstrap.servers: "bufstream:9092"
+                client.id: "akhq;broker_count=1;host_override=bufstream"
+              schema-registry:
+                url: "https://demo.buf.dev/integrations/confluent/bufstream-demo"
+                type: "confluent"
+
+  # Spark, relying on MinIO and the REST Iceberg catalog.
+  spark-iceberg:
+    image: tabulario/spark-iceberg
+    container_name: spark-iceberg
+    build: spark/
+    networks:
+      iceberg_net:
+    depends_on:
+      - minio
+      - rest
+    volumes:
+      - ./notebooks:/home/iceberg/notebooks/notebooks
+    environment:
+      - AWS_ACCESS_KEY_ID=admin
+      - AWS_SECRET_ACCESS_KEY=password
+      - AWS_REGION=us-east-1
+    ports:
+      - 8888:8888
+      - 8080:8080
+      - 10000:10000
+      - 10001:10001
+
+networks:
+  iceberg_net:
+

@@ -12,6 +12,10 @@ This repository houses example projects and code for products in the [Buf][buf] 
 
 [This directory](./bsr) contains quickstart code that demonstrates key functions and usage of the [BSR][bsr], and how to create [Buf plugins][plugins] for custom lint and breaking change rules that you can upload to the BSR.
 
+## Bufstream
+
+A [quickstart guide](bufstream/iceberg-quickstart) for [Bufstream][bufstream] demonstrates how to archive Kafka messages to Iceberg tables and perform analytical queries with Spark.
+
 ## Protovalidate
 
 [Quickstart guides and examples](./protovalidate) for [Protovalidate][protovalidate] show how standard annotations and custom CEL expressions can be used to validate Protobuf messages.
@@ -23,6 +27,7 @@ This repository houses example projects and code for products in the [Buf][buf] 
 [bsr-docs]: https://buf.build/docs/bsr/
 [bsr]: https://buf.build
 [buf]: https://github.com/bufbuild
+[bufstream]: https://buf.build/docs/bufstream/
 [cli-docs]: https://buf.build/docs/cli/
 [docs]: https://buf.build/docs
 [plugins]: https://buf.build/docs/cli/buf-plugins/overview/
