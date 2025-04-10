@@ -1,0 +1,13 @@
+version: v2
+inputs:
+  - directory: src/main/proto
+plugins:
+- remote: buf.build/protocolbuffers/java:v29.3
+  out: build/generated/main/java
+managed:
+  enabled: true
+  # Don't modify any file option or field option for protovalidate. Without
+  # this, generated Java will fail to compile.
+  disable:
+    - file_option: java_package
+      module: buf.build/bufbuild/protovalidate

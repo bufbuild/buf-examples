@@ -1,0 +1,18 @@
+version: v2
+inputs:
+  - directory: src/main/proto
+plugins:
+  - remote: buf.build/protocolbuffers/java:v29.3
+    out: build/generated/main/java
+  - remote: buf.build/grpc/java:v1.70.0
+    out: build/generated/main/java
+managed:
+  enabled: true
+  override:
+    - file_option: java_package_suffix
+      value: gen
+    - file_option: java_package_prefix
+      value: ""
+  disable:
+    - file_option: java_package
+      module: buf.build/bufbuild/protovalidate
