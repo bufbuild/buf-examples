@@ -1,0 +1,19 @@
+[versions]
+annotation-api = "1.3.2"
+grpc = "1.70.0"
+junit = "5.12.0"
+protobuf = "4.29.3"
+protovalidate = "0.6.0"
+spotless = "6.13.0"
+
+[libraries]
+annotation-api = { module = "javax.annotation:javax.annotation-api", version.ref = "annotation-api" }
+grpc-bom = { module = "io.grpc:grpc-bom", version.ref = "grpc" }
+grpc-protobuf = { module = "io.grpc:grpc-protobuf" }
+grpc-services = { module = "io.grpc:grpc-services" }
+grpc-stub = { module = "io.grpc:grpc-stub" }
+grpc-netty-shaded = { module = "io.grpc:grpc-netty-shaded" }
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+protobuf-java = { module = "com.google.protobuf:protobuf-java", version.ref = "protobuf" }
+protovalidate = { module = "build.buf:protovalidate", version.ref = "protovalidate" }
+spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }

@@ -1,0 +1,13 @@
+version: v2
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/bufbuild/buf-examples/workspace/gen/proto/go
+plugins:
+  - remote: buf.build/protocolbuffers/go:v1.28.1
+    out: gen/proto/go
+    opt: paths=source_relative
+  - remote: buf.build/bufbuild/connect-go:v1.7.0
+    out: gen/proto/go
+    opt: paths=source_relative

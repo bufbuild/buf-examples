@@ -1,0 +1,47 @@
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+  forbidigo:
+    forbid:
+      - '^fmt\.Print'
+      - '^log\.'
+      - '^print$'
+      - '^println$'
+      - '^panic$'
+  godox:
+    # Use "fix me" comments for temporary hacks, and use godox to prevent
+    # committing them.
+    keywords: [FIXME]
+  varnamelen:
+    ignore-decls:
+      - T any
+      - i int
+      - wg sync.WaitGroup
+      - ok bool
+      - w io.Writer
+linters:
+  enable-all: true
+  disable:
+    - cyclop            # covered by gocyclo
+    - depguard          # we can manage dependencies strictly if the need arises in the future
+    - err113            # internal error causes may be dynamic
+    - exhaustruct       # don't _always_ need to exhaustively create struct
+    - funlen            # rely on code review to limit function length
+    - gocognit          # dubious "cognitive overhead" quantification
+    - gofumpt           # prefer standard gofmt
+    - goimports         # rely on gci instead
+    - gomoddirectives   # we use go modules replacements intentionally
+    - gomodguard        # not compatible with go workspaces
+    - intrange          # enable once go 1.22 is baseline
+    - ireturn           # "accept interfaces, return structs" isn't ironclad
+    - lll               # don't want hard limits for line length
+    - maintidx          # covered by gocyclo
+    - mnd               # some unnamed constants are okay
+    - nlreturn          # generous whitespace violates house style
+    - nonamedreturns    # usage of named returns should be selective
+    - testpackage       # internal tests are fine
+    - tenv              # deprecated, replaced by usetesting
+    - wrapcheck         # don't _always_ need to wrap errors
+    - wsl               # over-generous whitespace violates house style
+issues:
+  exclude-use-default: true

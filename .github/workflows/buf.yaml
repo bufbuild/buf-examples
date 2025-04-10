@@ -2,32 +2,53 @@ name: buf
 on:
   push:
     branches: ["main"]
+  delete:
   workflow_dispatch: {} # support manual runs
+permissions:
+  contents: read
 jobs:
-  push:
+  breaking:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
-      - uses: bufbuild/buf-setup-action@v1.29.0
+      - uses: bufbuild/buf-action@v1
         with:
-          github_token: ${{ github.token }}
-      - uses: bufbuild/buf-push-action@v1.1.1
+          input: cli/breaking-change-detection/start/proto
+          token: ${{ secrets.BUF_TOKEN }}
+  limit-types:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-action@v1
         with:
-          input: 'limit-output-types'
-          buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1.1.1
+          input: cli/limit-output-types
+          token: ${{ secrets.BUF_TOKEN }}
+  lint:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-action@v1
         with:
-          input: 'linting/bad'
-          buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1.1.1
+          input: cli/linting/finish/proto
+          token: ${{ secrets.BUF_TOKEN }}
+  workspace-api:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-action@v1
         with:
-          input: 'linting/good'
-          buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1.1.1
+          input: cli/workspace/observabilityapi
+          token: ${{ secrets.BUF_TOKEN }}
+  workspace-types:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-action@v1
         with:
-          input: 'workspace/observabilitytypes'
-          buf_token: ${{ secrets.BUF_TOKEN }}
-      - uses: bufbuild/buf-push-action@v1.1.1
-        with:
-          input: 'workspace/observabilityapi'
-          buf_token: ${{ secrets.BUF_TOKEN }}
+          input: cli/workspace/observabilitytypes
+          token: ${{ secrets.BUF_TOKEN }}

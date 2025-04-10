@@ -1,0 +1,31 @@
+version: v2
+managed:
+  enabled: true
+  override:
+    - file_option: cc_enable_arenas
+      value: true
+    - file_option: java_multiple_files
+      value: false
+    - file_option: java_string_check_utf8
+      value: false
+    - file_option: java_package_prefix
+      value: io
+    - file_option: optimize_for
+      value: CODE_SIZE
+    - file_option: go_package_prefix
+      value: github.com/acme/weather/v1
+plugins:
+  - remote: buf.build/protocolbuffers/cpp
+    out: gen/proto/cpp
+  - remote: buf.build/protocolbuffers/csharp
+    out: gen/proto/csharp
+  - remote: buf.build/protocolbuffers/go
+    out: gen/proto/go
+  - remote: buf.build/protocolbuffers/java
+    out: gen/proto/java
+  - remote: buf.build/protocolbuffers/objc
+    out: gen/proto/objc
+  - remote: buf.build/protocolbuffers/php
+    out: gen/proto/php
+  - remote: buf.build/protocolbuffers/ruby
+    out: gen/proto/ruby

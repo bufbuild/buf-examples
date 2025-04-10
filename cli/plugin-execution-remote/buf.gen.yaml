@@ -1,0 +1,15 @@
+version: v2
+managed:
+  enabled: true
+  override:
+    - file_option: java_multiple_files
+      value: false
+    - file_option: java_string_check_utf8
+      value: false
+    - file_option: go_package_prefix
+      value: github.com/buf-examples/observabilityapi
+plugins:
+  - remote: buf.build/protocolbuffers/go:v1.28.1
+    out: gen/proto/go
+  - remote: buf.build/protocolbuffers/java:v21.9
+    out: gen/proto/java
