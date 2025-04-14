@@ -17,9 +17,8 @@ syntax = "proto3";
 package acme.weather.v1;
 
 enum Condition {
-  CONDITION_UNSPECIFIED = 0;
-  CONDITION_SUNNY = 1;
-  CONDITION_RAINY = 2;
+  CONDITION_SUNNY = 0;
+  CONDITION_RAINY = 1;
 }
 
 message GetWeatherRequest {

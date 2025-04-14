@@ -1,7 +1,6 @@
 name: buf
 on:
   push:
-    branches: ["main"]
   delete:
   workflow_dispatch: {} # support manual runs
 permissions:
