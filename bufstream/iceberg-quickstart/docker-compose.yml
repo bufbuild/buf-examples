@@ -6,6 +6,29 @@
 # For production-suitable deployments of Bufstream, refer to its documentation
 # at http://buf.build/docs/bufstream.
 services:
+  postgres:
+    container_name: postgres
+    image: postgres:17
+    restart: always
+    environment:
+      POSTGRES_USER: bufstream
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: bufstream
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bufstream"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      iceberg_net:
+        aliases:
+          - warehouse.minio
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+
+
   # Object storage: MinIO and its controller (mc)
   minio:
     image: minio/minio
@@ -21,6 +44,8 @@ services:
     ports:
       - 9001:9001
       - 9000:9000
+    volumes:
+      - ./minio/data:/data
     command: ["server", "/data", "--console-address", ":9001"]
   mc:
     depends_on:
@@ -57,6 +82,9 @@ services:
       - CATALOG_WAREHOUSE=s3://warehouse/
       - CATALOG_IO__IMPL=org.apache.iceberg.aws.s3.S3FileIO
       - CATALOG_S3_ENDPOINT=http://minio:9000
+      - CATALOG_URI=jdbc:sqlite:file:/iceberg-rest/iceberg-rest.db
+    volumes:
+      - ./iceberg-rest:/iceberg-rest
 
   # The Bufstream broker, relying on MinIO for object storage and the REST
   # Iceberg catalog for archival. Additional configuration is in
@@ -68,21 +96,16 @@ services:
     networks:
       iceberg_net:
     depends_on:
+      - postgres
       - minio
       - rest
     ports:
       # We'll expose bufstream on the host at port 9092.
       - "9092:9092"
       - "9089:9089"
-    healthcheck:
-      test: ["CMD", "/usr/local/bin/bufstream", "admin", "status", "--exit-code", "--url", "http://127.0.0.1:9089"]
-      start_period: 15s
-      interval: 5s
-      timeout: 10s
-      retries: 10
-    # Edit bufstream.yaml within this repository to change configuration.
     volumes:
-      - ./config/bufstream.yaml:/bufstream.yaml
+      - ./bufstream/config/bufstream.yaml:/bufstream.yaml
+      - ./bufstream/data:/bufstream/data
     command: [
       "serve",
       "--config", "/bufstream.yaml",

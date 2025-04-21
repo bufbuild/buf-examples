@@ -9,7 +9,34 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-BUFSTREAM_VERSION := 0.3.6
+.PHONY: clean
+clean: down
+	rm -rf minio/*
+	rm -rf postgres/*
+	rm -rf iceberg-rest/*
+
+.PHONY: up
+up:
+	docker compose up -d
+
+.PHONY: stop
+stop:
+	docker compose stop
+
+.PHONY: down
+down:
+	docker compose down
+
+.PHONY: publish
+publish:
+	go run ./cmd/producer \
+      --topic email-updated \
+      --group email-verifier \
+      --csr-url "https://demo.buf.dev/integrations/confluent/bufstream-demo"
+
+.PHONY: archive
+archive:
+	docker exec bufstream /usr/local/bin/bufstream admin clean topics
 
 .PHONY: ci
 ci: format-proto lint-proto
