@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bufbuild/buf-action@v1
         with:
-          input: cli/breaking-change-detection/start/proto
+          input: cli/breaking-change-detection/start
           token: ${{ secrets.BUF_TOKEN }}
   limit-types:
     runs-on: ubuntu-latest
