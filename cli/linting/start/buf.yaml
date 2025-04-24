@@ -4,7 +4,7 @@ modules:
     name: buf.build/tutorials/lint
 lint:
   use:
-    - DEFAULT
+    - STANDARD
 breaking:
   use:
     - FILE
