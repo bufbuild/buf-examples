@@ -1,6 +1,6 @@
 module github.com/bufbuild/buf-examples/workspace
 
-go 1.20
+go 1.23.0
 
 require (
 	github.com/bufbuild/connect-go v1.7.0

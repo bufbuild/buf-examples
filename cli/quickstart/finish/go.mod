@@ -1,7 +1,6 @@
 module github.com/bufbuild/buf-examples
 
-go 1.22.2
-toolchain go1.24.1
+go 1.23.0
 
 require (
 	connectrpc.com/connect v1.16.1
