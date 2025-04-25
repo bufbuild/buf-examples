@@ -2,8 +2,6 @@ module github.com/bufbuild/buf-examples/protovalidate/grpc-go/finish
 
 go 1.23.4
 
-toolchain go1.24.2
-
 require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.6-20250423154025-ec0af4932e5e.1
 	github.com/bufbuild/protovalidate-go v0.9.3
