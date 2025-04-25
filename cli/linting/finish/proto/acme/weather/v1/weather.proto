@@ -23,6 +23,10 @@ enum Condition {
 }
 
 message GetWeatherRequest {
+  Location location = 1;
+}
+
+message Location {
   float latitude = 1;
   float longitude = 2;
 }
