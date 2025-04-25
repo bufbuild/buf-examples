@@ -90,7 +90,7 @@ services:
   # Iceberg catalog for archival. Additional configuration is in
   # config/bufstream.yaml.
   bufstream:
-    image: bufbuild/bufstream:0.3.17
+    image: bufbuild/bufstream:0.3.20
     hostname: localhost
     container_name: bufstream
     networks:
@@ -99,6 +99,9 @@ services:
       - postgres
       - minio
       - rest
+    environment:
+      BUFSTREAM_KAFKA_HOST: localhost
+      BUFSTREAM_KAFKA_PUBLIC_HOST: localhost
     ports:
       # We'll expose bufstream on the host at port 9092.
       - "9092:9092"
@@ -109,8 +112,6 @@ services:
     command: [
       "serve",
       "--config", "/bufstream.yaml",
-      "--config.kafka.address.host", "localhost",
-      "--config.kafka.public_address.host", "localhost",
     ]
 
   # A GUI for Bufstream's Kafka broker. See https://akhq.io
