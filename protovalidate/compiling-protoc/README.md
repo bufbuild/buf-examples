@@ -2,7 +2,7 @@
 
 # Compiling Protovalidate annotations with protoc
 
-This folder contains example code for [compiling with protoc documentation][documentation], where you can learn to compile Protovalidate-annotated schemas using `protoc`.
+This directory contains example code for [compiling with protoc documentation][documentation], where you can learn to compile Protovalidate-annotated schemas using `protoc`.
 
 It's a working example: `make` should immediately run without errors.
 

@@ -2,7 +2,7 @@
 
 # Bufstream and Iceberg quickstart
 
-This folder contains example code for Bufstream's [Iceberg quickstart][docs].
+This directory contains example code for Bufstream's [Iceberg quickstart][docs].
 It walks through the key tasks for creating a local Bufstream and Iceberg environment:
 
 1. Deploying a Docker-based Bufstream environment with local object storage and Iceberg REST catalog.

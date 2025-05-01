@@ -5,7 +5,7 @@
 > [!NOTE]
 > You need to have the [`buf` CLI][install] installed to follow along with this example.
 
-This folder contains example code for Buf's [generating code with remote plugins tutorial][docs], where you can learn to generate code stubs from a [Buf input][input] using Protobuf plugins. 
+This directory contains example code for Buf's [generating code with remote plugins tutorial][docs], where you can learn to generate code stubs from a [Buf input][input] using Protobuf plugins. 
 
 Here, we'll use two remote plugins hosted on the [Buf Schema Registry][bsr]:
 

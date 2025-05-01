@@ -2,7 +2,7 @@
 
 # Compiling Protovalidate annotations with the Buf CLI
 
-This folder contains example code for [compiling with the Buf CLI documentation][documentation], where you can learn to compile Protovalidate-annotated schemas using the Buf CLI.
+This directory contains example code for [compiling with the Buf CLI documentation][documentation], where you can learn to compile Protovalidate-annotated schemas using the Buf CLI.
 
 It's a working example: `buf generate` should immediately run without errors.
 

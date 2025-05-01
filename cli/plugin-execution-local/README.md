@@ -7,7 +7,7 @@
 > You will also need to have [`protoc-gen-go`][protoc-gen-go] and [`protoc-gen-rust`][protoc-gen-rust]
 > installed locally.
 
-This folder contains example code for Buf's [code generation quickstart][docs], where you can learn to generate code stubs from a [Buf input][input] using local Protobuf plugins.
+This directory contains example code for Buf's [code generation quickstart][docs], where you can learn to generate code stubs from a [Buf input][input] using local Protobuf plugins.
 
 Here, we'll use two locally installed plugins:
 
