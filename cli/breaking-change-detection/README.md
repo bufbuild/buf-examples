@@ -9,4 +9,6 @@ It walks through the key tasks for running breaking change detection locally usi
 2. Comparing against the Buf Schema Registry (BSR)
 3. Comparing against a remote Git repository
 
+This folder contains a `start` directory, where you work on the example files, and a `finish` directory that you can use to compare against.
+
 [docs]: https://buf.build/docs/breaking/quickstart/

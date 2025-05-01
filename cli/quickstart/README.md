@@ -11,4 +11,6 @@ It walks through the key workflows of the CLI:
 4. Detecting breaking changes
 5. Implementing an API
 
+This folder contains a `start` directory, where you work on the example files, and a `finish` directory that you can use to compare against.
+
 [docs]: https://buf.build/docs/cli/quickstart/
