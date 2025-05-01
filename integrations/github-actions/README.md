@@ -9,7 +9,7 @@ This folder contains example code for Buf's [GitHub action documentation][docs],
 This example project shows you how to use Buf in a [GitHub Actions][actions] setting.
 This uses the [Buf Action][buf-action].
 
-> The configuration for [GitHub Actions][actions] is in the [`.github`](../.github) directory in the root, as that's where GitHub expects it to be.
+> The configuration for [GitHub Actions][actions] is in the [`.github`](../../.github) directory in the root, as that's where GitHub expects it to be.
 
 [docs]: https://buf.build/docs/bsr/ci-cd/github-actions/
 [actions]: https://docs.github.com/actions
