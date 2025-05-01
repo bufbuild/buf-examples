@@ -5,7 +5,9 @@
 > [!NOTE]
 > You need to have the [`buf` CLI][install] installed to follow along with this example.
 
-This directory provides an example of generating code stubs from a [Buf input][input] using Protobuf plugins. Here, we'll use two remote plugins hosted on the [Buf Schema Registry][bsr]:
+This folder contains example code for Buf's [Generating code with remote plugins tutorial][docs], where you can learn to generate code stubs from a [Buf input][input] using Protobuf plugins. 
+
+Here, we'll use two remote plugins hosted on the [Buf Schema Registry][bsr]:
 
 Plugin | Language
 :------|:--------
@@ -20,6 +22,7 @@ buf generate buf.build/buf-examples/observabilityapi
 
 The [remote plugin execution][blog] was designed to avoid the pitfalls of using [locally installed plugins][local].
 
+[docs]:https://buf.build/docs/bsr/remote-plugins/usage/
 [api]: https://buf.build/buf-examples/observabilityapi
 [blog]: https://buf.build/blog/remote-plugin-execution
 [bsr]: https://docs.buf.build/bsr
