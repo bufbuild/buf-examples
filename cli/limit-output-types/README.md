@@ -404,4 +404,4 @@ buf build \
 [input]: https://docs.buf.build/reference/inputs
 [install]: https://docs.buf.build/installation
 [jq]: https://stedolan.github.io/jq
-[type]: https://docs.buf.build/build/usage#limit-to-specific-types
+[type]: https://buf.build/docs/generate/overview/?h=limit+type#limit-to-specific-types
