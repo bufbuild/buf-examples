@@ -7,7 +7,9 @@
 > You will also need to have [`protoc-gen-go`][protoc-gen-go] and [`protoc-gen-rust`][protoc-gen-rust]
 > installed locally.
 
-This directory provides an example of generating code stubs from a [Buf input][input] using Protobuf plugins. Here, we'll use two locally installed plugins:
+This directory contains example code for Buf's [code generation quickstart][docs], where you can learn to generate code stubs from a [Buf input][input] using local Protobuf plugins.
+
+Here, we'll use two locally installed plugins:
 
 Plugin | Language
 :------|:--------
@@ -22,6 +24,7 @@ buf generate buf.build/buf-examples/observabilityapi
 
 One drawback of this local plugin approach is that you need to install the executables on your own, make sure that they're on your `PATH`, and so on. To see how to generate code stubs without needing to install _any_ plugins locally, see the [remote plugin execution][remote] example project.
 
+[docs]: https://buf.build/docs/generate/tutorial/
 [api]: https://buf.build/buf-examples/observabilityapi
 [cli]: https://github.com/bufbuild/buf
 [go]: https://golang.org

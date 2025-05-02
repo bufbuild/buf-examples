@@ -8,6 +8,6 @@ This directory contains companion code for the [Protovalidate quickstart][docume
 2. Generate code.
 3. Run validations.
 
-Its `start` directory is the starting state for code exercise, and `finish` contains a working solution.
+It contains a `start` directory, where you work on the example files, and a `finish` directory that you can use to compare against.
 
 [documentation]: https://buf.build/docs/protovalidate/quickstart
