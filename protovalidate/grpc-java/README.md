@@ -9,6 +9,6 @@ This directory contains companion code for [the Protovalidate in gRPC and Java q
 3. Adding a gRPC interceptor.
 4. Testing your validation logic.
 
-Its `start` directory is the starting state for code exercise, and `finish` contains a working solution.
+It contains a `start` directory, where you work on the example files, and a `finish` directory that you can use to compare against.
 
 [documentation]: https://buf.build/docs/protovalidate/quickstart/grpc-java/

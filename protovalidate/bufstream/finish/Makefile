@@ -12,18 +12,18 @@ BUFSTREAM_VERSION := 0.3.6
 
 .PHONY: clean
 clean:
-	rm -f bufstream-broker
+	rm -f bufstream
 
 .PHONY: broker
-broker: bufstream-broker
-	./bufstream-broker \
+broker: bufstream
+	./bufstream \
 		serve \
 		--config config/bufstream.yaml
 
-bufstream-broker:
-	curl -sSL -o bufstream-broker \
+bufstream:
+	curl -sSL -o bufstream \
         "https://buf.build/dl/bufstream/latest/bufstream-$(shell uname -s)-$(shell uname -m)" && \
-        chmod +x bufstream-broker
+        chmod +x bufstream
 
 .PHONY: consumer
 consumer:

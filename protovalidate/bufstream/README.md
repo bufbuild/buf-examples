@@ -9,6 +9,6 @@ This directory contains companion code for the [using Protovalidate in Kafka wit
 3. Regenerating code.
 4. Enabling validation in the broker.
 
-Its `start` directory is the starting state for code exercise, and `finish` contains a working solution.
+It contains a `start` directory, where you work on the example files, and a `finish` directory that you can use to compare against.
 
 [documentation]: https://buf.build/docs/protovalidate/quickstart/bufstream

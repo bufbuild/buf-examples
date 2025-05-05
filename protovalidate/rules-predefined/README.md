@@ -8,6 +8,6 @@ This directory contains companion code for [predefined rules documentation][docu
 2. Extend a rule message to create a predefined rule.
 3. Use your predefined rule.
 
-Its `start` directory is the starting state for code exercise, and `finish` contains a working solution.
+It contains a `start` directory, where you work on the example files, and a `finish` directory that you can use to compare against.
 
 [documentation]: https://buf.build/docs/protovalidate/schemas/predefined-rules/
