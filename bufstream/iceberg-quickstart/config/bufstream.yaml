@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=schema/buf.bufstream.config.v1alpha1.BufstreamConfig.schema.json
 cluster: demo
 zone: localhost
-in_memory: true
 kafka:
   address:
     host: 0.0.0.0

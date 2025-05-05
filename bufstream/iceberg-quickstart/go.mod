@@ -3,14 +3,14 @@ module github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart
 go 1.24.2
 
 require (
-	buf.build/gen/go/bufbuild/confluent/protocolbuffers/go v1.36.5-20240926213411-65369e65bbcd.1
-	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.5-20250219170025-d39267d9df8f.1
+	buf.build/gen/go/bufbuild/confluent/protocolbuffers/go v1.36.6-20240926213411-65369e65bbcd.1
+	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.6-20250425153114-8976f5be98c1.1
 	github.com/brianvoe/gofakeit/v7 v7.2.1
 	github.com/confluentinc/confluent-kafka-go/v2 v2.6.0
 	github.com/google/uuid v1.6.0
 	github.com/spf13/pflag v1.0.5
 	github.com/twmb/franz-go v1.18.0
-	google.golang.org/protobuf v1.36.5
+	google.golang.org/protobuf v1.36.6
 )
 
 require (
