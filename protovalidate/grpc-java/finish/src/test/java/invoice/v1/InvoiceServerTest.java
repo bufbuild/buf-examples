@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import buf.build.example.protovalidate.ValidationInterceptor;
 import build.buf.protovalidate.Validator;
+import build.buf.protovalidate.ValidatorFactory;
 import build.buf.validate.FieldPath;
 import build.buf.validate.FieldPathElement;
 import build.buf.validate.Violation;
@@ -44,12 +45,12 @@ import org.junit.jupiter.api.*;
 
 public class InvoiceServerTest {
     private static class ViolationSpec {
-        public final String constraintId;
+        public final String ruleId;
         public final String fieldPath;
         public final String message;
 
-        public ViolationSpec(String constraintId, String fieldPath, String message) {
-            this.constraintId = constraintId;
+        public ViolationSpec(String ruleId, String fieldPath, String message) {
+            this.ruleId = ruleId;
             this.fieldPath = fieldPath;
             this.message = message;
         }
@@ -60,7 +61,7 @@ public class InvoiceServerTest {
 
     @BeforeAll
     public static void startServer() {
-        ValidationInterceptor interceptor = new ValidationInterceptor(new Validator());
+        ValidationInterceptor interceptor = new ValidationInterceptor(ValidatorFactory.newBuilder().build());
         ServerServiceDefinition serviceDefinition = ServerInterceptors.intercept(new InvoiceService(), interceptor);
         server = Grpc.newServerBuilderForPort(0, InsecureServerCredentials.create())
                 .addService(ProtoReflectionServiceV1.newInstance())
@@ -432,9 +433,9 @@ public class InvoiceServerTest {
             Violation violation = violationList.get(i);
 
             assertEquals(
-                    violationSpec.constraintId,
-                    violation.getConstraintId(),
-                    "Expected " + violationSpec.constraintId + " but got " + violation.getConstraintId());
+                    violationSpec.ruleId,
+                    violation.getRuleId(),
+                    "Expected " + violationSpec.ruleId + " but got " + violation.getRuleId());
             assertEquals(
                     violationSpec.fieldPath,
                     fieldPathString(violation.getField()),

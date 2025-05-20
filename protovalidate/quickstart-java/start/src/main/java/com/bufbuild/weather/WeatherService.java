@@ -16,13 +16,14 @@ package com.bufbuild.weather;
 
 import build.buf.protovalidate.ValidationResult;
 import build.buf.protovalidate.Validator;
+import build.buf.protovalidate.ValidatorFactory;
 import build.buf.protovalidate.exceptions.ValidationException;
 import com.bufbuild.weather.v1.GetWeatherRequest;
 import java.util.Collections;
 
 public class WeatherService {
 
-    private static final Validator validator = new Validator();
+    private static final Validator validator = ValidatorFactory.newBuilder().build();
 
     public ValidationResult validateGetWeatherRequest(GetWeatherRequest request) throws ValidationException {
         return new ValidationResult(Collections.emptyList());

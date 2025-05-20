@@ -42,3 +42,6 @@ go.work.sum
 spark-warehouse
 .ipynb_checkpoints
 .Trash-*
+
+*/quickstart-java/**/bin
+*/grpc-java/**/bin
