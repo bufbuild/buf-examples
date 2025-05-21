@@ -9,8 +9,6 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-BUFSTREAM_VERSION := 0.3.27
-
 .PHONY: ci
 ci: format-proto lint-proto
 
