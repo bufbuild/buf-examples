@@ -31,7 +31,7 @@ import (
 func main() {
 	// See the app package for the boilerplate we use to set up the producer and
 	// consumer, including bound flags.
-	app.Main(run)
+	app.MainAutoCreateTopic(run)
 }
 
 func run(ctx context.Context, config app.Config) error {
