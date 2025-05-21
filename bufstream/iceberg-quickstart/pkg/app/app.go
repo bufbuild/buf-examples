@@ -215,7 +215,7 @@ func maybeCreateTopic(ctx context.Context, config kafka.Config) error {
 		} else {
 			configs[k] = &v
 		}
-		slog.Info("Configuring topic", "name", config.Topic, "parameter", k, "value", v)
+		slog.Info("Configuring topic", "topic", config.Topic, "parameter", k, "value", v)
 	}
 	resp, err := admClient.CreateTopic(ctx, int32(config.TopicPartitions), 1, configs, config.Topic)
 	if err == nil {
