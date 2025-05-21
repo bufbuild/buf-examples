@@ -206,6 +206,7 @@ func maybeCreateTopic(ctx context.Context, config kafka.Config) error {
 		}
 		// Else, topic does not exist, so we fall through to create it.
 	}
+	slog.Info("Creating topic", "name", config.Topic)
 	configs := make(map[string]*string, len(config.TopicConfig))
 	for _, conf := range config.TopicConfig {
 		k, v, _ := strings.Cut(conf, "=")
@@ -214,6 +215,7 @@ func maybeCreateTopic(ctx context.Context, config kafka.Config) error {
 		} else {
 			configs[k] = &v
 		}
+		slog.Info("Configuring topic", "name", config.Topic, "parameter", k, "value", v)
 	}
 	resp, err := admClient.CreateTopic(ctx, int32(config.TopicPartitions), 1, configs, config.Topic)
 	if err == nil {
