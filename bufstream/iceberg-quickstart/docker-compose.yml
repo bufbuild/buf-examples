@@ -62,7 +62,7 @@ services:
   # Iceberg catalog for archival. Additional configuration is in
   # config/bufstream.yaml.
   bufstream:
-    image: bufbuild/bufstream:0.3.20
+    image: bufbuild/bufstream:0.3.27
     hostname: localhost
     container_name: bufstream
     networks:

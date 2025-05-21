@@ -9,9 +9,7 @@ kafka:
     host: 0.0.0.0
     port: 9092
 observability:
-  trace_exporter: NONE
-  metrics_exporter: NONE
-  log_level: DEBUG
+  log_level: INFO
   log_format: TEXT
   debug_address:
     host: 0.0.0.0
@@ -45,3 +43,8 @@ storage:
     string: admin
   secret_access_key:
     string: password
+#iceberg:
+#  catalogs:
+#    - name: local-rest-catalog
+#      rest:
+#        url: http://iceberg-rest:8181
