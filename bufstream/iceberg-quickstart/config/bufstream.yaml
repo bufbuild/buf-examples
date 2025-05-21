@@ -33,7 +33,6 @@ data_enforcement:
         on_parse_error: FILTER_RECORD
         redaction:
           debug_redact: true
-
 storage:
   provider: S3
   region: us-east-1
@@ -43,7 +42,6 @@ storage:
     string: admin
   secret_access_key:
     string: password
-
 iceberg:
   catalogs:
     - name: local-rest-catalog
