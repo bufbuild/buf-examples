@@ -33,6 +33,9 @@ go.work.sum
 # tmp dirs
 .tmp
 
+# Vim
+.vim
+
 
 .gradle
 
