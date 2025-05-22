@@ -17,7 +17,6 @@ package invoice.v1;
 import static org.junit.jupiter.api.Assertions.*;
 
 import buf.build.example.protovalidate.ValidationInterceptor;
-import build.buf.protovalidate.Validator;
 import build.buf.protovalidate.ValidatorFactory;
 import build.buf.validate.FieldPath;
 import build.buf.validate.FieldPathElement;
@@ -61,7 +60,8 @@ public class InvoiceServerTest {
 
     @BeforeAll
     public static void startServer() {
-        ValidationInterceptor interceptor = new ValidationInterceptor(ValidatorFactory.newBuilder().build());
+        ValidationInterceptor interceptor =
+                new ValidationInterceptor(ValidatorFactory.newBuilder().build());
         ServerServiceDefinition serviceDefinition = ServerInterceptors.intercept(new InvoiceService(), interceptor);
         server = Grpc.newServerBuilderForPort(0, InsecureServerCredentials.create())
                 .addService(ProtoReflectionServiceV1.newInstance())
