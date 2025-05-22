@@ -162,7 +162,7 @@ func ensureTopicExists(ctx context.Context, config kafka.Config) error {
 		err = resp[0].Err
 	}
 	if err == nil {
-		slog.Info("Topic already exists", "name", config.Topic)
+		slog.Info("Topic already exists", "topic", config.Topic)
 		return nil // topic exists; nothing to create
 	}
 	if !isUnknownTopic(err) {
@@ -170,7 +170,7 @@ func ensureTopicExists(ctx context.Context, config kafka.Config) error {
 	}
 
 	// Topic does not exist, so we fall through to create it.
-	slog.Info("Creating topic", "name", config.Topic)
+	slog.Info("Creating topic", "topic", config.Topic)
 	configs := make(map[string]*string, len(config.TopicConfig))
 	for _, conf := range config.TopicConfig {
 		k, v, _ := strings.Cut(conf, "=")
