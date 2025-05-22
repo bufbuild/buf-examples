@@ -2,9 +2,10 @@ package main
 
 import (
 	"context"
+	"log/slog"
+
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/app"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/kafka"
-	"log/slog"
 )
 
 func main() {

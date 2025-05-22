@@ -18,15 +18,15 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log/slog"
+
 	"github.com/brianvoe/gofakeit/v7"
 	demov1 "github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/gen/bufstream/demo/v1"
-
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/app"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/csr"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/kafka"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/produce"
 	"github.com/google/uuid"
-	"log/slog"
 )
 
 func main() {

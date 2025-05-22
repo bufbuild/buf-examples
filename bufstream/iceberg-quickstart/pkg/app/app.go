@@ -20,20 +20,17 @@ package app
 
 import (
 	"context"
+	"log/slog"
+	"os"
+
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/csr"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/kafka"
 	"github.com/spf13/pflag"
-	"log/slog"
-	"os"
-	"os/signal"
 )
 
 const (
-	defaultKafkaClientID = "bufstream-iceberg-quickstart"
-)
-
-var (
-	defaultKafkaBootstrapServers = []string{"localhost:9092"}
+	defaultKafkaClientID        = "bufstream-iceberg-quickstart"
+	defaultKafkaBootstrapServer = "localhost:9092"
 )
 
 // Config contains all application configuration needed by the producer.
@@ -43,22 +40,10 @@ type Config struct {
 }
 
 // Main reads any configuration and does minimal setup for any binary.
-//
-// Note that in a real production workload, applications should not create
-// topics. This should be considered an infrastructure concern, and the topics
-// should be provisioned with correct configuration before a producer ever tries
-// to send messages to it. If the topic does not exist, this should be a failure
-// in the producer since it means a likely misconfiguration.
-//
-// This example creates the topic, despite it not being a typical good practice,
-// just for simplicity, so there are fewer steps to get the example running.
 func Main(action func(context.Context, Config) error) {
-	// Set up slog. We use the global logger throughout this demo.
+	// Set up slog. We use the global logger throughout this example.
 	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{Level: slog.LevelDebug})))
-	// Cancel the context on interrupt, i.e. ctrl+c for our purposes.
-	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
-	defer cancel()
-	if err := run(ctx, action); err != nil {
+	if err := run(context.Background(), action); err != nil {
 		slog.Error("program error", "error", err)
 		os.Exit(1)
 	}
@@ -78,7 +63,7 @@ func parseConfig() (Config, error) {
 	flagSet.StringArrayVar(
 		&config.Kafka.BootstrapServers,
 		"bootstrap",
-		defaultKafkaBootstrapServers,
+		[]string{defaultKafkaBootstrapServer},
 		"The Bufstream bootstrap server addresses.",
 	)
 	flagSet.StringVar(
@@ -93,7 +78,7 @@ func parseConfig() (Config, error) {
 		"",
 		"The Kafka topic name to use.",
 	)
-	flagSet.IntVar(
+	flagSet.Int32Var(
 		&config.Kafka.TopicPartitions,
 		"topic-partitions",
 		1,

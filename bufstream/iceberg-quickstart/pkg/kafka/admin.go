@@ -18,10 +18,11 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/twmb/franz-go/pkg/kadm"
-	"github.com/twmb/franz-go/pkg/kerr"
 	"log/slog"
 	"strings"
+
+	"github.com/twmb/franz-go/pkg/kadm"
+	"github.com/twmb/franz-go/pkg/kerr"
 )
 
 // NewAdminClient returns an franz-go admin client for the given Config.
@@ -66,17 +67,17 @@ func CreateTopic(ctx context.Context, client *kadm.Client, config Config) error 
 
 	// Reduce config.TopicConfig to a map[string]*string for the admin client.
 	for _, conf := range config.TopicConfig {
-		k, v, _ := strings.Cut(conf, "=")
-		if v == "" {
-			configs[k] = nil
+		param, value, _ := strings.Cut(conf, "=")
+		if value == "" {
+			configs[param] = nil
 		} else {
-			configs[k] = &v
+			configs[param] = &value
 		}
-		slog.Info("Configuring topic", "topic", config.Topic, "parameter", k, "value", v)
+		slog.Info("Configuring topic", "topic", config.Topic, "parameter", param, "value", value)
 	}
 
 	// Create the topic.
-	_, err := client.CreateTopic(ctx, int32(config.TopicPartitions), 1, configs, config.Topic)
+	_, err := client.CreateTopic(ctx, config.TopicPartitions, 1, configs, config.Topic)
 	if err != nil {
 		return err
 	}

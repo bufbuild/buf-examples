@@ -19,8 +19,9 @@ import (
 	"crypto/x509"
 	"errors"
 	"fmt"
-	"github.com/twmb/franz-go/pkg/kgo"
 	"os"
+
+	"github.com/twmb/franz-go/pkg/kgo"
 )
 
 // Config describes all Kafka configuration needed to run this example.
@@ -35,7 +36,7 @@ type Config struct {
 	ClientID         string
 	Topic            string
 	TopicConfig      []string
-	TopicPartitions  int
+	TopicPartitions  int32
 }
 
 // NewKafkaClient returns a new franz-go Kafka Client for the given Config.

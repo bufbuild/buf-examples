@@ -10,7 +10,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
 .PHONY: ci
-ci: format-proto lint-proto
+ci: format-proto lint-proto lint-go
 
 .PHONY: format-proto
 format-proto:
@@ -19,3 +19,7 @@ format-proto:
 .PHONY: lint-proto
 lint-proto:
 	buf lint
+
+.PHONY: lint-go
+lint-go:
+	golangci-lint run ./...
