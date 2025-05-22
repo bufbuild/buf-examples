@@ -31,11 +31,11 @@ import (
 func main() {
 	// See the app package for the boilerplate we use to set up the producer and
 	// consumer, including bound flags.
-	app.MainAutoCreateTopic(run)
+	app.Main(run)
 }
 
 func run(ctx context.Context, config app.Config) error {
-	client, err := kafka.NewKafkaClient(config.Kafka, false)
+	client, err := kafka.NewKafkaClient(config.Kafka)
 	if err != nil {
 		return err
 	}

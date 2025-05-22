@@ -19,10 +19,8 @@ import (
 	"crypto/x509"
 	"errors"
 	"fmt"
-	"os"
-	"time"
-
 	"github.com/twmb/franz-go/pkg/kgo"
+	"os"
 )
 
 // Config is all configuration we need to build a new Kafka Client.
@@ -34,29 +32,17 @@ type Config struct {
 	// BootstrapServers are the bootstrap servers to call.
 	BootstrapServers []string
 	RootCAPath       string
-	Group            string
 	ClientID         string
 	Topic            string
-	RecreateTopic    bool
 	TopicConfig      []string
 	TopicPartitions  int
 }
 
 // NewKafkaClient returns a new franz-go Kafka Client for the given Config.
-func NewKafkaClient(config Config, consumer bool) (*kgo.Client, error) {
+func NewKafkaClient(config Config) (*kgo.Client, error) {
 	opts := []kgo.Opt{
 		kgo.SeedBrokers(config.BootstrapServers...),
 		kgo.ClientID(config.ClientID),
-	}
-
-	if consumer {
-		opts = append(opts,
-			kgo.ConsumerGroup(config.Group),
-			kgo.ConsumeTopics(config.Topic),
-			kgo.FetchMaxWait(time.Second),
-			kgo.FetchIsolationLevel(kgo.ReadCommitted()),
-			kgo.RequireStableFetchOffsets(),
-		)
 	}
 
 	if config.RootCAPath != "" {
