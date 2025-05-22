@@ -21,10 +21,17 @@ services:
     ports:
       - 9001:9001
       - 9000:9000
+    healthcheck:
+      test: [ "CMD", "curl", "--silent", "--fail", "--output", "/dev/null", "http://localhost:9000/minio/health/live" ]
+      start_period: 15s
+      interval: 5s
+      timeout: 10s
+      retries: 10
     command: ["server", "/data", "--console-address", ":9001"]
   mc:
     depends_on:
-      - minio
+      minio:
+        condition: service_healthy
     image: minio/mc
     container_name: mc
     networks:
@@ -44,12 +51,21 @@ services:
 
   # A REST Iceberg catalog backed by MinIO
   rest:
+    depends_on:
+      minio:
+        condition: service_healthy
     image: apache/iceberg-rest-fixture
     container_name: iceberg-rest
     networks:
       iceberg_net:
     ports:
       - 8181:8181
+    healthcheck:
+      test: [ "CMD", "curl", "--silent", "--fail", "--output", "/dev/null", "http://localhost:8181/v1/config" ]
+      start_period: 15s
+      interval: 5s
+      timeout: 10s
+      retries: 10
     environment:
       - AWS_ACCESS_KEY_ID=admin
       - AWS_SECRET_ACCESS_KEY=password
@@ -68,8 +84,10 @@ services:
     networks:
       iceberg_net:
     depends_on:
-      - minio
-      - rest
+      minio:
+        condition: service_healthy
+      rest:
+        condition: service_healthy
     environment:
       BUFSTREAM_KAFKA_HOST: localhost
       BUFSTREAM_KAFKA_PUBLIC_HOST: localhost
@@ -101,9 +119,10 @@ services:
     networks:
       iceberg_net:
     depends_on:
-      - bufstream
+      bufstream:
+        condition: service_healthy
     healthcheck:
-      test: nc -z akhq 8080 || exit -1
+      test: ["CMD", "curl", "--silent", "--fail", "--output", "/dev/null", "http://localhost:28081/health"]
       start_period: 15s
       interval: 5s
       timeout: 10s
@@ -130,8 +149,10 @@ services:
     networks:
       iceberg_net:
     depends_on:
-      - minio
-      - rest
+      minio:
+        condition: service_healthy
+      rest:
+        condition: service_healthy
     volumes:
       - ./notebooks:/home/iceberg/notebooks/notebooks
     environment:
