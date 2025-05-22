@@ -23,7 +23,7 @@ import (
 	"os"
 )
 
-// Config is all configuration we need to build a new Kafka Client.
+// Config describes all Kafka configuration needed to run this example.
 //
 // franz-go uses functional options for the same purpose, but we're simplifying this
 // to just the values in this config struct for the purposes of this demo. If you use

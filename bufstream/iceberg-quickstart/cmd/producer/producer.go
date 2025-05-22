@@ -17,6 +17,7 @@ package main
 import (
 	"context"
 	"errors"
+	"fmt"
 	"github.com/brianvoe/gofakeit/v7"
 	demov1 "github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/gen/bufstream/demo/v1"
 
@@ -29,12 +30,32 @@ import (
 )
 
 func main() {
-	// See the app package for the boilerplate we use to set up the producer and
-	// consumer, including bound flags.
+	// See the app package for the boilerplate we use to set up the producer,
+	// including bound flags.
 	app.Main(run)
 }
 
 func run(ctx context.Context, config app.Config) error {
+	// Make sure the desired topic has been configured.
+	client, err := kafka.NewAdminClient(config.Kafka)
+	if err != nil {
+		return err
+	}
+	defer client.Close()
+
+	topicExists, err := kafka.TopicExists(ctx, client, config.Kafka)
+	if err != nil {
+		return err
+	}
+	if !topicExists {
+		return fmt.Errorf("kafka topic %s does not exist, see this example's documentation for how to use the `topic` command to create it", config.Kafka.Topic)
+	}
+
+	// Start the producer.
+	return startProducer(ctx, config)
+}
+
+func startProducer(ctx context.Context, config app.Config) error {
 	client, err := kafka.NewKafkaClient(config.Kafka)
 	if err != nil {
 		return err

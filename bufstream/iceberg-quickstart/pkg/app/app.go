@@ -20,18 +20,12 @@ package app
 
 import (
 	"context"
-	"errors"
-	"fmt"
-	"log/slog"
-	"os"
-	"os/signal"
-	"strings"
-
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/csr"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/kafka"
 	"github.com/spf13/pflag"
-	"github.com/twmb/franz-go/pkg/kadm"
-	"github.com/twmb/franz-go/pkg/kerr"
+	"log/slog"
+	"os"
+	"os/signal"
 )
 
 const (
@@ -73,9 +67,6 @@ func Main(action func(context.Context, Config) error) {
 func run(ctx context.Context, do func(context.Context, Config) error) error {
 	config, err := parseConfig()
 	if err != nil {
-		return err
-	}
-	if err := ensureTopicExists(ctx, config.Kafka); err != nil {
 		return err
 	}
 	return do(ctx, config)
@@ -142,53 +133,4 @@ func parseConfig() (Config, error) {
 		return Config{}, err
 	}
 	return config, nil
-}
-
-func ensureTopicExists(ctx context.Context, config kafka.Config) error {
-	client, err := kafka.NewKafkaClient(config)
-	if err != nil {
-		return err
-	}
-	defer client.Close()
-
-	admClient := kadm.NewClient(client)
-
-	// Check to see if the topic exists.
-	resp, err := admClient.DescribeTopicConfigs(ctx, config.Topic)
-	if err == nil {
-		if len(resp) != 1 {
-			return fmt.Errorf("expected 1 topic config, got %d", len(resp))
-		}
-		err = resp[0].Err
-	}
-	if err == nil {
-		slog.Info("Topic already exists", "topic", config.Topic)
-		return nil // topic exists; nothing to create
-	}
-	if !isUnknownTopic(err) {
-		return err // something went wrong
-	}
-
-	// Topic does not exist, so we fall through to create it.
-	slog.Info("Creating topic", "topic", config.Topic)
-	configs := make(map[string]*string, len(config.TopicConfig))
-	for _, conf := range config.TopicConfig {
-		k, v, _ := strings.Cut(conf, "=")
-		if v == "" {
-			configs[k] = nil
-		} else {
-			configs[k] = &v
-		}
-		slog.Info("Configuring topic", "topic", config.Topic, "parameter", k, "value", v)
-	}
-	createResp, err := admClient.CreateTopic(ctx, int32(config.TopicPartitions), 1, configs, config.Topic)
-	if err == nil {
-		err = createResp.Err
-	}
-	return err
-}
-
-func isUnknownTopic(err error) bool {
-	var kError *kerr.Error
-	return errors.As(err, &kError) && kError.Code == kerr.UnknownTopicOrPartition.Code
 }
