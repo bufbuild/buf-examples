@@ -3,9 +3,9 @@ module github.com/bufbuild/buf-examples/protovalidate/connect-go/finish
 go 1.23.4
 
 require (
-	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.6-20250423154025-ec0af4932e5e.1
+	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.6-20250425153114-8976f5be98c1.1
 	connectrpc.com/connect v1.18.1
-	connectrpc.com/validate v0.2.0
+	connectrpc.com/validate v0.3.0
 	github.com/bufbuild/protovalidate-go v0.9.3
 	github.com/google/uuid v1.6.0
 	github.com/stretchr/testify v1.10.0
@@ -14,6 +14,7 @@ require (
 )
 
 require (
+	buf.build/go/protovalidate v0.12.0 // indirect
 	cel.dev/expr v0.23.1 // indirect
 	github.com/antlr4-go/antlr/v4 v4.13.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect

@@ -22,11 +22,11 @@ import (
 	"time"
 
 	"buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
+	"buf.build/go/protovalidate"
 	"connectrpc.com/connect"
 	connect_validate "connectrpc.com/validate"
 	invoicev1 "github.com/bufbuild/buf-examples/protovalidate/connect-go/finish/gen/invoice/v1"
 	"github.com/bufbuild/buf-examples/protovalidate/connect-go/finish/gen/invoice/v1/invoicev1connect"
-	"github.com/bufbuild/protovalidate-go"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -390,8 +390,8 @@ func checkConnectError(t *testing.T, connectError *connect.Error, specs []violat
 			violation := allViolations[i]
 
 			// Validate that it meets the expectations in the violationSpec.
-			if violation.GetConstraintId() != spec.constraintID {
-				t.Fatalf("Wrong constraintID. Expected \"%v\", not \"%v\"", spec.constraintID, violation.GetConstraintId())
+			if violation.GetRuleId() != spec.constraintID {
+				t.Fatalf("Wrong constraintID. Expected \"%v\", not \"%v\"", spec.constraintID, violation.GetRuleId())
 			}
 			fieldPath := protovalidate.FieldPathString(violation.GetField())
 			if fieldPath != spec.fieldPath {
