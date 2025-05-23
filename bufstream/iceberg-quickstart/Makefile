@@ -25,16 +25,18 @@ lint-go:
 	golangci-lint run ./...
 
 # Convenience targets for running this as a demo.
-.PHONY: run
-run: docker-up create-topic produce archive
+.PHONY: demo
+demo: docker-up create-topic produce archive
 	echo "Open http://localhost:8888/notebooks/notebooks/bufstream-iceberg-quickstart.ipynb to query the bufstream.email_updated table."
 
-.PHONY: docker-down
-docker-down:
+.PHONY: stop-demo
+stop-demo:
 	docker compose down
 
 .PHONY: docker-up
-docker-up: docker-down
+# Make sure that the Docker compose project has been shut down before trying to
+# start it.
+docker-up: stop-demo
 	docker compose up -d
 
 .PHONY: create-topic
@@ -47,5 +49,5 @@ produce:
 
 .PHONY: archive
 archive:
-	docker exec bufstream /usr/local/bin/bufstream admin clean topics
+	./archive.sh
 

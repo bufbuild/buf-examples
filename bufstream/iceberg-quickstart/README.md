@@ -10,4 +10,9 @@ It walks through the key tasks for creating a local Bufstream and Iceberg enviro
 3. Running the Iceberg archival process on demand.
 4. Querying Iceberg with Apache Spark and a Jupyter Notebook.
 
+## Running as a demonstration
+
+To skip all of the steps in the quickstart and run this as a demonstration, use `make demo`. 
+It'll start the Docker Compose environment, configure a topic, publish messages, archive them to Iceberg tables, and then provide a URL to open for a Jupyter notbook.
+
 [docs]: https://buf.build/docs/bufstream/iceberg/quickstart/
