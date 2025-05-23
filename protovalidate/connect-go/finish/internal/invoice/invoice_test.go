@@ -37,9 +37,9 @@ import (
 // a connect.Error that we expect to contain Protovalidate validate.Violations
 // messages.
 type violationSpec struct {
-	constraintID string
-	fieldPath    string
-	message      string
+	ruleID    string
+	fieldPath string
+	message   string
 }
 
 // Test the CreateInvoice service method and verify that Protovalidate
@@ -81,9 +81,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "required",
-					fieldPath:    "invoice",
-					message:      "value is required",
+					ruleID:    "required",
+					fieldPath: "invoice",
+					message:   "value is required",
 				},
 			},
 		},
@@ -94,9 +94,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "string.uuid_empty",
-					fieldPath:    "invoice.invoice_id",
-					message:      "value is empty, which is not a valid UUID",
+					ruleID:    "string.uuid_empty",
+					fieldPath: "invoice.invoice_id",
+					message:   "value is empty, which is not a valid UUID",
 				},
 			},
 		},
@@ -107,9 +107,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "string.uuid",
-					fieldPath:    "invoice.invoice_id",
-					message:      "value must be a valid UUID",
+					ruleID:    "string.uuid",
+					fieldPath: "invoice.invoice_id",
+					message:   "value must be a valid UUID",
 				},
 			},
 		},
@@ -120,9 +120,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "string.uuid_empty",
-					fieldPath:    "invoice.account_id",
-					message:      "value is empty, which is not a valid UUID",
+					ruleID:    "string.uuid_empty",
+					fieldPath: "invoice.account_id",
+					message:   "value is empty, which is not a valid UUID",
 				},
 			},
 		},
@@ -133,9 +133,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "string.uuid",
-					fieldPath:    "invoice.account_id",
-					message:      "value must be a valid UUID",
+					ruleID:    "string.uuid",
+					fieldPath: "invoice.account_id",
+					message:   "value must be a valid UUID",
 				},
 			},
 		},
@@ -146,9 +146,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "invoice_date.no_time",
-					fieldPath:    "invoice.invoice_date",
-					message:      "time component should be zero",
+					ruleID:    "invoice_date.no_time",
+					fieldPath: "invoice.invoice_date",
+					message:   "time component should be zero",
 				},
 			},
 		},
@@ -159,9 +159,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "repeated.min_items",
-					fieldPath:    "invoice.line_items",
-					message:      "value must contain at least 1 item(s)",
+					ruleID:    "repeated.min_items",
+					fieldPath: "invoice.line_items",
+					message:   "value must contain at least 1 item(s)",
 				},
 			},
 		},
@@ -172,9 +172,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "line_items.unique_line_item_id",
-					fieldPath:    "invoice.line_items",
-					message:      "all line_item_id values must be unique",
+					ruleID:    "line_items.unique_line_item_id",
+					fieldPath: "invoice.line_items",
+					message:   "all line_item_id values must be unique",
 				},
 			},
 		},
@@ -186,9 +186,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "line_items.logically_unique",
-					fieldPath:    "invoice.line_items",
-					message:      "line items must be unique combinations of product_id and unit_price",
+					ruleID:    "line_items.logically_unique",
+					fieldPath: "invoice.line_items",
+					message:   "line items must be unique combinations of product_id and unit_price",
 				},
 			},
 		},
@@ -199,9 +199,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "line_item_id.not.product_id",
-					fieldPath:    "invoice.line_items[0]",
-					message:      "line_item_id can't also be a product_id",
+					ruleID:    "line_item_id.not.product_id",
+					fieldPath: "invoice.line_items[0]",
+					message:   "line_item_id can't also be a product_id",
 				},
 			},
 		},
@@ -212,9 +212,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "string.uuid_empty",
-					fieldPath:    "invoice.line_items[0].line_item_id",
-					message:      "value is empty, which is not a valid UUID",
+					ruleID:    "string.uuid_empty",
+					fieldPath: "invoice.line_items[0].line_item_id",
+					message:   "value is empty, which is not a valid UUID",
 				},
 			},
 		},
@@ -225,9 +225,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "string.uuid",
-					fieldPath:    "invoice.line_items[0].line_item_id",
-					message:      "value must be a valid UUID",
+					ruleID:    "string.uuid",
+					fieldPath: "invoice.line_items[0].line_item_id",
+					message:   "value must be a valid UUID",
 				},
 			},
 		},
@@ -238,9 +238,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "string.uuid_empty",
-					fieldPath:    "invoice.line_items[0].product_id",
-					message:      "value is empty, which is not a valid UUID",
+					ruleID:    "string.uuid_empty",
+					fieldPath: "invoice.line_items[0].product_id",
+					message:   "value is empty, which is not a valid UUID",
 				},
 			},
 		},
@@ -251,9 +251,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "string.uuid",
-					fieldPath:    "invoice.line_items[0].product_id",
-					message:      "value must be a valid UUID",
+					ruleID:    "string.uuid",
+					fieldPath: "invoice.line_items[0].product_id",
+					message:   "value must be a valid UUID",
 				},
 			},
 		},
@@ -264,9 +264,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "uint64.gt",
-					fieldPath:    "invoice.line_items[0].quantity",
-					message:      "value must be greater than 0",
+					ruleID:    "uint64.gt",
+					fieldPath: "invoice.line_items[0].quantity",
+					message:   "value must be greater than 0",
 				},
 			},
 		},
@@ -390,8 +390,8 @@ func checkConnectError(t *testing.T, connectError *connect.Error, specs []violat
 			violation := allViolations[i]
 
 			// Validate that it meets the expectations in the violationSpec.
-			if violation.GetRuleId() != spec.constraintID {
-				t.Fatalf("Wrong constraintID. Expected \"%v\", not \"%v\"", spec.constraintID, violation.GetRuleId())
+			if violation.GetRuleId() != spec.ruleID {
+				t.Fatalf("Wrong ruleID. Expected \"%v\", not \"%v\"", spec.ruleID, violation.GetRuleId())
 			}
 			fieldPath := protovalidate.FieldPathString(violation.GetField())
 			if fieldPath != spec.fieldPath {
