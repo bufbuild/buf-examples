@@ -18,8 +18,8 @@ import (
 	"strings"
 	"testing"
 
+	"buf.build/go/protovalidate"
 	peoplev1 "github.com/bufbuild/buf-examples/protovalidate/rules-predefined/finish/gen/bufbuild/people/v1"
-	"github.com/bufbuild/protovalidate-go"
 )
 
 func TestPersonValidation(t *testing.T) {
