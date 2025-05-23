@@ -15,7 +15,7 @@
 package invoice.v1;
 
 import buf.build.example.protovalidate.ValidationInterceptor;
-import build.buf.protovalidate.Validator;
+import build.buf.protovalidate.ValidatorFactory;
 import io.grpc.*;
 import io.grpc.protobuf.services.ProtoReflectionServiceV1;
 import java.io.IOException;
@@ -82,7 +82,8 @@ public class InvoiceServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         final BindableService service = new InvoiceService();
-        final ValidationInterceptor interceptor = new ValidationInterceptor(new Validator());
+        final ValidationInterceptor interceptor =
+                new ValidationInterceptor(ValidatorFactory.newBuilder().build());
         final ServerServiceDefinition serviceDefinition = ServerInterceptors.intercept(service, interceptor);
 
         final InvoiceServer invoiceServer =

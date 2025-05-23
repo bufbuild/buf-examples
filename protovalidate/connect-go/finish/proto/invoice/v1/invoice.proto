@@ -78,7 +78,7 @@ message Invoice {
     // At least one LineItem must be provided.
     (buf.validate.field).repeated.min_items = 1,
 
-    // Enforce a common sense constraint: ridiculous invoices should be
+    // Enforce a common sense rule: ridiculous invoices should be
     // rejected.
     (buf.validate.field).repeated.max_items = 1000,
 

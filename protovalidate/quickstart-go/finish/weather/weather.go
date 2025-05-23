@@ -15,8 +15,8 @@
 package weather
 
 import (
+	"buf.build/go/protovalidate"
 	weatherv1 "github.com/bufbuild/buf-examples/protovalidate/quickstart-go/finish/gen/bufbuild/weather/v1"
-	"github.com/bufbuild/protovalidate-go"
 )
 
 func validateWeather(req *weatherv1.GetWeatherRequest) error {

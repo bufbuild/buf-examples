@@ -1,39 +1,53 @@
+// Copyright 2020-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 package main
 
 import (
-    "context"
+	"context"
 
-    "buf.build/go/bufplugin/check"
-    "buf.build/go/bufplugin/check/checkutil"
-    "google.golang.org/protobuf/reflect/protoreflect"
+	"buf.build/go/bufplugin/check"
+	"buf.build/go/bufplugin/check/checkutil"
+	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 var (
-    rpcSuffixRuleSpec = &check.RuleSpec{
-        ID:      "RPC_SUFFIX",
-        Default: true,
-        Purpose: "Checks that RPC names don't end with an illegal suffix.",
-        Type:    check.RuleTypeLint,
-        Handler: checkutil.NewMethodRuleHandler(checkRPCSuffix, checkutil.WithoutImports()),
-    }
+	rpcSuffixRuleSpec = &check.RuleSpec{
+		ID:      "RPC_SUFFIX",
+		Default: true,
+		Purpose: "Checks that RPC names don't end with an illegal suffix.",
+		Type:    check.RuleTypeLint,
+		Handler: checkutil.NewMethodRuleHandler(checkRPCSuffix, checkutil.WithoutImports()),
+	}
 )
 
 func main() {
-    check.Main(&check.Spec{
-        Rules: []*check.RuleSpec{
-            rpcSuffixRuleSpec,
-        },
-    })
+	check.Main(&check.Spec{
+		Rules: []*check.RuleSpec{
+			rpcSuffixRuleSpec,
+		},
+	})
 }
 
 func checkRPCSuffix(
-    _ context.Context,
-    responseWriter check.ResponseWriter,
-    _ check.Request,
-    methodDescriptor protoreflect.MethodDescriptor,
+	_ context.Context,
+	responseWriter check.ResponseWriter,
+	_ check.Request,
+	methodDescriptor protoreflect.MethodDescriptor,
 ) error {
-    responseWriter.AddAnnotation(
-        check.WithMessage("hello world"),
-    )
-    return nil
+	responseWriter.AddAnnotation(
+		check.WithMessage("hello world"),
+	)
+	return nil
 }

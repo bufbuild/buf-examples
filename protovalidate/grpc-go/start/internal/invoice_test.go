@@ -21,8 +21,8 @@ import (
 	"time"
 
 	"buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
+	"buf.build/go/protovalidate"
 	invoicev1 "github.com/bufbuild/buf-examples/protovalidate/grpc-go/finish/gen/invoice/v1"
-	"github.com/bufbuild/protovalidate-go"
 	"github.com/google/uuid"
 	protovalidate_middleware "github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/protovalidate"
 	"github.com/stretchr/testify/assert"
@@ -40,9 +40,9 @@ import (
 // a connect.Error that we expect to contain Protovalidate validate.Violations
 // messages.
 type violationSpec struct {
-	constraintID string
-	fieldPath    string
-	message      string
+	ruleID    string
+	fieldPath string
+	message   string
 }
 
 // Test the CreateInvoice service method and verify that Protovalidate
@@ -95,9 +95,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "string.uuid_empty",
-					fieldPath:    "invoice.invoice_id",
-					message:      "value is empty, which is not a valid UUID",
+					ruleID:    "string.uuid_empty",
+					fieldPath: "invoice.invoice_id",
+					message:   "value is empty, which is not a valid UUID",
 				},
 			},
 		},
@@ -109,9 +109,9 @@ func TestCreateInvoice(t *testing.T) {
 			},
 			violations: []violationSpec{
 				{
-					constraintID: "line_items.logically_unique",
-					fieldPath:    "invoice.line_items",
-					message:      "line items must be unique combinations of product_id and unit_price",
+					ruleID:    "line_items.logically_unique",
+					fieldPath: "invoice.line_items",
+					message:   "line items must be unique combinations of product_id and unit_price",
 				},
 			},
 		},
@@ -211,8 +211,8 @@ func checkStatusError(t *testing.T, responseStatus *status.Status, specs []viola
 			violation := allViolations[i]
 
 			// Validate that it meets the expectations in the violationSpec.
-			if violation.GetConstraintId() != spec.constraintID {
-				t.Fatalf("Wrong constraintID. Expected \"%v\", not \"%v\"", spec.constraintID, violation.GetConstraintId())
+			if violation.GetRuleId() != spec.ruleID {
+				t.Fatalf("Wrong ruleID. Expected \"%v\", not \"%v\"", spec.ruleID, violation.GetRuleId())
 			}
 			fieldPath := protovalidate.FieldPathString(violation.GetField())
 			if fieldPath != spec.fieldPath {

@@ -23,9 +23,9 @@ import (
 	"os"
 	"os/signal"
 
+	"buf.build/go/protovalidate"
 	invoicev1 "github.com/bufbuild/buf-examples/protovalidate/grpc-go/finish/gen/invoice/v1"
 	invoice "github.com/bufbuild/buf-examples/protovalidate/grpc-go/finish/internal"
-	"github.com/bufbuild/protovalidate-go"
 	protovalidate_middleware "github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/protovalidate"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
