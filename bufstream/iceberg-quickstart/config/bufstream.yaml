@@ -44,8 +44,10 @@ storage:
     string: password
 # NOTE: the lines below are automatically included in documentation. If you edit
 # them or their position, documentation needs to update as well!
+# @BufCode{"start":"bufstream.yaml"}
 iceberg:
   catalogs:
     - name: local-rest-catalog
       rest:
         url: http://iceberg-rest:8181
+# @BufCode{"end":"bufstream.yaml"}
