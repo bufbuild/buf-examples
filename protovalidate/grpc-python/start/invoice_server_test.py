@@ -35,7 +35,7 @@ string_fmt = string_format.StringFormat("en_US")  # type: ignore
 
 @dataclass
 class ViolationSpec:
-    constraint_id: str
+    rule_id: str
     field_path: str
     message: str
 
@@ -107,7 +107,7 @@ class InvoiceServerTest(unittest.TestCase):
         assert len(violation_specs) == len(all_violations)
         for index, spec in enumerate(violation_specs):
             violation = all_violations[index]
-            assert spec.constraint_id == violation.constraint_id
+            assert spec.rule_id == violation.rule_id
             assert spec.message == violation.message
             assert spec.field_path == field_path(violation.field)
 
