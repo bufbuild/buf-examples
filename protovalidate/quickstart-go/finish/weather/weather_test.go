@@ -18,8 +18,8 @@ import (
 	"testing"
 	"time"
 
+	"buf.build/go/protovalidate"
 	weatherv1 "github.com/bufbuild/buf-examples/protovalidate/quickstart-go/finish/gen/bufbuild/weather/v1"
-	"github.com/bufbuild/protovalidate-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/types/known/timestamppb"
