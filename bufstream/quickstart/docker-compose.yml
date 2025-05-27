@@ -37,8 +37,11 @@ services:
       - --console-address
       - :9001
 
+  # We use Minio Client (https://min.io/docs/minio/linux/reference/minio-mc.html)
+  # to bootstrap a MinIO Bucket as MinIO doesn't come prepopulated with one, and
+  # Bufstream doesn't create one itself.
   mc:
-    image: minio/mc
+    image: minio/mc:RELEASE.2025-05-21T01-59-54Z
     container_name: mc
     environment:
       - AWS_ACCESS_KEY_ID=admin
