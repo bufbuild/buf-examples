@@ -20,12 +20,11 @@ package app
 
 import (
 	"context"
-	"log/slog"
-	"os"
-
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/csr"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/kafka"
 	"github.com/spf13/pflag"
+	"log/slog"
+	"os"
 )
 
 const (
@@ -84,6 +83,24 @@ func parseConfig() (Config, error) {
 		1,
 		"The number of partitions to use when creating the topic.",
 	)
+	flagSet.StringVar(
+		&config.Kafka.ArchiveKind,
+		"bufstream.archive.kind",
+		"",
+		"The type of archival to use. Its value should be ICEBERG for this example.",
+	)
+	flagSet.StringVar(
+		&config.Kafka.Catalog,
+		"bufstream.archive.iceberg.catalog",
+		"",
+		"The name of the Iceberg catalog configured in bufstream.yaml.",
+	)
+	flagSet.StringVar(
+		&config.Kafka.Table,
+		"bufstream.archive.iceberg.table",
+		"",
+		"The namespace and table name of an Iceberg table to maintain.",
+	)
 	flagSet.StringSliceVar(
 		&config.Kafka.TopicConfig,
 		"topic-config",
@@ -95,24 +112,6 @@ func parseConfig() (Config, error) {
 		"csr-url",
 		"",
 		"The Confluent Schema Registry URL.",
-	)
-	flagSet.StringVar(
-		&config.CSR.Username,
-		"csr-user",
-		"",
-		"The Confluent Schema Registry username, if authentication is needed.",
-	)
-	flagSet.StringVar(
-		&config.CSR.Password,
-		"csr-pass",
-		"",
-		"The Confluent Schema Registry password/token, if authentication is needed.",
-	)
-	flagSet.StringVar(
-		&config.Kafka.RootCAPath,
-		"tls-root-ca-path",
-		"",
-		"A path to root CA certificate for kafka TLS.",
 	)
 	if err := flagSet.Parse(os.Args[1:]); err != nil {
 		return Config{}, err

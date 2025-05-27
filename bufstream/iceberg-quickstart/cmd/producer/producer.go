@@ -17,7 +17,6 @@ package main
 import (
 	"context"
 	"errors"
-	"fmt"
 	"log/slog"
 
 	"github.com/brianvoe/gofakeit/v7"
@@ -43,12 +42,9 @@ func run(ctx context.Context, config app.Config) error {
 	}
 	defer client.Close()
 
-	topicExists, err := kafka.TopicExists(ctx, client, config.Kafka)
+	err = kafka.VerifyTopicConfig(ctx, client, config.Kafka)
 	if err != nil {
 		return err
-	}
-	if !topicExists {
-		return fmt.Errorf("kafka topic %s does not exist, see this example's documentation for how to use the `topic` command to create it", config.Kafka.Topic)
 	}
 
 	// Start the producer.
