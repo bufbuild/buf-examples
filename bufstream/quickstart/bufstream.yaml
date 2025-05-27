@@ -12,4 +12,4 @@ storage:
     string: password
 postgres:
   dsn:
-    string: postgres://root:nonsensepassword@postgres:5432/bufstream
+    string: postgres://root:examplepassword@postgres:5432/examplebufstreamdb
