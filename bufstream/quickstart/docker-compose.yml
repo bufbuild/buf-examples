@@ -87,28 +87,6 @@ services:
       - --config
       - /bufstream.yaml
 
-  akhq:
-    image: tchiotludo/akhq:0.25.0
-    container_name: akhq
-    stop_signal: SIGKILL
-    networks:
-      bufstream:
-    ports:
-      - 8080:8080
-    depends_on:
-      bufstream:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "--silent", "--fail", "--output", "/dev/null", "http://localhost:28081/health"]
-    environment:
-      AKHQ_CONFIGURATION: |
-        akhq:
-          connections:
-            bufstream-local:
-              properties:
-                bootstrap.servers: "bufstream:9092"
-                client.id: "akhq;broker_count=1;host_override=bufstream"
-
 # We add a network to the docker compose so there's less risk
 # of conflict with information in the local network.
 networks:
