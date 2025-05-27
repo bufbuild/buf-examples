@@ -9,10 +9,9 @@ services:
       - POSTGRES_PASSWORD=examplepassword
       - POSTGRES_DB=examplebufstreamdb
     network_mode: host
-    ports:
-      - 5432:5432
     healthcheck:
       test: ["CMD", "pg_isready", "-d", "examplebufstreamdb"]
+
   minio:
     image: minio/minio:RELEASE.2025-05-24T17-08-30Z
     container_name: minio
@@ -21,9 +20,6 @@ services:
       - MINIO_ROOT_PASSWORD=password
       - MINIO_DOMAIN=localhost
     network_mode: host
-    ports:
-      - 9000:9000
-      - 9001:9001
     healthcheck:
       test: ["CMD", "curl", "--silent", "--fail", "--output", "/dev/null", "http://localhost:9000/minio/health/live"]
     command:
@@ -41,7 +37,9 @@ services:
     environment:
       - AWS_ACCESS_KEY_ID=admin
       - AWS_SECRET_ACCESS_KEY=password
-      - AWS_REGION=us-east-1
+      # Region is required for S3 configuration, even though
+      # in this case it's not required.
+      - AWS_REGION=example_region
     network_mode: host
     depends_on:
       minio:
@@ -64,12 +62,12 @@ services:
       postgres:
         condition: service_healthy
     environment:
+      # We have to instruct bufstream to listen on localhost
+      # instead of 0.0.0.0 as we only expect this to be run inside
+      # on your local machine.
       - BUFSTREAM_KAFKA_HOST=localhost
       - BUFSTREAM_KAFKA_PUBLIC_HOST=localhost
     network_mode: host
-    ports:
-      - 9089:9089
-      - 9092:9092
     # Edit bufstream.yaml within this repository to change configuration.
     volumes:
       - ./bufstream.yaml:/bufstream.yaml

@@ -3,7 +3,9 @@ cluster: bufstream
 zone: localhost
 storage:
   provider: S3
-  region: us-east-1
+  # Region is required for S3 configuration, even though
+  # in this case it's not required.
+  region: example_region
   bucket: bufstream
   endpoint: http://localhost:9000
   force_path_style: true

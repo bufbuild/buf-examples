@@ -1,24 +1,23 @@
 ![The Buf logo](https://raw.githubusercontent.com/bufbuild/buf-examples/main/.github/buf-logo.svg)
 
-# Bufstream quickstart
+# Docker Compose for Bufstream Quickstart
 
-This directory contains example code for Bufstream's basic quickstart.
+This directory contains an example docker compose that sets up all the requirement
+infrastrucutre to have a playground environment for Bufstream.
 
-It set up a minio for S3 storage and a postgres instance that bufstream connects to,
-plus akhq for easy of exploration.
+It sets up:
+- MinIO (https://min.io/) for S3 compatible storage
+  * Its API endpoint is made available at http://localhost:9000
+  * Its admin endpoint is made available at http://localhost:9001
+- A MinIO Client (mc - https://min.io/docs/minio/linux/reference/minio-mc.html) for creating a MinIO bucket.
+- PostgreSQL (https://www.postgresql.org/) for metadata storage
+  * Its API endpoint is made available at http://localhost:5432
+- Bufstream itself
+  * Its Kafka endpoint is made available at localhost:9092
+  * Its Admin endpoint is made available at a Connect endpoint on http://localhost:9089
 
 Simply run:
 
 ```
 $ docker compose up
 ```
-
-And once AKHQ is ready, navigate to http://localhost:8080/ to create and explore topics.
-
-You can also access:
-
-* minio's admin interface at http://localhost:9001/
-* bufstream connect endpoint at http://localhost:8089/
-* bufstream kafka endpoint at http://localhost:9092/
-
-[docs]: https://buf.build/docs/bufstream/quickstart/
