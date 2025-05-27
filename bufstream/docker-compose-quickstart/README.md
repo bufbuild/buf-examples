@@ -3,7 +3,7 @@
 # Docker Compose for Bufstream Quickstart
 
 This directory contains an example docker compose that sets up all the requirement
-infrastrucutre to have a playground environment for Bufstream.
+infrastructure to have a playground environment for Bufstream.
 
 It sets up:
 - MinIO (https://min.io/) for S3 compatible storage
