@@ -44,9 +44,6 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      # We have to instruct bufstream to listen on localhost
-      # instead of 0.0.0.0 as we only expect this to be run inside
-      # on your local machine.
       - BUFSTREAM_KAFKA_HOST=localhost
       - BUFSTREAM_KAFKA_PUBLIC_HOST=localhost
     network_mode: host
