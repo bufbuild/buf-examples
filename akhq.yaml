@@ -1,6 +1,0 @@
-akhq:
-    connections:
-        bufstream:
-            properties:
-                bootstrap.servers: "localhost:9092"
-                client.id: "akhq;broker_count=1"
