@@ -5,11 +5,12 @@ storage:
   provider: S3
   region: us-east-1
   bucket: bufstream
-  endpoint: http://minio:9000
+  endpoint: http://localhost:9000
+  force_path_style: true
   access_key_id:
     string: admin
   secret_access_key:
     string: password
 postgres:
   dsn:
-    string: postgres://root:examplepassword@postgres:5432/examplebufstreamdb
+    string: postgres://root:examplepassword@localhost:5432/examplebufstreamdb
