@@ -1,6 +1,4 @@
-auto_migrate_metadata_storage: true
 cluster: bufstream
-zone: localhost
 storage:
   provider: S3
   # Region is required for S3 configuration, even though
@@ -8,11 +6,13 @@ storage:
   region: example_region
   bucket: bufstream
   endpoint: http://localhost:9000
+  # Minio by default only accepts path style requests.
   force_path_style: true
   access_key_id:
-    string: admin
+    string: minioadmin
   secret_access_key:
-    string: password
+    string: minioadmin
 postgres:
   dsn:
-    string: postgres://root:examplepassword@localhost:5432/examplebufstreamdb
+    string: postgres://root:password@localhost:5432/examplebufstreamdb
+auto_migrate_metadata_storage: true
