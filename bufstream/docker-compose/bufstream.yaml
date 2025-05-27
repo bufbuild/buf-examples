@@ -1,4 +1,3 @@
-cluster: bufstream
 storage:
   provider: S3
   # Region is required for S3 configuration, even though
