@@ -14,10 +14,6 @@ services:
         - pg_isready
         - -d
         - bufstream
-      interval: 30s
-      timeout: 60s
-      retries: 5
-      start_period: 15s
 
   minio:
     image: minio/minio
@@ -34,11 +30,7 @@ services:
       - 9000:9000
       - 9001:9001
     healthcheck:
-      test: ["CMD", "curl", "--silent", "--fail", "--output", "/dev/null" "http://localhost:9000/minio/health/live"]
-      start_period: 15s
-      interval: 5s
-      timeout: 10s
-      retries: 10
+      test: ["CMD", "curl", "--silent", "--fail", "--output", "/dev/null", "http://localhost:9000/minio/health/live"]
     command:
       - server
       - /data
@@ -87,10 +79,6 @@ services:
       - ./bufstream.yaml:/bufstream.yaml
     healthcheck:
       test: ["CMD", "/usr/local/bin/bufstream", "admin", "status", "--exit-code", "--url", "http://127.0.0.1:9089"]
-      start_period: 15s
-      interval: 5s
-      timeout: 10s
-      retries: 10
     command:
       - serve
       - --config
@@ -109,10 +97,6 @@ services:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "--silent", "--fail", "--output", "/dev/null", "http://localhost:28081/health"]
-      start_period: 15s
-      interval: 5s
-      timeout: 10s
-      retries: 10
     environment:
       AKHQ_CONFIGURATION: |
         akhq:
