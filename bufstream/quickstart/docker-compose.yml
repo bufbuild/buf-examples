@@ -1,5 +1,7 @@
 services:
+  # We use PostgreSQL (https://www.postgresql.org/) for storing metadata for bufstream.
   postgres:
+    # Our minimum supported version for PostgreSQL is 14.
     image: postgres:14
     container_name: postgres
     environment:
@@ -8,8 +10,10 @@ services:
       - POSTGRES_DB=examplebufstreamdb
     networks:
       bufstream:
+    ports:
+      - 5432:5432
     healthcheck:
-      test: ["CMD", "pg_isready", "-d", "bufstream"]
+      test: ["CMD", "pg_isready", "-d", "examplebufstreamdb"]
   minio:
     image: minio/minio:RELEASE.2025-05-24T17-08-30Z
     container_name: minio
