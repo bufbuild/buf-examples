@@ -46,6 +46,7 @@ func run(ctx context.Context, config app.Config) error {
 	if err != nil {
 		return err
 	}
+	slog.Info("Verified that topic is configured for Iceberg", "topic", config.Kafka.Topic)
 
 	// Start the producer.
 	return startProducer(ctx, config)

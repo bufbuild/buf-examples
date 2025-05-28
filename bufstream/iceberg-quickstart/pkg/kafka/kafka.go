@@ -25,10 +25,6 @@ import (
 )
 
 // Config describes all Kafka configuration needed to run this example.
-//
-// franz-go uses functional options for the same purpose, but we're simplifying this
-// to just the values in this config struct for the purposes of this demo. If you use
-// franz-go in production code, we'd recommend using the functional options directly.
 type Config struct {
 	// BootstrapServers are the bootstrap servers to call.
 	BootstrapServers []string
@@ -37,7 +33,6 @@ type Config struct {
 	ArchiveKind      string
 	Catalog          string
 	Table            string
-	TopicConfig      []string
 	TopicPartitions  int32
 }
 

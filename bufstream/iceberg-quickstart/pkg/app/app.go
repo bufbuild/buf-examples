@@ -101,12 +101,6 @@ func parseConfig() (Config, error) {
 		"",
 		"The namespace and table name of an Iceberg table to maintain.",
 	)
-	flagSet.StringSliceVar(
-		&config.Kafka.TopicConfig,
-		"topic-config",
-		nil,
-		"Topic config parameters to use when creating the topic.",
-	)
 	flagSet.StringVar(
 		&config.CSR.URL,
 		"csr-url",
