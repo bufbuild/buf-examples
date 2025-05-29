@@ -1,0 +1,17 @@
+storage:
+  provider: S3
+  # Region is required for S3 configuration, even though
+  # in this case it's not required.
+  region: example_region
+  bucket: bufstream
+  endpoint: http://localhost:9000
+  # Minio by default only accepts path style requests.
+  force_path_style: true
+  access_key_id:
+    string: minioadmin
+  secret_access_key:
+    string: minioadmin
+postgres:
+  dsn:
+    string: postgres://root:password@localhost:5432/examplebufstreamdb
+auto_migrate_metadata_storage: true
