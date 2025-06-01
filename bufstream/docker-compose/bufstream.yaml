@@ -1,7 +1,5 @@
 storage:
   provider: S3
-  # Region is required for S3 configuration, even though
-  # in this case it's not required.
   region: example_region
   bucket: bufstream
   endpoint: http://localhost:9000
@@ -13,5 +11,4 @@ storage:
     string: minioadmin
 postgres:
   dsn:
-    string: postgres://root:password@localhost:5432/examplebufstreamdb
-auto_migrate_metadata_storage: true
+    string: postgres://root:password@localhost:5432/bufstream
