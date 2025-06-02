@@ -20,7 +20,7 @@ This Compose project will start the following services:
 - A MinIO Client (mc - https://min.io/docs/minio/linux/reference/minio-mc.html) to bootstrap an initial bucket.
 - PostgreSQL (https://www.postgresql.org/) for metadata storage.
   * It is available on the standard Postgres port (5432).
-- A Bufstream broker
+- A Bufstream broker.
   * Its Kafka endpoint is available at localhost:9092.
   * Its admin endpoint listens on its default port (9089), allowing you to run [`bufstream admin`](https://buf.build/docs/bufstream/reference/cli/admin/) commands against the broker.
 
