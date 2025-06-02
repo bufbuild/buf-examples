@@ -1,14 +1,18 @@
 storage:
+  # Using a local MinIO instance requires the S3 provider, a region, and for
+  # force_path_style to be true.
   provider: S3
   region: example_region
+  force_path_style: true
+  # The included docker-compose.yml creates a bucket named "bufstream" after
+  # deploying MinIO to localhost:9000 with the following credentials.
   bucket: bufstream
   endpoint: http://localhost:9000
-  # Minio by default only accepts path style requests.
-  force_path_style: true
   access_key_id:
     string: minioadmin
   secret_access_key:
     string: minioadmin
+# The included docker-compose.yml creates a database with these credentials.
 postgres:
   dsn:
     string: postgres://root:password@localhost:5432/bufstream

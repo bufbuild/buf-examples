@@ -33,13 +33,14 @@ services:
       /usr/bin/mc mb minio/bufstream; /usr/bin/mc anonymous set public minio/bufstream;
       "
 
+  # The Bufstream broker, available at localhost:9092.
   bufstream:
     image: bufbuild/bufstream:0.3.29
-    hostname: bufstream
     depends_on:
       postgres: { "condition": "service_healthy" }
       mc: { "condition": "service_completed_successfully" }
     network_mode: host
+    hostname: bufstream
     volumes: ["./bufstream.yaml:/bufstream.yaml"]
     healthcheck:
       test: ["CMD", "/usr/local/bin/bufstream", "admin", "status", "--exit-code", "--url", "http://127.0.0.1:9089"]
