@@ -35,7 +35,7 @@ services:
 
   # The Bufstream broker, available at localhost:9092.
   bufstream:
-    image: bufbuild/bufstream:0.3.29
+    image: bufbuild/bufstream
     depends_on:
       postgres: { "condition": "service_healthy" }
       mc: { "condition": "service_completed_successfully" }
