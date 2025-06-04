@@ -1,6 +1,6 @@
 ![The Buf logo](https://raw.githubusercontent.com/bufbuild/protovalidate/main/.github/buf-logo.svg)
 
-# Protovalidate Quickstart (JavaScript/TypeScript)
+# Protovalidate Quickstart (TypeScript/JavaScript)
 
 This directory contains companion code for the [Protovalidate quickstart][documentation], where you learn to:
 
