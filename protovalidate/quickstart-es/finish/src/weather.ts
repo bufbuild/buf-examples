@@ -1,4 +1,7 @@
-import { createValidator, ValidationResult } from "@bufbuild/protovalidate";
+import {
+  createValidator,
+  type ValidationResult,
+} from "@bufbuild/protovalidate";
 import {
   GetWeatherRequest,
   GetWeatherRequestSchema,
