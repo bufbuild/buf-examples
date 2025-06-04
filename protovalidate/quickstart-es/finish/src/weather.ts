@@ -1,4 +1,4 @@
-import { createValidator } from "@bufbuild/protovalidate";
+import { createValidator, ValidationResult } from "@bufbuild/protovalidate";
 import {
   GetWeatherRequest,
   GetWeatherRequestSchema,
@@ -6,6 +6,6 @@ import {
 
 const validator = createValidator();
 
-export function validateWeather(msg: GetWeatherRequest) {
+export function validateWeather(msg: GetWeatherRequest): ValidationResult {
   return validator.validate(GetWeatherRequestSchema, msg);
 }

@@ -27,8 +27,10 @@ test("latitude too high", () => {
 
   expect(result).toBeDefined();
   expect(result.kind).toEqual("invalid");
-  expect(result.violations.length).toEqual(1);
-  expect(result.violations[0].message).toEqual(
+
+  const violations = result.violations ?? [];
+  expect(violations.length).toEqual(1);
+  expect(violations[0].message).toEqual(
     "value must be greater than or equal to -90 and less than or equal to 90",
   );
 });
@@ -43,8 +45,10 @@ test("latitude too low", () => {
 
   expect(result).toBeDefined();
   expect(result.kind).toEqual("invalid");
-  expect(result.violations.length).toEqual(1);
-  expect(result.violations[0].message).toEqual(
+
+  const violations = result.violations ?? [];
+  expect(violations.length).toEqual(1);
+  expect(violations[0].message).toEqual(
     "value must be greater than or equal to -90 and less than or equal to 90",
   );
 });
@@ -64,8 +68,10 @@ test("too far in the future", () => {
 
   expect(result).toBeDefined();
   expect(result.kind).toEqual("invalid");
-  expect(result.violations.length).toEqual(1);
-  expect(result.violations[0].message).toEqual(
+
+  const violations = result.violations ?? [];
+  expect(violations.length).toEqual(1);
+  expect(violations[0].message).toEqual(
     "Forecast date must be in the next 72 hours.",
   );
 });

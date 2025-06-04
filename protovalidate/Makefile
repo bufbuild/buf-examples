@@ -75,11 +75,11 @@ ci-quickstart-go-start:
 
 .PHONY: ci-quickstart-es-start
 ci-quickstart-es-start:
-	cd quickstart-es/start&& $(MAKE) ci
+	cd quickstart-es/start&& npm run ci
 
 .PHONY: ci-quickstart-es-finish
 ci-quickstart-es-finish:
-	cd quickstart-es/finish&& $(MAKE) ci
+	cd quickstart-es/finish&& npm run ci
 
 .PHONY: ci-quickstart-java-start
 ci-quickstart-java-start:
