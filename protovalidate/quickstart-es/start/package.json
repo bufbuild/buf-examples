@@ -1,0 +1,21 @@
+{
+  "name": "protovalidate-es-quickstart-start",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "ci": "npm run generate && npm run build",
+    "build": "tsc --noEmit",
+    "generate": "buf generate",
+    "test": "vitest run"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.5.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.0"
+  }
+}
