@@ -7,7 +7,7 @@ This directory contains an example `docker-compose.yml` file that sets up all re
 ## Prerequisites
 
 * [Docker][docker] must be installed. 
-* For Docker Desktop users, [host mode networking][docker-host-mode-networking] must be enabled.
+* If you're using Docker Desktop, [host mode networking][docker-host-mode-networking] must be enabled.
 
 ## Starting the project
 
