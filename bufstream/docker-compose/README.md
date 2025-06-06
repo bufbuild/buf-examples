@@ -4,7 +4,14 @@
 
 This directory contains an example `docker-compose.yml` file that sets up all required infrastructure for a [Bufstream][bufstream] environment suitable for local testing and development.
 
-To get started, just run:
+## Prerequisites
+
+* [Docker][docker] must be installed. 
+* For Docker Desktop users, [host mode networking][docker-host-mode-networking] must be enabled.
+
+## Starting the project
+
+Just run:
 
 ```
 $ docker compose up
@@ -38,3 +45,5 @@ Before committing this `docker-compose.yml` file to your own repository, add the
 This example uses host networking. You may encounter issues if there are port conflicts. If you need to use port mappings, see [Docker's documentation](https://docs.docker.com/compose/how-tos/networking/).
 
 [bufstream]: https://buf.build/product/bufstream
+[docker]: https://docs.docker.com/engine/install/
+[docker-host-mode-networking]: https://docs.docker.com/engine/network/drivers/host/#docker-desktop
