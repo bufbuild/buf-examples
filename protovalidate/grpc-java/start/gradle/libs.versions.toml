@@ -3,7 +3,7 @@ annotation-api = "1.3.2"
 grpc = "1.70.0"
 junit = "5.12.0"
 protobuf = "4.29.3"
-protovalidate = "0.8.0"
+protovalidate = "1.0.0-rc.1"
 spotless = "6.13.0"
 
 [libraries]
