@@ -28,7 +28,7 @@ protovalidate==0.8.0
 pytest==8.3.4
 python-dateutil==2.9.0.post0
 PyYAML==6.0.2
-requests==2.32.3
+requests==2.32.4
 ruff==0.9.6
 six==1.17.0
 stringcase==1.2.0
