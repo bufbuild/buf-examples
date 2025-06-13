@@ -26,3 +26,6 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250422160041-2d3770c4ea7f // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
+
+// Temporary! The connect change is pending. This path works on Joe's laptop.
+replace connectrpc.com/connect => ../../../../../connectrpc/connect-go

@@ -17,12 +17,10 @@ package invoice
 import (
 	"context"
 
-	"connectrpc.com/connect"
 	invoicev1 "github.com/bufbuild/buf-examples/protovalidate/connect-go/finish/gen/invoice/v1"
 )
 
-// Service is a Connect handler for the RPC services defined
-// in invoice_service.proto.
+// Service is a handler for the RPC service defined in invoice_service.proto.
 type Service struct{}
 
 // NewService creates a new Service.
@@ -33,16 +31,16 @@ func NewService() *Service {
 // CreateInvoice handles a invoicev1.CreateInvoiceRequest.
 func (s *Service) CreateInvoice(
 	_ context.Context,
-	req *connect.Request[invoicev1.CreateInvoiceRequest],
-) (*connect.Response[invoicev1.CreateInvoiceResponse], error) {
-	invoice := req.Msg.GetInvoice()
+	req *invoicev1.CreateInvoiceRequest,
+) (*invoicev1.CreateInvoiceResponse, error) {
+	invoice := req.GetInvoice()
 
 	// Handle the request: persist the invoice, or maybe place it on a stream
 	// or queue where workers would handle its creation.
 
 	// Return our model via Connect.
-	return connect.NewResponse(&invoicev1.CreateInvoiceResponse{
+	return &invoicev1.CreateInvoiceResponse{
 		InvoiceId: invoice.GetInvoiceId(),
 		Version:   1,
-	}), nil
+	}, nil
 }

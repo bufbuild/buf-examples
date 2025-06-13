@@ -20,7 +20,6 @@ import (
 	"log"
 	"net/http"
 
-	connect "connectrpc.com/connect"
 	petv1 "github.com/bufbuild/buf-examples/gen/pet/v1"
 	"github.com/bufbuild/buf-examples/gen/pet/v1/petv1connect"
 	"golang.org/x/net/http2"
@@ -48,11 +47,10 @@ type petStoreServiceServer struct {
 
 // PutPet adds the pet associated with the given request into the PetStore.
 func (s *petStoreServiceServer) PutPet(
-	ctx context.Context,
-	req *connect.Request[petv1.PutPetRequest],
-) (*connect.Response[petv1.PutPetResponse], error) {
-	name := req.Msg.GetName()
-	petType := req.Msg.GetPetType()
-	log.Printf("Got a request to create a %v named %s", petType, name)
-	return connect.NewResponse(&petv1.PutPetResponse{}), nil
+	_ context.Context,
+	req *petv1.PutPetRequest,
+) (*petv1.PutPetResponse, error) {
+	pet := &petv1.Pet{Name: req.GetName(), PetType: req.PetType}
+	log.Printf("PutPet received a %v named %s", pet.GetPetType(), pet.GetName())
+	return &petv1.PutPetResponse{Pet: pet}, nil
 }
