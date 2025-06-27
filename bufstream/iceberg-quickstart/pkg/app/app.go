@@ -20,11 +20,12 @@ package app
 
 import (
 	"context"
+	"log/slog"
+	"os"
+
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/csr"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/kafka"
 	"github.com/spf13/pflag"
-	"log/slog"
-	"os"
 )
 
 const (

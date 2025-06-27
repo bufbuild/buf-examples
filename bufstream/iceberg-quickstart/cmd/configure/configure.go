@@ -2,11 +2,12 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"errors"
+	"log/slog"
+
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/app"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/kafka"
 	"github.com/twmb/franz-go/pkg/kadm"
-	"log/slog"
 )
 
 func main() {
@@ -35,7 +36,7 @@ func run(ctx context.Context, config app.Config) error {
 func ensureTopicExists(ctx context.Context, client *kadm.Client, config kafka.Config) error {
 	// Validate that we have a topic name.
 	if len(config.Topic) == 0 {
-		return fmt.Errorf("no topic name provided")
+		return errors.New("no topic name provided")
 	}
 
 	// Check for existence of the topic.
@@ -60,13 +61,13 @@ func ensureTopicExists(ctx context.Context, client *kadm.Client, config kafka.Co
 func configureTopic(ctx context.Context, client *kadm.Client, config kafka.Config) error {
 	// Validate provided configuration.
 	if config.ArchiveKind != "ICEBERG" {
-		return fmt.Errorf("bufstream.archive.kind must be ICEBERG")
+		return errors.New("bufstream.archive.kind must be ICEBERG")
 	}
 	if len(config.Catalog) == 0 {
-		return fmt.Errorf("bufstream.archive.iceberg.catalog is required")
+		return errors.New("bufstream.archive.iceberg.catalog is required")
 	}
 	if len(config.Table) == 0 {
-		return fmt.Errorf("bufstream.archive.iceberg.table is required")
+		return errors.New("bufstream.archive.iceberg.table is required")
 	}
 
 	// Configure the topic.

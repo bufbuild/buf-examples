@@ -84,7 +84,7 @@ func startProducer(ctx context.Context, config app.Config) error {
 			if errors.Is(err, context.Canceled) {
 				return err
 			}
-			slog.Error("error on produce or semantically valid protobuf message", "error", err)
+			slog.Error("error on produce of semantically valid protobuf message", "error", err)
 		} else {
 			slog.Info("Published message", "number", i+1, "of", msgs, "new email", msg.GetNewEmailAddress())
 		}
