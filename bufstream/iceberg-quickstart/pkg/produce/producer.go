@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package produce implements a toy producer.
+// Package produce implements an example producer.
 package produce
 
 import (

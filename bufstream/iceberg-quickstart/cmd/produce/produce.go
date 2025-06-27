@@ -17,25 +17,43 @@ package main
 import (
 	"context"
 	"errors"
+	"log/slog"
+
 	"github.com/brianvoe/gofakeit/v7"
 	demov1 "github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/gen/bufstream/demo/v1"
-
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/app"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/csr"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/kafka"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/produce"
 	"github.com/google/uuid"
-	"log/slog"
 )
 
 func main() {
-	// See the app package for the boilerplate we use to set up the producer and
-	// consumer, including bound flags.
+	// See the app package for the boilerplate we use to set up the producer,
+	// including bound flags.
 	app.Main(run)
 }
 
 func run(ctx context.Context, config app.Config) error {
-	client, err := kafka.NewKafkaClient(config.Kafka, false)
+	// Make sure the desired topic has been configured.
+	client, err := kafka.NewAdminClient(config.Kafka)
+	if err != nil {
+		return err
+	}
+	defer client.Close()
+
+	err = kafka.VerifyTopicConfig(ctx, client, config.Kafka)
+	if err != nil {
+		return err
+	}
+	slog.Info("Verified that topic is configured for Iceberg", "topic", config.Kafka.Topic)
+
+	// Start the producer.
+	return startProducer(ctx, config)
+}
+
+func startProducer(ctx context.Context, config app.Config) error {
+	client, err := kafka.NewKafkaClient(config.Kafka)
 	if err != nil {
 		return err
 	}

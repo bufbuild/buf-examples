@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package app implements boilerplate code shared by the producer and consumer.
+// Package app implements boilerplate code used by the producer.
 //
-// It implements Main, which both the producer and consumer use within their main functions.
+// It implements Main, which the producer uses within its main function.
 // It also binds all relevant flags.
 package app
 
@@ -22,30 +22,27 @@ import (
 	"context"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/csr"
 	"github.com/bufbuild/buf-examples/bufstream/iceberg-quickstart/pkg/kafka"
+	"github.com/spf13/pflag"
 	"log/slog"
 	"os"
-	"os/signal"
-
-	"github.com/spf13/pflag"
 )
 
-// Config contains all application configuration needed by the producer and consumer.
+const (
+	defaultKafkaClientID        = "bufstream-iceberg-quickstart"
+	defaultKafkaBootstrapServer = "localhost:9092"
+)
+
+// Config contains all application configuration needed by the producer.
 type Config struct {
 	Kafka kafka.Config
 	CSR   csr.Config
 }
 
-// Main is used by the producer and consumer within their main functions.
-//
-// It sets up logging, interrupt handling, and binds and parses all flags. Afterwards, it calls
-// do to invoke the application logic.
-func Main(do func(context.Context, Config) error) {
-	// Set up slog. We use the global logger throughout this demo.
+// Main reads any configuration and does minimal setup for any binary.
+func Main(action func(context.Context, Config) error) {
+	// Set up slog. We use the global logger throughout this example.
 	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{Level: slog.LevelDebug})))
-	// Cancel the context on interrupt, i.e. ctrl+c for our purposes.
-	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
-	defer cancel()
-	if err := run(ctx, do); err != nil {
+	if err := run(context.Background(), action); err != nil {
 		slog.Error("program error", "error", err)
 		os.Exit(1)
 	}
@@ -61,69 +58,54 @@ func run(ctx context.Context, do func(context.Context, Config) error) error {
 
 func parseConfig() (Config, error) {
 	flagSet := pflag.NewFlagSet(os.Args[0], pflag.ContinueOnError)
-	config := Config{
-		Kafka: kafka.Config{
-			BootstrapServers: []string{"0.0.0.0:9092"},
-			RootCAPath:       "",
-			Topic:            "email-updated",
-			Group:            "email-verifier",
-			ClientID:         "bufstream-demo",
-		},
-		CSR: csr.Config{
-			URL:      "",
-			Username: "",
-			Password: "",
-		},
-	}
-
-	flagSet.StringArrayVarP(
+	config := Config{}
+	flagSet.StringArrayVar(
 		&config.Kafka.BootstrapServers,
 		"bootstrap",
-		"b",
-		config.Kafka.BootstrapServers,
+		[]string{defaultKafkaBootstrapServer},
 		"The Bufstream bootstrap server addresses.",
 	)
-	flagSet.StringVarP(
+	flagSet.StringVar(
+		&config.Kafka.ClientID,
+		"client-id",
+		defaultKafkaClientID,
+		"The Kafka client ID.",
+	)
+	flagSet.StringVar(
 		&config.Kafka.Topic,
 		"topic",
-		"t",
-		config.Kafka.Topic,
+		"",
 		"The Kafka topic name to use.",
 	)
-	flagSet.StringVarP(
-		&config.Kafka.Group,
-		"group",
-		"g",
-		config.Kafka.Group,
-		"The Kafka consumer group ID.",
+	flagSet.Int32Var(
+		&config.Kafka.TopicPartitions,
+		"topic-partitions",
+		1,
+		"The number of partitions to use when creating the topic.",
 	)
-	flagSet.StringVarP(
+	flagSet.StringVar(
+		&config.Kafka.ArchiveKind,
+		"bufstream.archive.kind",
+		"",
+		"The type of archival to use. Its value should be ICEBERG for this example.",
+	)
+	flagSet.StringVar(
+		&config.Kafka.Catalog,
+		"bufstream.archive.iceberg.catalog",
+		"",
+		"The name of the Iceberg catalog configured in bufstream.yaml.",
+	)
+	flagSet.StringVar(
+		&config.Kafka.Table,
+		"bufstream.archive.iceberg.table",
+		"",
+		"The namespace and table name of an Iceberg table to maintain.",
+	)
+	flagSet.StringVar(
 		&config.CSR.URL,
 		"csr-url",
-		"c",
-		config.CSR.URL,
-		"The Confluent Schema Registry URL.",
-	)
-	flagSet.StringVarP(
-		&config.CSR.Username,
-		"csr-user",
-		"u",
-		config.CSR.Username,
-		"The Confluent Schema Registry username, if authentication is needed.",
-	)
-	flagSet.StringVarP(
-		&config.CSR.Password,
-		"csr-pass",
-		"p",
-		config.CSR.Password,
-		"The Confluent Schema Registry password/token, if authentication is needed.",
-	)
-	flagSet.StringVarP(
-		&config.Kafka.RootCAPath,
-		"tls-root-ca-path",
 		"",
-		config.Kafka.RootCAPath,
-		"A path to root CA certificate for kafka TLS.",
+		"The Confluent Schema Registry URL.",
 	)
 	if err := flagSet.Parse(os.Args[1:]); err != nil {
 		return Config{}, err
