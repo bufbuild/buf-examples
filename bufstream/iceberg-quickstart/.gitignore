@@ -1,4 +1,3 @@
-minio/data
-bufstream/data
-postgres/*
-iceberg-rest/*
+minio
+postgres
+iceberg-rest

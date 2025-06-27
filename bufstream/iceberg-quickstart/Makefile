@@ -9,8 +9,6 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-BUFSTREAM_VERSION := 0.3.27
-
 .PHONY: clean
 clean: down
 	rm -rf minio/*
@@ -38,6 +36,10 @@ publish:
 
 .PHONY: archive
 archive:
+	docker exec bufstream /usr/local/bin/bufstream admin clean topics
+
+.PHONY: reset-table
+reset-table: down up publish archive
 	docker exec bufstream /usr/local/bin/bufstream admin clean topics
 
 .PHONY: ci

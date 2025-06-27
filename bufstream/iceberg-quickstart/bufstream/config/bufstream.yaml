@@ -29,7 +29,6 @@ data_enforcement:
         on_parse_error: REJECT_BATCH
         validation:
           on_error: REJECT_BATCH
-
 storage:
   provider: S3
   region: us-east-1
@@ -39,8 +38,7 @@ storage:
     string: admin
   secret_access_key:
     string: password
-
-iceberg_integration:
+iceberg:
   catalogs:
     - name: local-rest-catalog
       rest:
