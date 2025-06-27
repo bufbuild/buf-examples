@@ -20,6 +20,7 @@ import protovalidate
 import unittest
 import uuid
 
+from celpy import celtypes
 from concurrent import futures
 from dataclasses import dataclass
 from grpc_reflection.v1alpha import reflection
@@ -27,16 +28,16 @@ from grpc_status import rpc_status
 
 from invoice.v1 import invoice_pb2
 from invoice.v1.invoice_service import InvoiceService
-from protovalidate.internal import field_path
+from protovalidate.internal import string_format
 from validation.interceptor import ValidationInterceptor
 
+string_fmt = string_format.StringFormat("en_US")  # type: ignore
 
 @dataclass
 class ViolationSpec:
-    constraint_id: str
+    rule_id: str
     field_path: str
     message: str
-
 
 class InvoiceServerTest(unittest.TestCase):
     def setUp(self):
@@ -242,9 +243,9 @@ class InvoiceServerTest(unittest.TestCase):
         assert len(violation_specs) == len(all_violations)
         for index, spec in enumerate(violation_specs):
             violation = all_violations[index]
-            assert spec.constraint_id == violation.constraint_id
+            assert spec.rule_id == violation.rule_id
             assert spec.message == violation.message
-            assert spec.field_path == field_path.string(violation.field)
+            assert spec.field_path == field_path(violation.field)
 
     def start_server(self):
         server = grpc.server(
@@ -268,7 +269,6 @@ class InvoiceServerTest(unittest.TestCase):
     def create_client(self):
         channel = grpc.insecure_channel("localhost:" + self.port)
         return invoice_service_pb2_grpc.InvoiceServiceStub(channel)
-
 
 def valid_invoice():
     today_start = datetime.datetime.now().replace(
@@ -299,3 +299,33 @@ def valid_invoice():
     invoice.line_items.append(line_item_2)
 
     return invoice
+
+def format_value(arg):
+    if isinstance(arg, (celtypes.StringType, str)):
+        return celtypes.StringType(quote(arg))
+    if isinstance(arg, celtypes.UintType):
+        return celtypes.StringType(arg)
+    if isinstance(arg, celtypes.DurationType):
+        return celtypes.StringType(f'duration("{self._format_duration(arg)}")')
+    if isinstance(arg, celtypes.DoubleType):
+        return celtypes.StringType(f"{arg:f}")
+    return string_fmt.format_string(arg)
+
+def field_path(path):
+    result: list[str] = []
+    for element in path.elements:
+        if len(result) > 0:
+            result.append(".")
+        subscript_case = element.WhichOneof("subscript")
+        if subscript_case is not None:
+            result.extend(
+                (
+                    element.field_name,
+                    "[",
+                    format_value(getattr(element, subscript_case)),
+                    "]",
+                )
+            )
+        else:
+            result.append(element.field_name)
+    return "".join(result)

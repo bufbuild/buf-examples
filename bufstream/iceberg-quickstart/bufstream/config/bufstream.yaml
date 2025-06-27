@@ -1,20 +1,10 @@
 # yaml-language-server: $schema=schema/buf.bufstream.config.v1alpha1.BufstreamConfig.schema.json
 cluster: iceberg-start
+zone: localhost
 name: local
-data_dir: /bufstream/data
 postgres:
   dsn:
     string: postgres://bufstream:password@postgres:5432/bufstream
-auto_migrate_metadata_storage: true
-storage:
-  provider: S3
-  region: us-east-1
-  bucket: warehouse
-  endpoint: http://minio:9000
-  access_key_id:
-    string: admin
-  secret_access_key:
-    string: password
 kafka:
   address:
     host: 0.0.0.0
@@ -23,9 +13,7 @@ kafka:
     host: 0.0.0.0
     port: 9092
 observability:
-  trace_exporter: NONE
-  metrics_exporter: NONE
-  log_level: DEBUG
+  log_level: INFO
   log_format: TEXT
   debug_address:
     host: 0.0.0.0
@@ -36,19 +24,21 @@ data_enforcement:
         url: "https://demo.buf.dev/integrations/confluent/bufstream-demo"
         instance_name: "bufstream-demo"
   produce:
-    - topics: { all: true }
-      schema_registry: csr
+    - schema_registry: csr
       values:
         on_parse_error: REJECT_BATCH
         validation:
           on_error: REJECT_BATCH
-  fetch:
-    - topics: { all: true }
-      schema_registry: csr
-      values:
-        on_parse_error: FILTER_RECORD
-        redaction:
-          debug_redact: true
+
+storage:
+  provider: S3
+  region: us-east-1
+  bucket: warehouse
+  endpoint: http://minio:9000
+  access_key_id:
+    string: admin
+  secret_access_key:
+    string: password
 
 iceberg_integration:
   catalogs:

@@ -1,0 +1,11 @@
+version: v2
+clean: true
+inputs:
+  - directory: proto
+plugins:
+  - remote: buf.build/bufbuild/es:v2.5.1
+    out: src/gen
+    opt:
+      - target=ts
+      - import_extension=js
+    include_imports: true

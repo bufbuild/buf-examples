@@ -42,5 +42,4 @@ message GetPetResponse {
 
 service PetStoreService {
   rpc GetPetMethod(GetPetRequest) returns (GetPetResponse) {}
-
 }

@@ -10,7 +10,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
 BIN := .tmp/bin
-PROTOVALIDATE_VERSION := 0.10.3
+PROTOVALIDATE_VERSION := 0.11.1
 
 .PHONY: all
 all: clean install ci
@@ -32,6 +32,8 @@ ci: clean \
  	ci-rules-predefined-start \
  	ci-quickstart-go-start \
  	ci-quickstart-go-finish \
+ 	ci-quickstart-es-start \
+ 	ci-quickstart-es-finish \
  	ci-quickstart-java-start \
  	ci-quickstart-java-finish \
  	ci-quickstart-python-start \
@@ -70,6 +72,14 @@ ci-quickstart-go-finish:
 .PHONY: ci-quickstart-go-start
 ci-quickstart-go-start:
 	cd quickstart-go/start&& $(MAKE) ci
+
+.PHONY: ci-quickstart-es-start
+ci-quickstart-es-start:
+	cd quickstart-es/start&& npm ci && npm run ci
+
+.PHONY: ci-quickstart-es-finish
+ci-quickstart-es-finish:
+	cd quickstart-es/finish&& npm ci && npm run ci
 
 .PHONY: ci-quickstart-java-start
 ci-quickstart-java-start:

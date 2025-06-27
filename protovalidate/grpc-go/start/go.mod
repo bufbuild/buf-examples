@@ -3,10 +3,10 @@ module github.com/bufbuild/buf-examples/protovalidate/grpc-go/finish
 go 1.23.4
 
 require (
-	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.6-20250423154025-ec0af4932e5e.1
-	github.com/bufbuild/protovalidate-go v0.9.3
+	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.6-20250425153114-8976f5be98c1.1
+	buf.build/go/protovalidate v0.12.0
 	github.com/google/uuid v1.6.0
-	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.1
+	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.2
 	github.com/stretchr/testify v1.10.0
 	golang.org/x/sync v0.13.0
 	google.golang.org/grpc v1.72.0

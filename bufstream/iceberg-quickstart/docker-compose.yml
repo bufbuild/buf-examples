@@ -31,7 +31,7 @@ services:
 
   # Object storage: MinIO and its controller (mc)
   minio:
-    image: minio/minio
+    image: minio/minio:RELEASE.2025-05-24T17-08-30Z
     container_name: minio
     environment:
       - MINIO_ROOT_USER=admin
@@ -44,13 +44,20 @@ services:
     ports:
       - 9001:9001
       - 9000:9000
+    healthcheck:
+      test: [ "CMD", "curl", "--silent", "--fail", "--output", "/dev/null", "http://localhost:9000/minio/health/live" ]
+      start_period: 15s
+      interval: 5s
+      timeout: 10s
+      retries: 10
     volumes:
       - ./minio/data:/data
     command: ["server", "/data", "--console-address", ":9001"]
   mc:
     depends_on:
-      - minio
-    image: minio/mc
+      minio:
+        condition: service_healthy
+    image: minio/mc:RELEASE.2025-05-21T01-59-54Z
     container_name: mc
     networks:
       iceberg_net:
@@ -58,10 +65,9 @@ services:
       - AWS_ACCESS_KEY_ID=admin
       - AWS_SECRET_ACCESS_KEY=password
       - AWS_REGION=us-east-1
-#       /usr/bin/mc rm -r --force minio/warehouse;
     entrypoint: >
       /bin/sh -c "
-      until (/usr/bin/mc config host add minio http://minio:9000 admin password) do echo '...waiting...' && sleep 1; done;
+      until (/usr/bin/mc alias set  minio http://minio:9000 admin password) do echo '...waiting...' && sleep 1; done;
       /usr/bin/mc mb minio/warehouse;
       /usr/bin/mc anonymous set public minio/warehouse;
       tail -f /dev/null
@@ -69,12 +75,21 @@ services:
 
   # A REST Iceberg catalog backed by MinIO
   rest:
-    image: apache/iceberg-rest-fixture
+    depends_on:
+      minio:
+        condition: service_healthy
+    image: apache/iceberg-rest-fixture:1.9.1
     container_name: iceberg-rest
     networks:
       iceberg_net:
     ports:
       - 8181:8181
+    healthcheck:
+      test: [ "CMD", "curl", "--silent", "--fail", "--output", "/dev/null", "http://localhost:8181/v1/config" ]
+      start_period: 15s
+      interval: 5s
+      timeout: 10s
+      retries: 10
     environment:
       - AWS_ACCESS_KEY_ID=admin
       - AWS_SECRET_ACCESS_KEY=password
@@ -90,15 +105,18 @@ services:
   # Iceberg catalog for archival. Additional configuration is in
   # config/bufstream.yaml.
   bufstream:
-    image: bufbuild/bufstream:0.3.20
+    image: bufbuild/bufstream:0.3.37
     hostname: localhost
     container_name: bufstream
     networks:
       iceberg_net:
     depends_on:
-      - postgres
-      - minio
-      - rest
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      rest:
+        condition: service_healthy
     environment:
       BUFSTREAM_KAFKA_HOST: localhost
       BUFSTREAM_KAFKA_PUBLIC_HOST: localhost
@@ -124,9 +142,10 @@ services:
     networks:
       iceberg_net:
     depends_on:
-      - bufstream
+      bufstream:
+        condition: service_healthy
     healthcheck:
-      test: nc -z akhq 8080 || exit -1
+      test: ["CMD", "curl", "--silent", "--fail", "--output", "/dev/null", "http://localhost:28081/health"]
       start_period: 15s
       interval: 5s
       timeout: 10s
@@ -147,14 +166,16 @@ services:
 
   # Spark, relying on MinIO and the REST Iceberg catalog.
   spark-iceberg:
-    image: tabulario/spark-iceberg
+    image: tabulario/spark-iceberg:3.5.5_1.8.1
     container_name: spark-iceberg
     build: spark/
     networks:
       iceberg_net:
     depends_on:
-      - minio
-      - rest
+      minio:
+        condition: service_healthy
+      rest:
+        condition: service_healthy
     volumes:
       - ./notebooks:/home/iceberg/notebooks/notebooks
     environment:

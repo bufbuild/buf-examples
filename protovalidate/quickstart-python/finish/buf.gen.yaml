@@ -2,7 +2,7 @@ version: v2
 inputs:
   - directory: proto
 plugins:
-  - remote: buf.build/protocolbuffers/pyi:v29.3
+  - remote: buf.build/protocolbuffers/pyi:v31.0
     out: .
-  - remote: buf.build/protocolbuffers/python:v29.3
+  - remote: buf.build/protocolbuffers/python:v31.0
     out: .
