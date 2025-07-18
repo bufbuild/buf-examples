@@ -31,7 +31,7 @@ from invoice.v1.invoice_service import InvoiceService
 from protovalidate.internal import string_format
 from validation.interceptor import ValidationInterceptor
 
-string_fmt = string_format.StringFormat("en_US")  # type: ignore
+string_fmt = string_format.StringFormat()  # type: ignore
 
 @dataclass
 class ViolationSpec:
