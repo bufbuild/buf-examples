@@ -11,4 +11,4 @@ deps:
   - buf.build/bufbuild/confluent
   # We import "buf/validate/validate.proto" within our example files, which
   # comes from the demo.buf.dev/bufbuild/protovalidate module.
-  - buf.build/bufbuild/protovalidate:v0.14.1
+  - buf.build/bufbuild/protovalidate:v0.12.0
