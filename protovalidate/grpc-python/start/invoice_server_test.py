@@ -28,10 +28,7 @@ from grpc_status import rpc_status
 
 from invoice.v1 import invoice_pb2
 from invoice.v1.invoice_service import InvoiceService
-from protovalidate.internal import string_format
 from validation.interceptor import ValidationInterceptor
-
-string_fmt = string_format.StringFormat("en_US")  # type: ignore
 
 @dataclass
 class ViolationSpec:
@@ -166,32 +163,22 @@ def valid_invoice():
     return invoice
 
 
-def format_value(arg):
-    if isinstance(arg, (celtypes.StringType, str)):
-        return celtypes.StringType(quote(arg))
-    if isinstance(arg, celtypes.UintType):
-        return celtypes.StringType(arg)
-    if isinstance(arg, celtypes.DurationType):
-        return celtypes.StringType(f'duration("{self._format_duration(arg)}")')
-    if isinstance(arg, celtypes.DoubleType):
-        return celtypes.StringType(f"{arg:f}")
-    return string_fmt.format_string(arg)
-
 def field_path(path):
-    result: list[str] = []
+    parts = []
     for element in path.elements:
-        if len(result) > 0:
-            result.append(".")
-        subscript_case = element.WhichOneof("subscript")
-        if subscript_case is not None:
-            result.extend(
-                (
-                    element.field_name,
-                    "[",
-                    format_value(getattr(element, subscript_case)),
-                    "]",
-                )
-            )
-        else:
-            result.append(element.field_name)
-    return "".join(result)
+        if parts:
+            parts.append(".")
+        parts.append(element.field_name)
+
+        if element.HasField('index'):
+            parts.append(f"[{element.index}]")
+        elif element.HasField('bool_key'):
+            parts.append("[true]" if element.bool_key else "[false]")
+        elif element.HasField('int_key'):
+            parts.append(f"[{element.int_key}]")
+        elif element.HasField('uint_key'):
+            parts.append(f"[{element.uint_key}]")
+        elif element.HasField('string_key'):
+            escaped_key = element.string_key.replace("\\", "\\\\").replace("\"", "\\\"")
+            parts.append(f'["{escaped_key}"]')
+    return "".join(parts)

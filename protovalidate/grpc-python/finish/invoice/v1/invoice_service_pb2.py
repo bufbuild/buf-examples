@@ -18,15 +18,18 @@
 # source: invoice/v1/invoice_service.proto
 # Protobuf Python Version: 5.29.3
 """Generated protocol buffer code."""
-
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
-
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC, 5, 29, 3, "", "invoice/v1/invoice_service.proto"
+    _runtime_version.Domain.PUBLIC,
+    5,
+    29,
+    3,
+    '',
+    'invoice/v1/invoice_service.proto'
 )
 # @@protoc_insertion_point(imports)
 
@@ -37,25 +40,19 @@ from buf.validate import validate_pb2 as buf_dot_validate_dot_validate__pb2
 from invoice.v1 import invoice_pb2 as invoice_dot_v1_dot_invoice__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
-    b'\n invoice/v1/invoice_service.proto\x12\ninvoice.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18invoice/v1/invoice.proto"M\n\x14\x43reateInvoiceRequest\x12\x35\n\x07invoice\x18\x01 \x01(\x0b\x32\x13.invoice.v1.InvoiceB\x06\xbaH\x03\xc8\x01\x01R\x07invoice"P\n\x15\x43reateInvoiceResponse\x12\x1d\n\ninvoice_id\x18\x01 \x01(\tR\tinvoiceId\x12\x18\n\x07version\x18\x02 \x01(\x04R\x07version2f\n\x0eInvoiceService\x12T\n\rCreateInvoice\x12 .invoice.v1.CreateInvoiceRequest\x1a!.invoice.v1.CreateInvoiceResponseb\x06proto3'
-)
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n invoice/v1/invoice_service.proto\x12\ninvoice.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18invoice/v1/invoice.proto\"M\n\x14\x43reateInvoiceRequest\x12\x35\n\x07invoice\x18\x01 \x01(\x0b\x32\x13.invoice.v1.InvoiceB\x06\xbaH\x03\xc8\x01\x01R\x07invoice\"P\n\x15\x43reateInvoiceResponse\x12\x1d\n\ninvoice_id\x18\x01 \x01(\tR\tinvoiceId\x12\x18\n\x07version\x18\x02 \x01(\x04R\x07version2f\n\x0eInvoiceService\x12T\n\rCreateInvoice\x12 .invoice.v1.CreateInvoiceRequest\x1a!.invoice.v1.CreateInvoiceResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(
-    DESCRIPTOR, "invoice.v1.invoice_service_pb2", _globals
-)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'invoice.v1.invoice_service_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-    DESCRIPTOR._loaded_options = None
-    _globals["_CREATEINVOICEREQUEST"].fields_by_name["invoice"]._loaded_options = None
-    _globals["_CREATEINVOICEREQUEST"].fields_by_name[
-        "invoice"
-    ]._serialized_options = b"\272H\003\310\001\001"
-    _globals["_CREATEINVOICEREQUEST"]._serialized_start = 103
-    _globals["_CREATEINVOICEREQUEST"]._serialized_end = 180
-    _globals["_CREATEINVOICERESPONSE"]._serialized_start = 182
-    _globals["_CREATEINVOICERESPONSE"]._serialized_end = 262
-    _globals["_INVOICESERVICE"]._serialized_start = 264
-    _globals["_INVOICESERVICE"]._serialized_end = 366
+  DESCRIPTOR._loaded_options = None
+  _globals['_CREATEINVOICEREQUEST'].fields_by_name['invoice']._loaded_options = None
+  _globals['_CREATEINVOICEREQUEST'].fields_by_name['invoice']._serialized_options = b'\272H\003\310\001\001'
+  _globals['_CREATEINVOICEREQUEST']._serialized_start=103
+  _globals['_CREATEINVOICEREQUEST']._serialized_end=180
+  _globals['_CREATEINVOICERESPONSE']._serialized_start=182
+  _globals['_CREATEINVOICERESPONSE']._serialized_end=262
+  _globals['_INVOICESERVICE']._serialized_start=264
+  _globals['_INVOICESERVICE']._serialized_end=366
 # @@protoc_insertion_point(module_scope)
