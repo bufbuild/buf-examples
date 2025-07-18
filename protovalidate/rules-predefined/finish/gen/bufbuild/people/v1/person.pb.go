@@ -108,14 +108,15 @@ var File_bufbuild_people_v1_person_proto protoreflect.FileDescriptor
 
 const file_bufbuild_people_v1_person_proto_rawDesc = "" +
 	"\n" +
-	"\x1fbufbuild/people/v1/person.proto\x12\x12bufbuild.people.v1\x1a\x1bbuf/validate/validate.proto\x1a0bufbuild/people/v1/predefined_string_rules.proto\"\xaf\x01\n" +
+	"\x1fbufbuild/people/v1/person.proto\x12\x12bufbuild.people.v1\x1a\x1bbuf/validate/validate.proto\x1a0bufbuild/people/v1/predefined_string_rules.proto\"\xb3\x01\n" +
 	"\x06Person\x12*\n" +
 	"\n" +
 	"first_name\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\tfirstName\x12,\n" +
 	"\vmiddle_name\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\n" +
 	"middleName\x12(\n" +
-	"\tlast_name\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\blastName\x12!\n" +
-	"\x05title\x18\x04 \x01(\tB\v\xbaH\br\x06г\xae\xb1\x02@R\x05titleB\xf7\x01\n" +
+	"\tlast_name\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\blastName\x12%\n" +
+	"\x05title\x18\x04 \x01(\tB\x0f\xbaH\fr\n" +
+	"г\xae\xb1\x02@\x10\x01\x18KR\x05titleB\xf7\x01\n" +
 	"\x16com.bufbuild.people.v1B\vPersonProtoP\x01Zfgithub.com/bufbuild/buf-examples/protovalidate/rules-predefined/finish/gen/bufbuild/people/v1;peoplev1\xa2\x02\x03BPX\xaa\x02\x12Bufbuild.People.V1\xca\x02\x12Bufbuild\\People\\V1\xe2\x02\x1eBufbuild\\People\\V1\\GPBMetadata\xea\x02\x14Bufbuild::People::V1b\x06proto3"
 
 var (
