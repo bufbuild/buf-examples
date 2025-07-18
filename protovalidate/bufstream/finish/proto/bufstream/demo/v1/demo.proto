@@ -70,7 +70,7 @@ message EmailUpdated {
     (buf.validate.field).string.email = true,
     // This option says that empty values of this field are allowed, and to
     // only enforce the email validation if this field is non-empty.
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     // When data quality enforcement is enabled, debug_redact fields can be optionally redacted
     // on a per-topic basis when records are read by producers.
     //

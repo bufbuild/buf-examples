@@ -6,7 +6,7 @@ toolchain go1.24.2
 
 require (
 	buf.build/gen/go/bufbuild/confluent/protocolbuffers/go v1.36.5-20240926213411-65369e65bbcd.1
-	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.6-20250425153114-8976f5be98c1.1
+	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.6-20250717185734-6c6e0d3c608e.1
 	github.com/brianvoe/gofakeit/v7 v7.1.2
 	github.com/confluentinc/confluent-kafka-go/v2 v2.6.0
 	github.com/google/uuid v1.6.0
