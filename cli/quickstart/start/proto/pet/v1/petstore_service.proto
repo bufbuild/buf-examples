@@ -16,13 +16,34 @@ syntax = "proto3";
 
 package pet.v1;
 
-import "google/type/datetime.proto";
+import "pet/v1/pet.proto";
 import "pet/v1/pet_type.proto";
 
-// Pet represents a pet in the pet store.
-message Pet {
+message GetPetRequest {
+  string pet_id = 1;
+}
+
+message GetPetResponse {
+  Pet pet = 1;
+}
+
+message PutPetRequest {
   PetType pet_type = 1;
-  string pet_id = 2;
-  string name = 3;
-  google.type.DateTime created_at = 4;
+  string name = 2;
+}
+
+message PutPetResponse {
+  Pet pet = 1;
+}
+
+message DeletePetRequest {
+  string pet_id = 1;
+}
+
+message DeletePetResponse {}
+
+service PetStoreService {
+  rpc GetPet(GetPetRequest) returns (GetPetResponse) {}
+  rpc PutPet(PutPetRequest) returns (PutPetResponse) {}
+  rpc DeletePet(DeletePetRequest) returns (DeletePetResponse) {}
 }

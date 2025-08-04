@@ -36,62 +36,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// PetType represents the different types of pets in the pet store.
-type PetType int32
-
-const (
-	PetType_PET_TYPE_UNSPECIFIED PetType = 0
-	PetType_PET_TYPE_CAT         PetType = 1
-	PetType_PET_TYPE_DOG         PetType = 2
-	PetType_PET_TYPE_SNAKE       PetType = 3
-	PetType_PET_TYPE_HAMSTER     PetType = 4
-)
-
-// Enum value maps for PetType.
-var (
-	PetType_name = map[int32]string{
-		0: "PET_TYPE_UNSPECIFIED",
-		1: "PET_TYPE_CAT",
-		2: "PET_TYPE_DOG",
-		3: "PET_TYPE_SNAKE",
-		4: "PET_TYPE_HAMSTER",
-	}
-	PetType_value = map[string]int32{
-		"PET_TYPE_UNSPECIFIED": 0,
-		"PET_TYPE_CAT":         1,
-		"PET_TYPE_DOG":         2,
-		"PET_TYPE_SNAKE":       3,
-		"PET_TYPE_HAMSTER":     4,
-	}
-)
-
-func (x PetType) Enum() *PetType {
-	p := new(PetType)
-	*p = x
-	return p
-}
-
-func (x PetType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (PetType) Descriptor() protoreflect.EnumDescriptor {
-	return file_pet_v1_pet_proto_enumTypes[0].Descriptor()
-}
-
-func (PetType) Type() protoreflect.EnumType {
-	return &file_pet_v1_pet_proto_enumTypes[0]
-}
-
-func (x PetType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use PetType.Descriptor instead.
-func (PetType) EnumDescriptor() ([]byte, []int) {
-	return file_pet_v1_pet_proto_rawDescGZIP(), []int{0}
-}
-
 // Pet represents a pet in the pet store.
 type Pet struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -161,303 +105,17 @@ func (x *Pet) GetCreatedAt() *_type.DateTime {
 	return nil
 }
 
-type GetPetRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PetId         string                 `protobuf:"bytes,1,opt,name=pet_id,json=petId,proto3" json:"pet_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetPetRequest) Reset() {
-	*x = GetPetRequest{}
-	mi := &file_pet_v1_pet_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetPetRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetPetRequest) ProtoMessage() {}
-
-func (x *GetPetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pet_v1_pet_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetPetRequest.ProtoReflect.Descriptor instead.
-func (*GetPetRequest) Descriptor() ([]byte, []int) {
-	return file_pet_v1_pet_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *GetPetRequest) GetPetId() string {
-	if x != nil {
-		return x.PetId
-	}
-	return ""
-}
-
-type GetPetResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pet           *Pet                   `protobuf:"bytes,1,opt,name=pet,proto3" json:"pet,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetPetResponse) Reset() {
-	*x = GetPetResponse{}
-	mi := &file_pet_v1_pet_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetPetResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetPetResponse) ProtoMessage() {}
-
-func (x *GetPetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pet_v1_pet_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetPetResponse.ProtoReflect.Descriptor instead.
-func (*GetPetResponse) Descriptor() ([]byte, []int) {
-	return file_pet_v1_pet_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *GetPetResponse) GetPet() *Pet {
-	if x != nil {
-		return x.Pet
-	}
-	return nil
-}
-
-type PutPetRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PetType       PetType                `protobuf:"varint,1,opt,name=pet_type,json=petType,proto3,enum=pet.v1.PetType" json:"pet_type,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PutPetRequest) Reset() {
-	*x = PutPetRequest{}
-	mi := &file_pet_v1_pet_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PutPetRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PutPetRequest) ProtoMessage() {}
-
-func (x *PutPetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pet_v1_pet_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PutPetRequest.ProtoReflect.Descriptor instead.
-func (*PutPetRequest) Descriptor() ([]byte, []int) {
-	return file_pet_v1_pet_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *PutPetRequest) GetPetType() PetType {
-	if x != nil {
-		return x.PetType
-	}
-	return PetType_PET_TYPE_UNSPECIFIED
-}
-
-func (x *PutPetRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type PutPetResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pet           *Pet                   `protobuf:"bytes,1,opt,name=pet,proto3" json:"pet,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PutPetResponse) Reset() {
-	*x = PutPetResponse{}
-	mi := &file_pet_v1_pet_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PutPetResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PutPetResponse) ProtoMessage() {}
-
-func (x *PutPetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pet_v1_pet_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PutPetResponse.ProtoReflect.Descriptor instead.
-func (*PutPetResponse) Descriptor() ([]byte, []int) {
-	return file_pet_v1_pet_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *PutPetResponse) GetPet() *Pet {
-	if x != nil {
-		return x.Pet
-	}
-	return nil
-}
-
-type DeletePetRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PetId         string                 `protobuf:"bytes,1,opt,name=pet_id,json=petId,proto3" json:"pet_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeletePetRequest) Reset() {
-	*x = DeletePetRequest{}
-	mi := &file_pet_v1_pet_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeletePetRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeletePetRequest) ProtoMessage() {}
-
-func (x *DeletePetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pet_v1_pet_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeletePetRequest.ProtoReflect.Descriptor instead.
-func (*DeletePetRequest) Descriptor() ([]byte, []int) {
-	return file_pet_v1_pet_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *DeletePetRequest) GetPetId() string {
-	if x != nil {
-		return x.PetId
-	}
-	return ""
-}
-
-type DeletePetResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeletePetResponse) Reset() {
-	*x = DeletePetResponse{}
-	mi := &file_pet_v1_pet_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeletePetResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeletePetResponse) ProtoMessage() {}
-
-func (x *DeletePetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pet_v1_pet_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeletePetResponse.ProtoReflect.Descriptor instead.
-func (*DeletePetResponse) Descriptor() ([]byte, []int) {
-	return file_pet_v1_pet_proto_rawDescGZIP(), []int{6}
-}
-
 var File_pet_v1_pet_proto protoreflect.FileDescriptor
 
 const file_pet_v1_pet_proto_rawDesc = "" +
 	"\n" +
-	"\x10pet/v1/pet.proto\x12\x06pet.v1\x1a\x1agoogle/type/datetime.proto\"\x92\x01\n" +
+	"\x10pet/v1/pet.proto\x12\x06pet.v1\x1a\x1agoogle/type/datetime.proto\x1a\x15pet/v1/pet_type.proto\"\x92\x01\n" +
 	"\x03Pet\x12*\n" +
 	"\bpet_type\x18\x01 \x01(\x0e2\x0f.pet.v1.PetTypeR\apetType\x12\x15\n" +
 	"\x06pet_id\x18\x02 \x01(\tR\x05petId\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x124\n" +
 	"\n" +
-	"created_at\x18\x04 \x01(\v2\x15.google.type.DateTimeR\tcreatedAt\"&\n" +
-	"\rGetPetRequest\x12\x15\n" +
-	"\x06pet_id\x18\x01 \x01(\tR\x05petId\"/\n" +
-	"\x0eGetPetResponse\x12\x1d\n" +
-	"\x03pet\x18\x01 \x01(\v2\v.pet.v1.PetR\x03pet\"O\n" +
-	"\rPutPetRequest\x12*\n" +
-	"\bpet_type\x18\x01 \x01(\x0e2\x0f.pet.v1.PetTypeR\apetType\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"/\n" +
-	"\x0ePutPetResponse\x12\x1d\n" +
-	"\x03pet\x18\x01 \x01(\v2\v.pet.v1.PetR\x03pet\")\n" +
-	"\x10DeletePetRequest\x12\x15\n" +
-	"\x06pet_id\x18\x01 \x01(\tR\x05petId\"\x13\n" +
-	"\x11DeletePetResponse*q\n" +
-	"\aPetType\x12\x18\n" +
-	"\x14PET_TYPE_UNSPECIFIED\x10\x00\x12\x10\n" +
-	"\fPET_TYPE_CAT\x10\x01\x12\x10\n" +
-	"\fPET_TYPE_DOG\x10\x02\x12\x12\n" +
-	"\x0ePET_TYPE_SNAKE\x10\x03\x12\x14\n" +
-	"\x10PET_TYPE_HAMSTER\x10\x042\xcb\x01\n" +
-	"\x0fPetStoreService\x129\n" +
-	"\x06GetPet\x12\x15.pet.v1.GetPetRequest\x1a\x16.pet.v1.GetPetResponse\"\x00\x129\n" +
-	"\x06PutPet\x12\x15.pet.v1.PutPetRequest\x1a\x16.pet.v1.PutPetResponse\"\x00\x12B\n" +
-	"\tDeletePet\x12\x18.pet.v1.DeletePetRequest\x1a\x19.pet.v1.DeletePetResponse\"\x00B\x82\x01\n" +
+	"created_at\x18\x04 \x01(\v2\x15.google.type.DateTimeR\tcreatedAtB\x82\x01\n" +
 	"\n" +
 	"com.pet.v1B\bPetProtoP\x01Z1github.com/bufbuild/buf-examples/gen/pet/v1;petv1\xa2\x02\x03PXX\xaa\x02\x06Pet.V1\xca\x02\x06Pet\\V1\xe2\x02\x12Pet\\V1\\GPBMetadata\xea\x02\aPet::V1b\x06proto3"
 
@@ -473,36 +131,20 @@ func file_pet_v1_pet_proto_rawDescGZIP() []byte {
 	return file_pet_v1_pet_proto_rawDescData
 }
 
-var file_pet_v1_pet_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_pet_v1_pet_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_pet_v1_pet_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_pet_v1_pet_proto_goTypes = []any{
-	(PetType)(0),              // 0: pet.v1.PetType
-	(*Pet)(nil),               // 1: pet.v1.Pet
-	(*GetPetRequest)(nil),     // 2: pet.v1.GetPetRequest
-	(*GetPetResponse)(nil),    // 3: pet.v1.GetPetResponse
-	(*PutPetRequest)(nil),     // 4: pet.v1.PutPetRequest
-	(*PutPetResponse)(nil),    // 5: pet.v1.PutPetResponse
-	(*DeletePetRequest)(nil),  // 6: pet.v1.DeletePetRequest
-	(*DeletePetResponse)(nil), // 7: pet.v1.DeletePetResponse
-	(*_type.DateTime)(nil),    // 8: google.type.DateTime
+	(*Pet)(nil),            // 0: pet.v1.Pet
+	(PetType)(0),           // 1: pet.v1.PetType
+	(*_type.DateTime)(nil), // 2: google.type.DateTime
 }
 var file_pet_v1_pet_proto_depIdxs = []int32{
-	0, // 0: pet.v1.Pet.pet_type:type_name -> pet.v1.PetType
-	8, // 1: pet.v1.Pet.created_at:type_name -> google.type.DateTime
-	1, // 2: pet.v1.GetPetResponse.pet:type_name -> pet.v1.Pet
-	0, // 3: pet.v1.PutPetRequest.pet_type:type_name -> pet.v1.PetType
-	1, // 4: pet.v1.PutPetResponse.pet:type_name -> pet.v1.Pet
-	2, // 5: pet.v1.PetStoreService.GetPet:input_type -> pet.v1.GetPetRequest
-	4, // 6: pet.v1.PetStoreService.PutPet:input_type -> pet.v1.PutPetRequest
-	6, // 7: pet.v1.PetStoreService.DeletePet:input_type -> pet.v1.DeletePetRequest
-	3, // 8: pet.v1.PetStoreService.GetPet:output_type -> pet.v1.GetPetResponse
-	5, // 9: pet.v1.PetStoreService.PutPet:output_type -> pet.v1.PutPetResponse
-	7, // 10: pet.v1.PetStoreService.DeletePet:output_type -> pet.v1.DeletePetResponse
-	8, // [8:11] is the sub-list for method output_type
-	5, // [5:8] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	1, // 0: pet.v1.Pet.pet_type:type_name -> pet.v1.PetType
+	2, // 1: pet.v1.Pet.created_at:type_name -> google.type.DateTime
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_pet_v1_pet_proto_init() }
@@ -510,19 +152,19 @@ func file_pet_v1_pet_proto_init() {
 	if File_pet_v1_pet_proto != nil {
 		return
 	}
+	file_pet_v1_pet_type_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_pet_v1_pet_proto_rawDesc), len(file_pet_v1_pet_proto_rawDesc)),
-			NumEnums:      1,
-			NumMessages:   7,
+			NumEnums:      0,
+			NumMessages:   1,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   0,
 		},
 		GoTypes:           file_pet_v1_pet_proto_goTypes,
 		DependencyIndexes: file_pet_v1_pet_proto_depIdxs,
-		EnumInfos:         file_pet_v1_pet_proto_enumTypes,
 		MessageInfos:      file_pet_v1_pet_proto_msgTypes,
 	}.Build()
 	File_pet_v1_pet_proto = out.File
