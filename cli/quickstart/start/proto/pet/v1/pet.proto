@@ -53,12 +53,12 @@ message PutPetResponse {
 }
 
 message DeletePetRequest {
-  string petID = 1;
+  string pet_id = 1;
 }
 
 message DeletePetResponse {}
 
-service PetStore {
+service PetStoreService {
   rpc GetPet(GetPetRequest) returns (GetPetResponse) {}
   rpc PutPet(PutPetRequest) returns (PutPetResponse) {}
   rpc DeletePet(DeletePetRequest) returns (DeletePetResponse) {}
