@@ -54,7 +54,7 @@ services:
   # Iceberg catalog for archival. Additional configuration is in
   # config/bufstream.yaml.
   bufstream:
-    image: bufbuild/bufstream:0.3.43
+    image: bufbuild/bufstream-local
 
     hostname: localhost
     container_name: bufstream
@@ -98,7 +98,11 @@ services:
       - "19120:19120" # Nessie API port
     environment:
       # Version store settings, using in-memory store
-      - nessie.version.store.type=IN_MEMORY
+      - nessie.version.store.type=JDBC
+      - nessie.version.store.persist.jdbc.datasource=postgresql
+      - quarkus.datasource.postgresql.jdbc.url=jdbc:postgresql://postgres:5432/catalog
+      - quarkus.datasource.postgresql.username=postgres
+      - quarkus.datasource.postgresql.password=postgres
 
       # Catalog configuration for Iceberg REST
       - nessie.catalog.default-warehouse=warehouse
@@ -130,6 +134,26 @@ services:
     environment:
       - DREMIO_JAVA_SERVER_EXTRA_OPTS=-Dpaths.dist=file:///opt/dremio/data/dist
     networks:
+      iceberg_net:
+
+  postgres:
+    image: postgres:17.5
+    ports:
+      - "5432:5432"
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: catalog
+      POSTGRES_INITDB_ARGS: "--encoding UTF8 --data-checksums"
+    # /docker-entrypoint-initdb.d
+    healthcheck:
+      test: "pg_isready -U postgres"
+      interval: 5s
+      timeout: 2s
+      retries: 15
+    networks: 
       iceberg_net:
 
   spark:
