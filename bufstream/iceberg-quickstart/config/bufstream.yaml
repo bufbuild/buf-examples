@@ -48,4 +48,4 @@ iceberg:
     - name: local-rest-catalog
       rest:
         url: http://nessie:19120/iceberg
-        catalogAssignsFieldIds: true
+        # catalogAssignsFieldIds: true

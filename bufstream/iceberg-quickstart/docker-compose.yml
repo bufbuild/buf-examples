@@ -97,7 +97,7 @@ services:
     ports:
       - "19120:19120" # Nessie API port
     environment:
-      # Version store settings, using in-memory store
+      # Version store settings, using postgres
       - nessie.version.store.type=JDBC
       - nessie.version.store.persist.jdbc.datasource=postgresql
       - quarkus.datasource.postgresql.jdbc.url=jdbc:postgresql://postgres:5432/catalog
