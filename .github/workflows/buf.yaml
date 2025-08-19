@@ -11,7 +11,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-      - uses: bufbuild/buf-action@c231a1aa9281e5db706c970f468f0744a37561fd # v1.2.0
+      - uses: bufbuild/buf-action@8f4a1456a0ab6a1eb80ba68e53832e6fcfacc16c # v1.3.0
         with:
           input: cli/breaking-change-detection/start
           token: ${{ secrets.BUF_TOKEN }}
@@ -20,7 +20,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-      - uses: bufbuild/buf-action@c231a1aa9281e5db706c970f468f0744a37561fd # v1.2.0
+      - uses: bufbuild/buf-action@8f4a1456a0ab6a1eb80ba68e53832e6fcfacc16c # v1.3.0
         with:
           input: cli/limit-output-types
           token: ${{ secrets.BUF_TOKEN }}
@@ -29,7 +29,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-      - uses: bufbuild/buf-action@c231a1aa9281e5db706c970f468f0744a37561fd # v1.2.0
+      - uses: bufbuild/buf-action@8f4a1456a0ab6a1eb80ba68e53832e6fcfacc16c # v1.3.0
         with:
           input: cli/linting/finish
           token: ${{ secrets.BUF_TOKEN }}
@@ -38,7 +38,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-      - uses: bufbuild/buf-action@c231a1aa9281e5db706c970f468f0744a37561fd # v1.2.0
+      - uses: bufbuild/buf-action@8f4a1456a0ab6a1eb80ba68e53832e6fcfacc16c # v1.3.0
         with:
           input: cli/workspace/observabilityapi
           token: ${{ secrets.BUF_TOKEN }}
@@ -47,7 +47,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-      - uses: bufbuild/buf-action@c231a1aa9281e5db706c970f468f0744a37561fd # v1.2.0
+      - uses: bufbuild/buf-action@8f4a1456a0ab6a1eb80ba68e53832e6fcfacc16c # v1.3.0
         with:
           input: cli/workspace/observabilitytypes
           token: ${{ secrets.BUF_TOKEN }}
