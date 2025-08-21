@@ -8,7 +8,7 @@
 services:
   # Object storage: MinIO and its controller (mc)
   minio:
-    image: minio/minio:RELEASE.2025-05-24T17-08-30Z
+    image: minio/minio:RELEASE.2025-07-23T15-54-02Z
     container_name: minio
     environment:
       - MINIO_ROOT_USER=admin
@@ -32,7 +32,7 @@ services:
     depends_on:
       minio:
         condition: service_healthy
-    image: minio/mc:RELEASE.2025-05-21T01-59-54Z
+    image: minio/mc:RELEASE.2025-07-21T05-28-08Z
     container_name: mc
     networks:
       iceberg_net:
@@ -53,7 +53,7 @@ services:
     depends_on:
       minio:
         condition: service_healthy
-    image: apache/iceberg-rest-fixture:1.9.1
+    image: apache/iceberg-rest-fixture:1.9.2
     container_name: iceberg-rest
     networks:
       iceberg_net:
@@ -77,7 +77,7 @@ services:
   # Iceberg catalog for archival. Additional configuration is in
   # config/bufstream.yaml.
   bufstream:
-    image: bufbuild/bufstream:0.3.27
+    image: bufbuild/bufstream:0.3.42
     hostname: localhost
     container_name: bufstream
     networks:
@@ -112,7 +112,7 @@ services:
   #
   # Browse to http://localhost:8282 on your machine.
   akhq:
-    image: tchiotludo/akhq:0.25.0
+    image: tchiotludo/akhq:0.26.0
     container_name: akhq
     stop_signal: SIGKILL
     networks:

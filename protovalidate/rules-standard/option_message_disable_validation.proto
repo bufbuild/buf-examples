@@ -18,15 +18,19 @@ import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 
 message DebugLog {
-  // `disabled` disables validation for this message.
-  // In this case, validation rules defined within `Payload`'s definition will
-  // not be evaluated for `DebugLog.payload`.
-  option (buf.validate.message).disabled = true;
-
   // payload is the payload.
-  Payload payload = 1;
-  // create_time is when the log is created.
-  google.protobuf.Timestamp create_time = 2;
+  Payload payload = 1 [
+    // IGNORE_ALWAYS disables validation for this message.
+    // In this case, validation rules defined within `Payload`'s definition will
+    // not be evaluated for `DebugLog.payload`.
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+
+  // create_time is when the log is created. The `required` rule will not
+  // be ignored.
+  google.protobuf.Timestamp create_time = 2 [
+    (buf.validate.field).required = true
+  ];
 }
 
 message Payload {
