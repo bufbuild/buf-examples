@@ -18,3 +18,5 @@ data_enforcement:
   produce:
     - topics: { all: true }
       schema_registry: csr
+      values:
+        on_parse_error: REJECT_BATCH
