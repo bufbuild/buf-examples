@@ -22,10 +22,3 @@ data_enforcement:
         on_parse_error: REJECT_BATCH
         validation:
           on_error: REJECT_BATCH
-  fetch:
-    - topics: { all: true }
-      schema_registry: csr
-      values:
-        on_parse_error: FILTER_RECORD
-        redaction:
-          debug_redact: true
