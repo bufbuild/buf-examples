@@ -6,8 +6,6 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-BUFSTREAM_VERSION := 0.3.6
-
 .DEFAULT_GOAL := broker
 
 .PHONY: clean
