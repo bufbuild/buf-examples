@@ -20,3 +20,10 @@ data_enforcement:
       schema_registry: csr
       values:
         on_parse_error: REJECT_BATCH
+  fetch:
+    - topics: { all: true }
+      schema_registry: csr
+      values:
+        on_parse_error: FILTER_RECORD
+        redaction:
+          debug_redact: true
