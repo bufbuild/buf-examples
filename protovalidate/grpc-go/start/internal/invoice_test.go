@@ -125,7 +125,7 @@ func TestCreateInvoice(t *testing.T) {
 
 			// Make our request.
 			res, err := invoiceServiceClient.CreateInvoice(
-				context.Background(),
+				t.Context(),
 				&invoicev1.CreateInvoiceRequest{
 					Invoice: invoice,
 				},
