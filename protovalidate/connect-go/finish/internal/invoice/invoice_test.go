@@ -15,7 +15,6 @@
 package invoice
 
 import (
-	"context"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -292,7 +291,7 @@ func TestCreateInvoice(t *testing.T) {
 
 			// Make our request.
 			res, err := invoiceServiceClient.CreateInvoice(
-				context.Background(),
+				t.Context(),
 				&invoicev1.CreateInvoiceRequest{
 					Invoice: invoice,
 				},
