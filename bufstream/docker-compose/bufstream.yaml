@@ -1,3 +1,4 @@
+version: v1beta1
 data:
   s3:
     # URI of the storage bucket and prefix, e.g. s3://my-bucket/my-prefix/
@@ -12,3 +13,17 @@ data:
 metadata:
   postgres:
     string: postgresql://root:password@localhost:5432/bufstream
+
+metrics:
+  otlp:
+    # Required: Type of transport to use for OTLP. Must be "http" or "grpc".
+    type: http
+    # Required: URL of OTLP endpoint to export metrics to.
+    url: https://localhost:4318
+debug:
+  # Address to listen for connections for debug information. If configured,
+  # pprof and Prometheus exported metrics will be exposed on this address.
+  listen_address: localhost:12345
+logging:
+  # Log level, defaults to info.
+  level: debu
