@@ -100,6 +100,7 @@ func TestPersonValidation(t *testing.T) {
 			if err != nil && testCase.valid {
 				t.Fatalf("unexpected validation error received: %v", err)
 			}
+
 			if err == nil && !testCase.valid {
 				t.Fatal("expected validation error")
 			}

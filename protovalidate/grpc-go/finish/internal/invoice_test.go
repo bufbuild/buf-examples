@@ -71,12 +71,14 @@ func TestCreateInvoice(t *testing.T) {
 
 	// Create a client shared by all of our test cases.
 	resolver.SetDefaultScheme("passthrough")
+
 	conn, err := grpc.NewClient("bufnet", grpc.WithContextDialer(func(context.Context, string) (net.Conn, error) {
 		return listener.Dial()
 	}), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		t.Fatalf("failed to dial: %v", err)
 	}
+
 	invoiceServiceClient := invoicev1.NewInvoiceServiceClient(conn)
 
 	testCases := map[string]struct {
@@ -195,6 +197,7 @@ func TestCreateInvoice(t *testing.T) {
 			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
 				invoice.GetLineItems()[0].ProductId = invoice.GetLineItems()[1].GetProductId()
 				invoice.GetLineItems()[0].UnitPrice = invoice.GetLineItems()[1].GetUnitPrice()
+
 				return invoice
 			},
 			violations: []violationSpec{
@@ -376,6 +379,7 @@ func checkStatusError(t *testing.T, responseStatus *status.Status, specs []viola
 	if len(details) != 1 {
 		t.Errorf("Status error had %d details instead of one", len(details))
 	}
+
 	detail := details[0]
 	switch violations := detail.(type) {
 	case *validate.Violations:
@@ -387,6 +391,7 @@ func checkStatusError(t *testing.T, responseStatus *status.Status, specs []viola
 		if len(allViolations) != len(specs) {
 			t.Fatalf("violations returned %d violations instead of %d", len(allViolations), len(specs))
 		}
+
 		for i, spec := range specs {
 			violation := allViolations[i]
 
@@ -394,10 +399,12 @@ func checkStatusError(t *testing.T, responseStatus *status.Status, specs []viola
 			if violation.GetRuleId() != spec.ruleID {
 				t.Fatalf("Wrong ruleID. Expected \"%v\", not \"%v\"", spec.ruleID, violation.GetRuleId())
 			}
+
 			fieldPath := protovalidate.FieldPathString(violation.GetField())
 			if fieldPath != spec.fieldPath {
 				t.Fatalf("Wrong fieldPath. Expected \"%v\", not \"%v\"", spec.fieldPath, fieldPath)
 			}
+
 			if violation.GetMessage() != spec.message {
 				t.Fatalf("Wrong message. Expected \"%v\", not \"%v\"", spec.message, violation.GetMessage())
 			}

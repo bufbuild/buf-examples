@@ -75,10 +75,11 @@ func TestRequests(t *testing.T) {
 
 			if len(testCase.violations) > 0 {
 				require.Error(t, err)
+
 				var validationError *protovalidate.ValidationError
 				require.ErrorAs(t, err, &validationError)
-
 				require.Len(t, validationError.Violations, len(testCase.violations))
+
 				for i, violation := range testCase.violations {
 					assert.Equal(t, violation, validationError.Violations[i].Proto.GetMessage())
 				}
