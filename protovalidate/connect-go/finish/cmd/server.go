@@ -38,6 +38,7 @@ func main() {
 		slog.Error("error creating interceptor",
 			slog.String("error", err.Error()),
 		)
+
 		return
 	}
 

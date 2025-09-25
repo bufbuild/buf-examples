@@ -181,6 +181,7 @@ func TestCreateInvoice(t *testing.T) {
 			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
 				invoice.GetLineItems()[0].ProductId = invoice.GetLineItems()[1].GetProductId()
 				invoice.GetLineItems()[0].UnitPrice = invoice.GetLineItems()[1].GetUnitPrice()
+
 				return invoice
 			},
 			violations: []violationSpec{
@@ -301,6 +302,7 @@ func TestCreateInvoice(t *testing.T) {
 			// our expected violations.
 			if len(testCase.violations) > 0 {
 				require.Error(t, err)
+
 				var connectError *connect.Error
 				require.ErrorAs(t, err, &connectError)
 				assert.Equal(t, connect.CodeInvalidArgument, connectError.Code())
@@ -364,6 +366,7 @@ func checkConnectError(t *testing.T, connectError *connect.Error, specs []violat
 	if len(details) != 1 {
 		t.Errorf("Connect error had %d details instead of one", len(details))
 	}
+
 	detail, err := details[0].Value()
 	if err != nil {
 		t.Errorf("Couldn't get value of first error detail: %v", err)
@@ -383,6 +386,7 @@ func checkConnectError(t *testing.T, connectError *connect.Error, specs []violat
 		if len(allViolations) != len(specs) {
 			t.Fatalf("violations returned %d violations instead of %d", len(allViolations), len(specs))
 		}
+
 		for i, spec := range specs {
 			violation := allViolations[i]
 
@@ -390,10 +394,12 @@ func checkConnectError(t *testing.T, connectError *connect.Error, specs []violat
 			if violation.GetRuleId() != spec.ruleID {
 				t.Fatalf("Wrong ruleID. Expected \"%v\", not \"%v\"", spec.ruleID, violation.GetRuleId())
 			}
+
 			fieldPath := protovalidate.FieldPathString(violation.GetField())
 			if fieldPath != spec.fieldPath {
 				t.Fatalf("Wrong fieldPath. Expected \"%v\", not \"%v\"", spec.fieldPath, fieldPath)
 			}
+
 			if violation.GetMessage() != spec.message {
 				t.Fatalf("Wrong message. Expected \"%v\", not \"%v\"", spec.message, violation.GetMessage())
 			}
@@ -407,9 +413,11 @@ func checkConnectError(t *testing.T, connectError *connect.Error, specs []violat
 // registers it for closing within cleanup.
 func startHTTPServer(tb testing.TB, h http.Handler) *httptest.Server {
 	tb.Helper()
+
 	srv := httptest.NewUnstartedServer(h)
 	srv.EnableHTTP2 = true
 	srv.Start()
 	tb.Cleanup(srv.Close)
+
 	return srv
 }
