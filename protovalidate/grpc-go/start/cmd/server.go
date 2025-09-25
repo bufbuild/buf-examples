@@ -54,7 +54,9 @@ func run(ctx context.Context) error {
 	errorGroup.Go(func() error {
 		address := "localhost:50051"
 
-		lis, err := net.Listen("tcp", address)
+		config := net.ListenConfig{}
+
+		lis, err := config.Listen(ctx, "tcp", address)
 		if err != nil {
 			return fmt.Errorf("failed to listen on address %q: %w", address, err)
 		}
