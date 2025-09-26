@@ -35,6 +35,7 @@ license-header: $(BIN)/license-header
 	license-header \
 		--ignore bsr/api-access/example/example.go \
 		--ignore bsr/quickstart/finish/client/cmd/main.go \
+		--ignore bsr/webhooks/cmd/main.go \
 		--ignore cli/quickstart/finish/server/main.go \
 		--license-type apache \
 		--copyright-holder "$(COPYRIGHT_HOLDER)" \

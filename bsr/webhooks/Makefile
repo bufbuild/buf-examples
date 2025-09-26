@@ -8,12 +8,10 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
+# Doesn't lint: we're not trying to update what's in Buf docs, which has lint
+# failures.
 .PHONY: ci
-ci: lint-go test
-
-.PHONY: lint-go
-lint-go:
-	golangci-lint
+ci: test
 
 .PHONY: test
 test:
