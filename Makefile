@@ -28,10 +28,13 @@ all: license-header ci
 # Code generation/manipulation                                                 #
 ################################################################################
 
-# Add license headers across all build systems
+# Add license headers across all build systems. The files ignored are included
+# into docs via @BufCode, where we don't want to print the header.
 .PHONY: license-header
 license-header: $(BIN)/license-header
 	license-header \
+		--ignore bsr/quickstart/finish/client/cmd/main.go \
+		--ignore cli/quickstart/finish/server/main.go \
 		--license-type apache \
 		--copyright-holder "$(COPYRIGHT_HOLDER)" \
 		--year-range "$(COPYRIGHT_YEARS)" --ignore $(subst $(SPACE),$(COMMA),${LICENSE_IGNORE})
