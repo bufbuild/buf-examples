@@ -5,17 +5,14 @@ plugins:
   - remote: buf.build/protocolbuffers/go
     out: gen
     opt: paths=source_relative
-   # Temporary! The connect change is pending. This path works on Joe's laptop.
-  - local: ../../../../../scratch/protoc-gen-go-connect-simple-temp/main
+  - remote: buf.build/connectrpc/gosimple
     out: gen
-    opt:
-      - paths=source_relative
-      - simple
-  # - remote: buf.build/connectrpc/go
-  #   out: gen
-  #   opt: paths=source_relative
+    opt: paths=source_relative
 managed:
   enabled: true
   override:
     - file_option: go_package_prefix
       value: github.com/bufbuild/buf-examples/protovalidate/connect-go/start/gen
+  disable:
+    - file_option: go_package
+      module: buf.build/bufbuild/protovalidate

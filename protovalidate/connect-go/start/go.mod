@@ -7,7 +7,7 @@ toolchain go1.24.2
 require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.9-20250912141014-52f32327d4b0.1
 	buf.build/go/protovalidate v1.0.0
-	connectrpc.com/connect v1.18.1
+	connectrpc.com/connect v1.19.0
 	connectrpc.com/validate v0.3.0
 	github.com/google/uuid v1.6.0
 	github.com/stretchr/testify v1.11.1
