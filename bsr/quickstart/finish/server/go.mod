@@ -5,7 +5,7 @@ go 1.24.0
 require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.5-20250219170025-d39267d9df8f.1
 	buf.build/gen/go/xUSERNAMEx/common/protocolbuffers/go v1.36.5-20250319003822-a41bf771b2ed.1
-	connectrpc.com/connect v1.18.1
+	connectrpc.com/connect v1.19.0
 	connectrpc.com/validate v0.2.0
 	golang.org/x/net v0.38.0
 	google.golang.org/protobuf v1.36.5

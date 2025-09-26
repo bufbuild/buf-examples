@@ -6,7 +6,7 @@ plugins:
     out: gen
     opt:
       - paths=source_relative
-  - remote: buf.build/connectrpc/go:v1.18.1
+  - remote: buf.build/connectrpc/gosimple:v1.19.0
     out: gen
     opt:
       - paths=source_relative
