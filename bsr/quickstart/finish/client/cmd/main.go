@@ -2,7 +2,7 @@ package main
 
 import (
 	tagv1 "buf.build/gen/go/xUSERNAMEx/common/protocolbuffers/go/tag/v1"
-	"buf.build/gen/go/xUSERNAMEx/invoice/connectrpc/go/invoice/v1/invoicev1connect"
+	"buf.build/gen/go/xUSERNAMEx/invoice/connectrpc/gosimple/invoice/v1/invoicev1connect"
 	invoicev1 "buf.build/gen/go/xUSERNAMEx/invoice/protocolbuffers/go/invoice/v1"
 	"context"
 	"log"
