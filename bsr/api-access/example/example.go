@@ -9,7 +9,7 @@ import (
 )
 
 func Example() (*reflectv1beta1.GetFileDescriptorSetResponse, error) {
-	simpleClient := reflectv1beta1connect.NewFileDescriptorSetServiceClient(
+	client := reflectv1beta1connect.NewFileDescriptorSetServiceClient(
 		http.DefaultClient,
 		"https://buf.build",
 	)
@@ -20,7 +20,7 @@ func Example() (*reflectv1beta1.GetFileDescriptorSetResponse, error) {
 	// BUF_TOKEN value.
 	//
 	// request.Header().Set("Authorization", "Bearer <BUF_TOKEN>")
-	response, err := simpleClient.GetFileDescriptorSet(context.Background(), request)
+	response, err := client.GetFileDescriptorSet(context.Background(), request)
 	if err != nil {
 		return nil, err
 	}
