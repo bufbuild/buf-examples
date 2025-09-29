@@ -21,7 +21,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestRequests(t *testing.T) {
+func TestGetFileDescriptorSet(t *testing.T) {
 	t.Parallel()
 
 	res, err := Example()

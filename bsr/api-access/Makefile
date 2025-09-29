@@ -13,7 +13,7 @@ ci: lint-go test
 
 .PHONY: lint-go
 lint-go:
-	golangci-lint
+	golangci-lint run
 
 .PHONY: test
 test:

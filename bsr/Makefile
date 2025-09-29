@@ -15,8 +15,12 @@ BIN := .tmp/bin
 ################################################################################
 
 .PHONY: ci
-ci: ci-api-access
+ci: ci-api-access ci-webhooks
 
 .PHONY: ci-api-access
 ci-api-access:
-	cd api-access&& $(MAKE)
+	cd api-access && $(MAKE)
+
+.PHONY: ci-webhooks
+ci-webhooks:
+	cd webhooks && $(MAKE)
