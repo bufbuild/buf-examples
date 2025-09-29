@@ -1,5 +1,5 @@
-buf.build/gen/go/bufbuild/buf/connectrpc/go v1.19.0-20250922142314-bf1c7fb5d0e4.1 h1:Y05jghvbTmzbz612dfj9vBQqVKwoaESRWxJ2wVPxlh0=
-buf.build/gen/go/bufbuild/buf/connectrpc/go v1.19.0-20250922142314-bf1c7fb5d0e4.1/go.mod h1:eDpMcO0cy4PoirOJfnU3ZZKDigvRmlgQmAJeMrPh2pk=
+buf.build/gen/go/bufbuild/buf/connectrpc/gosimple v1.19.0-20250922142314-bf1c7fb5d0e4.1 h1:SwbmppnZfg97+O9iXcI3Xtj13CAoEJMdfpEN2aOM1QU=
+buf.build/gen/go/bufbuild/buf/connectrpc/gosimple v1.19.0-20250922142314-bf1c7fb5d0e4.1/go.mod h1:SlumngEvTCGOwdHrz6MHBdIiv6pOmkEvq6qZI61ytKo=
 buf.build/gen/go/bufbuild/buf/protocolbuffers/go v1.36.9-20250922142314-bf1c7fb5d0e4.1 h1:vX2LiDr0Q3ddlksJf8qnG2jvgJCETJpbQhyeS5onr9E=
 buf.build/gen/go/bufbuild/buf/protocolbuffers/go v1.36.9-20250922142314-bf1c7fb5d0e4.1/go.mod h1:/w+MiypMKoPEUlwUnBPoOTETO3UESb2GtpVm2asMpZM=
 connectrpc.com/connect v1.19.0 h1:LuqUbq01PqbtL0o7vn0WMRXzR2nNsiINe5zfcJ24pJM=
