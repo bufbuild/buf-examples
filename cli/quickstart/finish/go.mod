@@ -11,6 +11,3 @@ require (
 )
 
 require golang.org/x/text v0.23.0 // indirect
-
-// Temporary! The connect change is pending. This path works on Joe's laptop.
-replace connectrpc.com/connect => ../../../../../connectrpc/connect-go
