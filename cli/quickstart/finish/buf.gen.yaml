@@ -8,8 +8,10 @@ plugins:
   - remote: buf.build/protocolbuffers/go
     out: gen
     opt: paths=source_relative
-  - remote: buf.build/connectrpc/go
+  - remote: buf.build/connectrpc/gosimple
     out: gen
-    opt: paths=source_relative
+    opt:
+      - paths=source_relative
+      - simple
 inputs:
   - directory: proto

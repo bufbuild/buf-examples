@@ -293,11 +293,9 @@ func TestCreateInvoice(t *testing.T) {
 			// Make our request.
 			res, err := invoiceServiceClient.CreateInvoice(
 				t.Context(),
-				connect.NewRequest(
-					&invoicev1.CreateInvoiceRequest{
-						Invoice: invoice,
-					},
-				),
+				&invoicev1.CreateInvoiceRequest{
+					Invoice: invoice,
+				},
 			)
 
 			// If we expect a nonzero response code, check our error against
@@ -312,9 +310,9 @@ func TestCreateInvoice(t *testing.T) {
 			} else {
 				// Otherwise, ensure we have no error and receive expected results.
 				require.NoError(t, err)
-				assert.NotNil(t, res.Msg)
-				assert.NotNil(t, res.Msg.GetInvoiceId())
-				assert.Equal(t, uint64(1), res.Msg.GetVersion())
+				assert.NotNil(t, res)
+				assert.NotNil(t, res.GetInvoiceId())
+				assert.Equal(t, uint64(1), res.GetVersion())
 			}
 		})
 	}

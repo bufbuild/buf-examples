@@ -67,10 +67,10 @@ type invoiceServiceServer struct {
 // CreateInvoice creates an invoices with any associated tags.
 func (s *invoiceServiceServer) CreateInvoice(
 	_ context.Context,
-	req *connect.Request[invoicev1.CreateInvoiceRequest],
-) (*connect.Response[invoicev1.CreateInvoiceResponse], error) {
-	invoice := req.Msg.GetInvoice()
-	tags := req.Msg.GetTags()
+	req *invoicev1.CreateInvoiceRequest,
+) (*invoicev1.CreateInvoiceResponse, error) {
+	invoice := req.GetInvoice()
+	tags := req.GetTags()
 
 	total := 0
 	for _, li := range invoice.GetLineItems() {
@@ -84,7 +84,7 @@ func (s *invoiceServiceServer) CreateInvoice(
 		}
 	}
 
-	return connect.NewResponse(&invoicev1.CreateInvoiceResponse{
+	return &invoicev1.CreateInvoiceResponse{
 		InvoiceId: invoice.GetInvoiceId(),
-	}), nil
+	}, nil
 }

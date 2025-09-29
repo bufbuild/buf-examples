@@ -20,7 +20,6 @@ import (
 
 	registryv1alpha1 "buf.build/gen/go/bufbuild/buf/protocolbuffers/go/buf/alpha/registry/v1alpha1"
 	webhookv1alpha1 "buf.build/gen/go/bufbuild/buf/protocolbuffers/go/buf/alpha/webhook/v1alpha1"
-	"connectrpc.com/connect"
 	"github.com/stretchr/testify/require"
 )
 
@@ -29,9 +28,9 @@ func TestWebhookEventHandler_Event(t *testing.T) {
 
 	handler := &webhookEventHandler{}
 
-	req := connect.NewRequest(&webhookv1alpha1.EventRequest{
+	req := &webhookv1alpha1.EventRequest{
 		Event: registryv1alpha1.WebhookEvent_WEBHOOK_EVENT_UNSPECIFIED,
-	})
+	}
 
 	resp, err := handler.Event(context.Background(), req)
 

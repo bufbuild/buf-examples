@@ -4,9 +4,8 @@ import (
 	"context"
 	"net/http"
 
-	"buf.build/gen/go/bufbuild/reflect/connectrpc/go/buf/reflect/v1beta1/reflectv1beta1connect"
+	reflectv1beta1connect "buf.build/gen/go/bufbuild/reflect/connectrpc/gosimple/buf/reflect/v1beta1/reflectv1beta1connect"
 	reflectv1beta1 "buf.build/gen/go/bufbuild/reflect/protocolbuffers/go/buf/reflect/v1beta1"
-	connect "connectrpc.com/connect"
 )
 
 func Example() (*reflectv1beta1.GetFileDescriptorSetResponse, error) {
@@ -14,9 +13,9 @@ func Example() (*reflectv1beta1.GetFileDescriptorSetResponse, error) {
 		http.DefaultClient,
 		"https://buf.build",
 	)
-	request := connect.NewRequest(&reflectv1beta1.GetFileDescriptorSetRequest{
+	request := &reflectv1beta1.GetFileDescriptorSetRequest{
 		Module: "buf.build/connectrpc/eliza",
-	})
+	}
 	// If you're using a private BSR, set your Authorization header to a
 	// BUF_TOKEN value.
 	//
@@ -26,5 +25,5 @@ func Example() (*reflectv1beta1.GetFileDescriptorSetResponse, error) {
 		return nil, err
 	}
 
-	return response.Msg, nil
+	return response, nil
 }
