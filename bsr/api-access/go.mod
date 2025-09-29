@@ -1,6 +1,6 @@
 module github.com/bufbuild/buf-examples/bsr/api-access
 
-go 1.24.2
+go 1.24.0
 
 require (
 	buf.build/gen/go/bufbuild/reflect/connectrpc/go v1.19.0-20240117202343-bf8f65e8876c.1

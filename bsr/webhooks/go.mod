@@ -1,6 +1,6 @@
 module github.com/bufbuild/buf-examples/bsr/webhooks
 
-go 1.24.2
+go 1.24.0
 
 require (
 	buf.build/gen/go/bufbuild/buf/connectrpc/go v1.19.0-20250922142314-bf1c7fb5d0e4.1
