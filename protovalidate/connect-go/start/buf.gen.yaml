@@ -15,6 +15,3 @@ managed:
   override:
     - file_option: go_package_prefix
       value: github.com/bufbuild/buf-examples/protovalidate/connect-go/start/gen
-  disable:
-    - file_option: go_package
-      module: buf.build/bufbuild/protovalidate
