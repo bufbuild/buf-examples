@@ -7,7 +7,9 @@ plugins:
     opt: paths=source_relative
   - remote: buf.build/connectrpc/gosimple
     out: gen
-    opt: paths=source_relative
+    opt:
+      - paths=source_relative
+      - simple
 managed:
   enabled: true
   override:
