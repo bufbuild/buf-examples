@@ -14,6 +14,16 @@ Supplementing its [documentation], this repository provides quickstart code exer
 
 [Quickstart code](./buf-check-plugin) for the Buf plugins [quickstart][plugins] walks through how to create a Buf plugin for custom lint and breaking change rules. It contains a `start` directory with a starting state and `finish` with a working solution.
 
+# Buf Schema Registry webhook listener example
+
+[Example code](./webhooks) for [listening for Buf Schema Registry webhook notifications with Connect][webhooks].
+
+# Buf Schema Registry API access example
+
+[Example code](./api-access) for [using a generated SDK to call BSR APIs][api-access].
+
 [documentation]: https://buf.build/docs/bsr
 [plugins]: https://buf.build/docs/cli/buf-plugins/tutorial-create-buf-plugin/
 [quickstart]: https://buf.build/docs/bsr/quickstart/
+[webhooks]: https://buf.build/docs/bsr/admin/instance/webhooks/#webhooks-with-connect
+[api-access]: https://buf.build/docs/bsr/apis/api-access/#sdk
