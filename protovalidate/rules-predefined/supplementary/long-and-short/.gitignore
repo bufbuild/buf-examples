@@ -1,0 +1,5 @@
+*
+!*/
+!.gitignore
+!proto/bufbuild/people/v1/person.proto
+!proto/bufbuild/people/v1/predefined_string_rules.proto

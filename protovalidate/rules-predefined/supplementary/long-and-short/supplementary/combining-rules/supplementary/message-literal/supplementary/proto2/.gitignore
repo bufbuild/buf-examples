@@ -1,0 +1,5 @@
+*
+!*/
+!.gitignore
+!proto/bufbuild/people/v1/person.proto
+!internal/bufbuild/people/v1/family_name_test.go

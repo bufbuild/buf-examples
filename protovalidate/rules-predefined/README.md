@@ -8,6 +8,8 @@ This directory contains companion code for [predefined rules documentation][docu
 2. Extend a rule message to create a predefined rule.
 3. Use your predefined rule.
 
-It contains a `start` directory, where you work on the example files, and a `finish` directory that you can use to compare against.
+[documentation]: https://protovalidate.com/schemas/predefined-rules/
 
-[documentation]: https://buf.build/docs/protovalidate/schemas/predefined-rules/
+## `supplementary` directories
+
+The nested `supplementary` directory has additional examples with changes represented in a sparse directory tree which can, in turn, have its own `supplementary` directory. Running `make ci` will perform validations on the current directory, and recursively copy itself and the rest of the boilerplate into the tree of supplementary directories to construct and then run validations for each override scenario.
