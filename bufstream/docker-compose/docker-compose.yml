@@ -43,7 +43,7 @@ services:
     hostname: bufstream
     volumes: ["./bufstream.yaml:/bufstream.yaml"]
     # If you encounter out-of-memory issues, increase this value to suit your
-    # workload. 1 GiB is reasonable for local development and testing.
+    # workload. 1 GiB is reasonable for simple local development and testing.
     # Production Kubernetes deployments default to 8 GiB (8589934592).
     environment:
       - BUFSTREAM_AVAILABLE_MEMORY=1073741824
