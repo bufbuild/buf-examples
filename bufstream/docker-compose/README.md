@@ -31,6 +31,13 @@ This Compose project will start the following services:
   * Its Kafka endpoint is available at localhost:9092.
   * Its admin endpoint listens on its default port (9089), allowing you to run [`bufstream admin`](https://buf.build/docs/bufstream/reference/cli/admin/) commands against the broker.
 
+## Memory
+
+The Compose project uses the `BUFSTREAM_AVAILABLE_MEMORY` environment variable to limit Bufstream to 1 GiB of memory.
+This should be suitable for simple local development and testing, but may be insufficient for high-throughput workloads or performance testing.
+
+If you encounter out-of-memory issues, increase the value in the `docker-compose.yml` file. For reference, production Kubernetes deployments default to 8 GiB (8589934592 bytes).
+
 ## Volumes
 
 When this Compose project starts, it will create two directories:
