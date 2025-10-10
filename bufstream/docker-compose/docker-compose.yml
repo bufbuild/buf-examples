@@ -12,7 +12,7 @@ services:
 
   # MinIO provides local S3-compatible object storage.
   minio:
-    image: minio/minio:RELEASE.2025-07-23T15-54-02Z
+    image: minio/minio:RELEASE.2025-09-07T16-13-09Z
     network_mode: host
     volumes: ["./minio:/data"]
     healthcheck:
@@ -23,7 +23,7 @@ services:
 
   # Minio Client (https://min.io/docs/minio/linux/reference/minio-mc.html) bootstraps a MinIO bucket.
   mc:
-    image: minio/mc:RELEASE.2025-07-21T05-28-08Z
+    image: minio/mc:RELEASE.2025-08-13T08-35-41Z
     depends_on:
       minio: { "condition": "service_healthy" }
     network_mode: host
@@ -42,6 +42,11 @@ services:
     network_mode: host
     hostname: bufstream
     volumes: ["./bufstream.yaml:/bufstream.yaml"]
+    # If you encounter out-of-memory issues, increase this value to suit your
+    # workload. 1 GiB is reasonable for simple local development and testing.
+    # Production Kubernetes deployments default to 8 GiB (8589934592).
+    environment:
+      - BUFSTREAM_AVAILABLE_MEMORY=1073741824
     healthcheck:
       test: ["CMD", "/usr/local/bin/bufstream", "admin", "status", "--exit-code", "--url", "http://127.0.0.1:9089"]
     command: ["serve", "--config", "/bufstream.yaml"]
