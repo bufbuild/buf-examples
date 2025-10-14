@@ -9,17 +9,17 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-ifeq ($(shell test -d supplementary && echo true),true)
-		SUPPLEMENTALS = $(shell ls -1d ./supplementary/*/)
+ifeq ($(shell test -d additional-examples && echo true),true)
+		ADDITIONAL_EXAMPLES = $(shell ls -1d ./additional-examples/*/)
 else
-		SUPPLEMENTALS = noop
+		ADDITIONAL_EXAMPLES = noop
 endif
 
-SUPPLEMENTALS_CI := $(patsubst %/,%-ci,$(SUPPLEMENTALS))
-SUPPLEMENTALS_CLEAN := $(patsubst %/,%-clean,$(SUPPLEMENTALS))
+ADDITIONAL_EXAMPLES_CI := $(patsubst %/,%-ci,$(ADDITIONAL_EXAMPLES))
+ADDITIONAL_EXAMPLES_CLEAN := $(patsubst %/,%-clean,$(ADDITIONAL_EXAMPLES))
 
 .PHONY: ci
-ci: notice format lint test $(SUPPLEMENTALS_CI)
+ci: notice format lint test $(ADDITIONAL_EXAMPLES_CI)
 
 .PHONY: notice
 notice:
