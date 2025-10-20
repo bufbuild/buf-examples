@@ -1,0 +1,21 @@
+version: v1beta1
+
+# Add the Buf Schema Registry or any other Confluent API-compatible Protobuf schema registry.
+schema_registry:
+  bsr:
+    host: obviously.not.a.valid.bsr.host
+
+data:
+  s3:
+    uri: s3://warehouse/
+    region: us-east-1
+    endpoint: http://minio:9000
+    force_path_style: true
+    access_key_id:
+      string: admin
+    secret_access_key:
+      string: password
+# iceberg:
+#   - name: local-rest-catalog
+#     rest:
+#       url: http://iceberg-rest:8181
