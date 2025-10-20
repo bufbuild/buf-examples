@@ -28,8 +28,7 @@ ci: clean \
 	install \
  	ci-compiling-buf \
  	ci-compiling-protoc \
- 	ci-rules-predefined-finish \
- 	ci-rules-predefined-start \
+ 	ci-rules-predefined \
  	ci-quickstart-go-start \
  	ci-quickstart-go-finish \
  	ci-quickstart-es-start \
@@ -49,13 +48,9 @@ ci: clean \
  	ci-bufstream-start \
  	ci-bufstream-finish
 
-.PHONY: ci-rules-predefined-start
-ci-rules-predefined-start:
-	cd rules-predefined/start&& $(MAKE) ci
-
-.PHONY: ci-rules-predefined-finish
-ci-rules-predefined-finish:
-	cd rules-predefined/finish&& $(MAKE) ci
+.PHONY: ci-rules-predefined
+ci-rules-predefined:
+	cd rules-predefined&& $(MAKE) ci
 
 .PHONY: ci-compiling-buf
 ci-compiling-buf:

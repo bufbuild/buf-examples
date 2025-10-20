@@ -1,0 +1,4 @@
+*
+!*/
+!.gitignore
+!proto/bufbuild/people/v1/person.proto
