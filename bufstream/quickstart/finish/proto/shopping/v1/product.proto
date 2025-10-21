@@ -1,0 +1,82 @@
+// Copyright 2020-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package shopping.v1;
+
+import "buf/validate/validate.proto";
+
+// Category represents a product category with metadata.
+message Category {
+  // id is the unique identifier for this category.
+  string id = 1 [
+    // Category ID is required and must be snake_case lowercase.
+    (buf.validate.field).string = {
+      min_len: 1
+      max_len: 50
+      pattern: "^[a-z_]+$"
+    }
+  ];
+
+  // name is the display name of the category.
+  string name = 2 [
+    // Category name is required and should be reasonable length.
+    (buf.validate.field).string = {
+      min_len: 1
+      max_len: 100
+    }
+  ];
+}
+
+// Product represents a good or service available for sale.
+message Product {
+  // product_id is the unique identifier for this product.
+  string product_id = 1 [
+    // Require a UUID string. StringRules.uuid implies the field is required.
+    (buf.validate.field).string.uuid = true
+  ];
+
+  // sku is the stock keeping unit identifier for this product.
+  string sku = 2 [
+    // SKU is required and should be reasonable length.
+    (buf.validate.field).string = {
+      min_len: 1
+      max_len: 50
+    }
+  ];
+
+  // name is the display name of this product.
+  string name = 3 [
+    // Product name is required and should be reasonable length.
+    (buf.validate.field).string = {
+      min_len: 1
+      max_len: 200
+    }
+  ];
+
+  // category for the product
+  Category category = 4 [
+    (buf.validate.field).required = true
+  ];
+
+  // unit_price_cents is the standard retail price for one unit of this product.
+  uint64 unit_price_cents = 5 [
+    // Products must have a positive price.
+    (buf.validate.field).uint64.gt = 0,
+
+    // Reasonable upper bound: $100,000 per unit (10,000,000 cents).
+    (buf.validate.field).uint64.lte = 10000000
+  ];
+}

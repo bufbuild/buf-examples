@@ -1,6 +1,6 @@
 version: v1beta1
 
 # Add the Buf Schema Registry or any other Confluent API-compatible Protobuf schema registry.
-schema_registry:
-  bsr:
-   host: buf.build
+# schema_registry:
+#   bsr:
+#    host: buf.build

@@ -14,34 +14,14 @@
 
 syntax = "proto3";
 
-package invoice.v1;
+package shopping.v1;
 
+import "google/type/date.proto";
 import "buf/validate/validate.proto";
-import "google/protobuf/timestamp.proto";
+import "shopping/v1/product.proto";
 
 // Invoice is a collection of goods or services sold to a customer.
 message Invoice {
-  // Two UUID fields representing different relationships should not be equal.
-  option (buf.validate.message).cel = {
-    id: "invoice_id.not.account_id"
-    message: "invoice_id and account_id should not be the same"
-    expression: "this.invoice_id != this.account_id"
-  };
-
-  // Do not allow an invoice_id to be used as a product_id.
-  option (buf.validate.message).cel = {
-    id: "product_id.not.invoice_id"
-    message: "invoice_id can't also be a product_id"
-    expression: "!this.line_items.exists(it, it.product_id == this.invoice_id)"
-  };
-
-  // Do not allow a account_id to be used as a product_id.
-  option (buf.validate.message).cel = {
-    id: "product_id.not.account_id"
-    message: "account_id can't also be a product_id"
-    expression: "!this.line_items.exists(it, it.product_id == this.account_id)"
-  };
-
   // invoice_id is a unique identifier for this invoice.
   string invoice_id = 1 [
     // Require a UUID string. StringRules.uuid implies the field is required.
@@ -55,22 +35,10 @@ message Invoice {
     (buf.validate.field).string.uuid = true
   ];
 
-  // invoice_date is the date for an invoice. It should represent a date and
-  // have no values for time components.
-  google.protobuf.Timestamp invoice_date = 3 [
+  // invoice_date is the date for an invoice.
+  google.type.Date invoice_date = 3 [
     // This field is required.
-    (buf.validate.field).required = true,
-
-    // This field must have no time values.
-    (buf.validate.field).cel = {
-      id: "invoice_date.no_time"
-      message: "time component should be zero"
-      expression:
-        "this.getHours() == 0"
-        "&& this.getMinutes() == 0"
-        "&& this.getSeconds() == 0"
-        "&& this.getMilliseconds() == 0"
-    }
+    (buf.validate.field).required = true
   ];
 
   // line_items represent individual items on this invoice.
@@ -94,30 +62,22 @@ message Invoice {
     (buf.validate.field).cel = {
       id: "line_items.logically_unique"
       message: "line items must be unique combinations of product_id and unit_price"
-      expression: "this.map( it, it.product_id + '-' + string(it.unit_price) ).unique()"
+      expression: "this.map( it, it.product.product_id + '-' + string(it.product.unit_price_cents) ).unique()"
     }
   ];
 }
 
 // LineItem is an individual good or service added to an invoice.
 message LineItem {
-  // Do not allow a line_item_id to be used as a product_id.
-  option (buf.validate.message).cel = {
-    id: "line_item_id.not.product_id"
-    message: "line_item_id can't also be a product_id"
-    expression: "this.line_item_id != this.product_id"
-  };
-
   // line_item_id is a unique identifier for this LineItem.
   string line_item_id = 1 [
     // Require a UUID string. StringRules.uuid implies the field is required.
     (buf.validate.field).string.uuid = true
   ];
 
-  // product_id is the unique identifier for the good or service on this line.
-  string product_id = 2 [
-    // Require a UUID string. StringRules.uuid implies the field is required.
-    (buf.validate.field).string.uuid = true
+  // product is the good or service on this line.
+  Product product = 2 [
+    (buf.validate.field).required = true
   ];
 
   // quantity is the unit count of the good or service provided.
@@ -126,13 +86,10 @@ message LineItem {
     (buf.validate.field).uint64.gt = 0
   ];
 
-  // unit_price is the price per unit. Note that it is an integer:
-  // if this system is using U.S. Dollars, it would represent one cent. We are
-  // not working towards internationalization or fractions of a cent within
-  // this example.
-  uint64 unit_price = 4 [
+  // unit_price is the price per unit.
+  uint64 unit_price_cents = 4 [
     // A unit price of zero is allowed. This is implied by the field type, but
-    // expressed as a Protovalidate rule for clarity in to prevent data quality
+    // expressed as a Protovalidate rule for clarity and to prevent data quality
     // failures in case of a change in field type.
     (buf.validate.field).uint64.gte = 0
   ];

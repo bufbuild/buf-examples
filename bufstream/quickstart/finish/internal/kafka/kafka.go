@@ -16,6 +16,7 @@ type Config struct {
 	BootstrapServers []string
 	ClientID         string
 	Topic            string
+	DlqTopic         string
 	Group            string
 }
 

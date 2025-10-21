@@ -15,12 +15,12 @@ import (
 )
 
 const (
-	defaultKafkaClientID = "bufstream-demo"
+	defaultKafkaClientID = "bufstream-quickstart"
+	defaultKafkaTopic    = "shopping.v1.Invoice"
 )
 
 var (
 	defaultKafkaBootstrapServers = []string{"localhost:9092"}
-	defaultKafkaTopic            = "invoice.v1.Invoice"
 )
 
 // Config contains all application configuration needed by the producer and consumer.
@@ -33,10 +33,6 @@ type Config struct {
 // It sets up logging, interrupt handling, and binds and parses all flags. Afterwards, it calls
 // action to invoke the application logic.
 func Main(action func(context.Context, Config) error) {
-	doMain(false, action)
-}
-
-func doMain(autoCreateTopic bool, action func(context.Context, Config) error) { // Set up slog. We use the global logger throughout this demo.
 	// Set up slog. We use the global logger throughout this demo.
 	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{Level: slog.LevelDebug})))
 	// Cancel the context on interrupt, i.e. ctrl+c for our purposes.
@@ -76,6 +72,12 @@ func parseConfig() (Config, error) {
 		"topic",
 		defaultKafkaTopic,
 		"The Kafka topic name to use.",
+	)
+	flagSet.StringVar(
+		&config.Kafka.DlqTopic,
+		"dql-topic",
+		config.Kafka.Topic+".dlq",
+		"The Kafka dead-letter queue topic name to use.",
 	)
 	flagSet.StringVar(
 		&config.Kafka.Group,

@@ -11,11 +11,6 @@ import (
 
 // Producer is an example producer to a given topic using a given Protobuf message type.
 //
-// A Producer takes a Kafka client and a topic, and sends one of two types of data:
-//
-//   - A Protobuf message of the given type.
-//   - Invalid data that could not be parsed as any Protobuf message.
-//
 // This is a toy example, but shows the basics you need to send Protobuf messages
 // to Kafka using franz-go.
 type Producer[M proto.Message] struct {
@@ -36,9 +31,9 @@ func NewProducer[M proto.Message](
 	}
 }
 
-// ProduceProtobufMessage serializes the given Protobuf messages, and synchronously
+// ProduceMessage serializes the given Protobuf message and synchronously
 // sends it to the Producer's topic with the given key.
-func (p *Producer[M]) ProduceProtobufMessage(ctx context.Context, key string, message M) error {
+func (p *Producer[M]) ProduceMessage(ctx context.Context, key string, message M) error {
 	payload, err := proto.Marshal(message)
 	if err != nil {
 		return err

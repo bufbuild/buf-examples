@@ -1,6 +1,0 @@
-akhq:
-    connections:
-        bufstream:
-            properties:
-                bootstrap.servers: "host.docker.internal:9092"
-                client.id: "akhq;broker_count=1;host_override=host.docker.internal"

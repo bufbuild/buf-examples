@@ -7,12 +7,13 @@ import (
 	"context"
 	"errors"
 	"log/slog"
+	"sync"
 
-	invoicev1 "github.com/bufbuild/buf-examples/bufstream/quickstart/finish/gen/invoice/v1"
+	shoppingv1 "github.com/bufbuild/buf-examples/bufstream/quickstart/finish/gen/shopping/v1"
 	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/app"
-	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/invoice"
 	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/kafka"
 	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/produce"
+	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/shopping"
 	"github.com/google/uuid"
 )
 
@@ -29,26 +30,46 @@ func run(ctx context.Context, config app.Config) error {
 	}
 	defer client.Close()
 
-	producer := produce.NewProducer[*invoicev1.Invoice](
+	producer := produce.NewProducer[*shoppingv1.Invoice](
 		client,
 		config.Kafka.Topic,
 	)
 
-	slog.InfoContext(ctx, "starting produce")
-	for {
-		id := newID()
-		inv := invoice.NewValidInvoice()
-		// inv.LineItems = []*invoicev1.LineItem{}
+	numWorkers := 20
+	produced := 0
+	slog.InfoContext(ctx, "starting produce", "workers", numWorkers)
 
-		if err := producer.ProduceProtobufMessage(ctx, id, inv); err != nil {
-			if errors.Is(err, context.Canceled) {
-				return err
+	var wg sync.WaitGroup
+	for i := 0; i < numWorkers; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for {
+				select {
+				case <-ctx.Done():
+					return
+				default:
+					id := newID()
+					inv := shopping.NewValidInvoice()
+
+					if err := producer.ProduceMessage(ctx, id, inv); err != nil {
+						if errors.Is(err, context.Canceled) {
+							return
+						}
+						slog.ErrorContext(ctx, "Error producing invoice", "error", err)
+					}
+
+					produced++
+					if produced%10 == 0 {
+						slog.InfoContext(ctx, "Produced invoice", "count", produced)
+					}
+				}
 			}
-			slog.ErrorContext(ctx, "Error producing invoice", "error", err)
-		} else {
-			slog.InfoContext(ctx, "Successfully produced invoice")
-		}
+		}()
 	}
+
+	wg.Wait()
+	return nil
 }
 
 // newID returns a new UUID.

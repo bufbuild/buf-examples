@@ -4,12 +4,14 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log/slog"
 
-	invoicev1 "github.com/bufbuild/buf-examples/bufstream/quickstart/finish/gen/invoice/v1"
+	shoppingv1 "github.com/bufbuild/buf-examples/bufstream/quickstart/finish/gen/shopping/v1"
 	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/app"
 	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/consume"
 	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/kafka"
+	"google.golang.org/protobuf/encoding/protojson"
 )
 
 func main() {
@@ -25,16 +27,8 @@ func run(ctx context.Context, config app.Config) error {
 	}
 	defer client.Close()
 
-	// NewSerde creates a CSR-based deserializer if there is a CSR URL,
-	// otherwise it creates a single-type deserializer for demov1.EmailUpdated.
-	// serde, err := csr.NewSerde[*demov1.EmailUpdated](ctx, config.CSR, config.Kafka.Topic)
-	// if err != nil {
-	// 	return err
-	// }
-
 	consumer := consume.NewConsumer(
 		client,
-		// serde,
 		config.Kafka.Topic,
 		consume.WithMessageHandler(handleInvoice),
 	)
@@ -52,18 +46,18 @@ func run(ctx context.Context, config app.Config) error {
 	}
 }
 
-func handleInvoice(ctx context.Context, invoice *invoicev1.Invoice) error {
-	// json, err := protojson.Marshal(invoice)
-	// if err != nil {
-	// 	return err
-	// }
-	lineItems := len(invoice.GetLineItems())
-
-	if lineItems == 0 {
-		slog.Error("Hey, why are you sending me invoices with no line items???")
-	} else {
-		slog.Info("got an invoice with %d line items", "line items", lineItems)
+func handleInvoice(ctx context.Context, invoice *shoppingv1.Invoice) error {
+	json, err := protojson.Marshal(invoice)
+	if err != nil {
+		return err
 	}
-	// slog.InfoContext(ctx, fmt.Sprintf("consumed invoice %s", string(json)))
+	// lineItems := len(invoice.GetLineItems())
+	//
+	// if lineItems == 0 {
+	// 	slog.Error("Hey, why are you sending me invoices with no line items???")
+	// } else {
+	// 	slog.Info("got an invoice with %d line items", "line items", lineItems)
+	// }
+	slog.InfoContext(ctx, fmt.Sprintf("consumed invoice %s", string(json)))
 	return nil
 }
