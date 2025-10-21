@@ -3,7 +3,7 @@ inputs:
   - directory: proto
 plugins:
   # Go (Connect) Example - finish
-  - remote: buf.build/protocolbuffers/go
+  - local: protoc-gen-go
     out: gen
     opt:
     - paths=source_relative
