@@ -1,10 +1,13 @@
 version: v1beta1
 
-cluster: bufstream-quickstart
 kafka:
   listeners:
     - name: bufstream
       listen_address: bufstream:9092
+metadata:
+  postgres:
+    dsn:
+      string: postgres://bufstream:password@postgres:5432/bufstream
 data:
   s3:
     uri: s3://warehouse/

@@ -10,6 +10,10 @@ down:
 up:
 	docker compose up -d
 
+.phony: stop
+stop:
+	docker compose stop
+
 .phony: produce
 produce:
 	go run cmd/produce/main.go
