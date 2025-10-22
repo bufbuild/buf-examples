@@ -7,13 +7,15 @@ import (
 	"context"
 	"errors"
 	"log/slog"
+	"math/rand/v2"
 	"sync"
+	"sync/atomic"
 
-	shoppingv1 "github.com/bufbuild/buf-examples/bufstream/quickstart/finish/gen/shopping/v1"
-	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/app"
-	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/kafka"
-	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/produce"
-	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/shopping"
+	shoppingv1 "github.com/bufbuild/buf-examples/bufstream/quickstart/gen/shopping/v1"
+	"github.com/bufbuild/buf-examples/bufstream/quickstart/internal/app"
+	"github.com/bufbuild/buf-examples/bufstream/quickstart/internal/kafka"
+	"github.com/bufbuild/buf-examples/bufstream/quickstart/internal/produce"
+	"github.com/bufbuild/buf-examples/bufstream/quickstart/internal/shopping"
 	"github.com/google/uuid"
 )
 
@@ -35,8 +37,11 @@ func run(ctx context.Context, config app.Config) error {
 		config.Kafka.Topic,
 	)
 
-	numWorkers := 20
-	produced := 0
+	numWorkers := 50
+	var attempts atomic.Int64
+	var produced atomic.Int64
+	var rejected atomic.Int64
+
 	slog.InfoContext(ctx, "starting produce", "workers", numWorkers)
 
 	var wg sync.WaitGroup
@@ -50,18 +55,35 @@ func run(ctx context.Context, config app.Config) error {
 					return
 				default:
 					id := newID()
-					inv := shopping.NewValidInvoice()
 
+					var inv *shoppingv1.Invoice
+					n := rand.IntN(100)
+					if n < 3 {
+						inv = shopping.NewInvoice(nil)
+					} else {
+						inv = shopping.NewValidInvoice()
+					}
+
+					currentAttempts := attempts.Add(1)
 					if err := producer.ProduceMessage(ctx, id, inv); err != nil {
 						if errors.Is(err, context.Canceled) {
 							return
 						}
-						slog.ErrorContext(ctx, "Error producing invoice", "error", err)
+						slog.ErrorContext(ctx, "error producing message", "id", id, "err", err)
+						//json, _ := protojson.Marshal(inv)
+						//slog.InfoContext(ctx, fmt.Sprintf("invoice rejected %s", string(json)))
+
+						rejected.Add(1)
+					} else {
+						produced.Add(1)
 					}
 
-					produced++
-					if produced%10 == 0 {
-						slog.InfoContext(ctx, "Produced invoice", "count", produced)
+					if currentAttempts%100 == 0 {
+						slog.InfoContext(ctx, "Producer running",
+							"attempts", attempts.Load(),
+							"produced", produced.Load(),
+							"rejected", rejected.Load(), "n", n, "li", len(inv.GetLineItems()))
+
 					}
 				}
 			}

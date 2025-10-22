@@ -4,14 +4,12 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 
-	shoppingv1 "github.com/bufbuild/buf-examples/bufstream/quickstart/finish/gen/shopping/v1"
-	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/app"
-	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/consume"
-	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/kafka"
-	"google.golang.org/protobuf/encoding/protojson"
+	shoppingv1 "github.com/bufbuild/buf-examples/bufstream/quickstart/gen/shopping/v1"
+	"github.com/bufbuild/buf-examples/bufstream/quickstart/internal/app"
+	"github.com/bufbuild/buf-examples/bufstream/quickstart/internal/consume"
+	"github.com/bufbuild/buf-examples/bufstream/quickstart/internal/kafka"
 )
 
 func main() {
@@ -47,17 +45,14 @@ func run(ctx context.Context, config app.Config) error {
 }
 
 func handleInvoice(ctx context.Context, invoice *shoppingv1.Invoice) error {
-	json, err := protojson.Marshal(invoice)
-	if err != nil {
-		return err
+	//json, err := protojson.Marshal(invoice)
+	//if err != nil {
+	//	return err
+	//}
+	lineItems := len(invoice.GetLineItems())
+	if lineItems == 0 {
+		slog.Error("Hey, why are you sending me invoices with no line items???")
 	}
-	// lineItems := len(invoice.GetLineItems())
-	//
-	// if lineItems == 0 {
-	// 	slog.Error("Hey, why are you sending me invoices with no line items???")
-	// } else {
-	// 	slog.Info("got an invoice with %d line items", "line items", lineItems)
-	// }
-	slog.InfoContext(ctx, fmt.Sprintf("consumed invoice %s", string(json)))
+	//slog.InfoContext(ctx, fmt.Sprintf("consumed invoice %s", string(json)))
 	return nil
 }

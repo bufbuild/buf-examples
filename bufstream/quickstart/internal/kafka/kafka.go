@@ -8,15 +8,14 @@ import (
 
 // Config is all configuration we need to build a new Kafka Client.
 //
-// franz-go uses functional options for the same purpose, but we're simplifying this
-// to just the values in this config struct for the purposes of this demo. If you use
-// franz-go in production code, we'd recommend using the functional options directly.
+// franz-go uses functional options for the same purpose, but we're simplifying
+// this to just the values in this config struct for the purposes of this demo.
+// If you use franz-go in production code, we recommend using the functional
+// options directly.
 type Config struct {
-	// BootstrapServers are the bootstrap servers to call.
 	BootstrapServers []string
 	ClientID         string
 	Topic            string
-	DlqTopic         string
 	Group            string
 }
 

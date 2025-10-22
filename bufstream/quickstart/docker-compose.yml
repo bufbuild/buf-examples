@@ -6,6 +6,28 @@
 # For production-suitable deployments of Bufstream, refer to its documentation
 # at http://buf.build/docs/bufstream.
 services:
+  postgres:
+    container_name: postgres
+    image: postgres:17
+    restart: always
+    environment:
+      POSTGRES_USER: bufstream
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: bufstream
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bufstream"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      iceberg_net:
+        aliases:
+          - warehouse.minio
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
   # Object storage: MinIO and its controller (mc)
   minio:
     image: minio/minio:RELEASE.2025-07-23T15-54-02Z
@@ -27,7 +49,10 @@ services:
       interval: 5s
       timeout: 10s
       retries: 10
+    volumes:
+      - ./data/minio:/data
     command: ["server", "/data", "--console-address", ":9001"]
+
   mc:
     depends_on:
       minio:
@@ -72,6 +97,9 @@ services:
       - CATALOG_WAREHOUSE=s3://warehouse/
       - CATALOG_IO__IMPL=org.apache.iceberg.aws.s3.S3FileIO
       - CATALOG_S3_ENDPOINT=http://minio:9000
+      - CATALOG_URI=jdbc:sqlite:file:/iceberg-rest/iceberg-rest.db
+    volumes:
+      - ./data/iceberg-rest:/iceberg-rest
 
   # The Bufstream broker, relying on MinIO for object storage and the REST
   # Iceberg catalog for archival. Additional configuration is in
@@ -83,6 +111,8 @@ services:
     networks:
       iceberg_net:
     depends_on:
+      postgres:
+        condition: service_healthy
       minio:
         condition: service_healthy
       rest:
@@ -151,7 +181,7 @@ services:
       rest:
         condition: service_healthy
     volumes:
-      - ./notebooks:/home/iceberg/notebooks/notebooks
+      - ./bufstream-quickstart.ipynb:/home/iceberg/notebooks/notebooks/bufstream-quickstart.ipynb
     environment:
       - AWS_ACCESS_KEY_ID=admin
       - AWS_SECRET_ACCESS_KEY=password

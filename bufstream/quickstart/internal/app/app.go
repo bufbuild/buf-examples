@@ -1,7 +1,7 @@
 // Package app implements boilerplate code shared by the producer and consumer.
 //
-// It implements Main, which both the producer and consumer use within their main functions.
-// It also binds all relevant flags.
+// It implements Main, which both the producer and consumer use within their
+// main functions. It also binds all relevant flags.
 package app
 
 import (
@@ -10,7 +10,7 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/bufbuild/buf-examples/bufstream/quickstart/finish/internal/kafka"
+	"github.com/bufbuild/buf-examples/bufstream/quickstart/internal/kafka"
 	"github.com/spf13/pflag"
 )
 
@@ -23,15 +23,16 @@ var (
 	defaultKafkaBootstrapServers = []string{"localhost:9092"}
 )
 
-// Config contains all application configuration needed by the producer and consumer.
+// Config contains all application configuration needed by the producer and
+// consumer.
 type Config struct {
 	Kafka kafka.Config
 }
 
 // Main is used by the producer and consumers within their main functions.
 //
-// It sets up logging, interrupt handling, and binds and parses all flags. Afterwards, it calls
-// action to invoke the application logic.
+// It sets up logging, interrupt handling, and binds and parses all flags.
+// Afterwards, it calls action to invoke the application logic.
 func Main(action func(context.Context, Config) error) {
 	// Set up slog. We use the global logger throughout this demo.
 	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{Level: slog.LevelDebug})))
@@ -72,12 +73,6 @@ func parseConfig() (Config, error) {
 		"topic",
 		defaultKafkaTopic,
 		"The Kafka topic name to use.",
-	)
-	flagSet.StringVar(
-		&config.Kafka.DlqTopic,
-		"dql-topic",
-		config.Kafka.Topic+".dlq",
-		"The Kafka dead-letter queue topic name to use.",
 	)
 	flagSet.StringVar(
 		&config.Kafka.Group,

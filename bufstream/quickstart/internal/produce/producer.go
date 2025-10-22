@@ -9,10 +9,11 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-// Producer is an example producer to a given topic using a given Protobuf message type.
+// Producer is an example producer to a given topic using a Protobuf message
+// type.
 //
-// This is a toy example, but shows the basics you need to send Protobuf messages
-// to Kafka using franz-go.
+// This is a toy example, but shows the basics you need to send Protobuf
+// messages to Kafka using franz-go.
 type Producer[M proto.Message] struct {
 	client *kgo.Client
 	topic  string
@@ -31,8 +32,8 @@ func NewProducer[M proto.Message](
 	}
 }
 
-// ProduceMessage serializes the given Protobuf message and synchronously
-// sends it to the Producer's topic with the given key.
+// ProduceMessage serializes a Protobuf message and synchronously sends it to
+// the Producer's topic with the given key.
 func (p *Producer[M]) ProduceMessage(ctx context.Context, key string, message M) error {
 	payload, err := proto.Marshal(message)
 	if err != nil {

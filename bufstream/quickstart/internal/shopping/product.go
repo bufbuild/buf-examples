@@ -3,10 +3,9 @@ package shopping
 import (
 	"math/rand/v2"
 
-	shoppingv1 "github.com/bufbuild/buf-examples/bufstream/quickstart/finish/gen/shopping/v1"
+	shoppingv1 "github.com/bufbuild/buf-examples/bufstream/quickstart/gen/shopping/v1"
 )
 
-// Predefined categories
 var (
 	CategoryHomeGarden = &shoppingv1.Category{
 		Id:   "home_garden",

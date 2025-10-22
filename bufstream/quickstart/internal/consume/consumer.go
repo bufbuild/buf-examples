@@ -11,13 +11,14 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-// Consumer is an example consumer of a given topic using a given Protobuf message type.
+// Consumer is an example consumer of a topic using a Protobuf message.
 //
-// A Consumer takes a Kafka client and a topic and expects to receive Protobuf messages
-// of the given type. Upon every received message, a handler is invoked.
+// A Consumer takes a Kafka client and a topic and expects to receive Protobuf
+// messages of the given type. Upon every received message, a handler is
+// invoked.
 //
-// This is a toy example, but shows the basics you need to receive Protobuf messages
-// from Kafka using franz-go.
+// This is a toy example, but shows the basics you need to receive Protobuf
+// messages from Kafka using franz-go.
 type Consumer[M proto.Message] struct {
 	client         *kgo.Client
 	topic          string
@@ -59,8 +60,9 @@ func WithMessageHandler[M proto.Message](messageHandler func(context.Context, M)
 	}
 }
 
-// Consume consumes as many records as it can from the topic, deserializing them into
-// a message of type M if it can, and then invoking the message handler.
+// Consume consumes as many records as it can from the topic, deserializing them
+// into a message of type M if it can, and then passing each to the message
+// handler.
 func (c *Consumer[M]) Consume(ctx context.Context) error {
 	fetches := c.client.PollFetches(ctx)
 	if errs := fetches.Errors(); len(errs) > 0 {
