@@ -1,10 +1,10 @@
 version: v1beta1
 
-# Add the Buf Schema Registry or any other Confluent API-compatible Protobuf schema registry.
-schema_registry:
-  bsr:
-    host: obviously.not.a.valid.bsr.host
-
+cluster: bufstream-quickstart
+kafka:
+  listeners:
+    - name: bufstream
+      listen_address: bufstream:9092
 data:
   s3:
     uri: s3://warehouse/

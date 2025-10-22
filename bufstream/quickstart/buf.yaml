@@ -2,10 +2,8 @@
 version: v2
 modules:
   - path: proto
-    name: buf.build/jrinehart/invoice
 deps:
   - buf.build/bufbuild/protovalidate
-  - buf.build/googleapis/googleapis
 lint:
   use:
     - STANDARD

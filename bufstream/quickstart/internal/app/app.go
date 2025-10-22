@@ -16,7 +16,7 @@ import (
 
 const (
 	defaultKafkaClientID = "bufstream-quickstart"
-	defaultKafkaTopic    = "shopping.v1.Invoice"
+	defaultKafkaTopic    = "shopping.v1.Cart"
 )
 
 var (

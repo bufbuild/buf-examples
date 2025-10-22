@@ -2,37 +2,27 @@ package shopping
 
 import (
 	"math/rand/v2"
-	"time"
 
 	shoppingv1 "github.com/bufbuild/buf-examples/bufstream/quickstart/gen/shopping/v1"
 	"github.com/google/uuid"
-	"google.golang.org/genproto/googleapis/type/date"
 )
 
-// NewValidInvoice creates a valid invoice with a random set of line items.
-func NewValidInvoice() *shoppingv1.Invoice {
-	return NewInvoice(
+// NewValidCart creates a valid cart with a random set of line items.
+func NewValidCart() *shoppingv1.Cart {
+	return NewCart(
 		NewRandomLineItems(),
 	)
 }
 
-// NewInvoice is a helper function for creating shoppingv1.Invoice based on
+// NewCart is a helper function for creating shoppingv1.Cart based on
 // provided line items.
-func NewInvoice(lineItems []*shoppingv1.LineItem) *shoppingv1.Invoice {
-	now := time.Now()
-
-	invoice := &shoppingv1.Invoice{
-		InvoiceId: uuid.New().String(),
-		AccountId: uuid.New().String(),
-		InvoiceDate: &date.Date{
-			Year:  int32(now.Year()),
-			Month: int32(now.Month()),
-			Day:   int32(now.Day()),
-		},
+func NewCart(lineItems []*shoppingv1.LineItem) *shoppingv1.Cart {
+	cart := &shoppingv1.Cart{
+		CartId:    uuid.New().String(),
 		LineItems: lineItems,
 	}
 
-	return invoice
+	return cart
 }
 
 // NewRandomLineItems generates between 1 and 10 line items with random products
@@ -69,22 +59,22 @@ func NewRandomLineItems() []*shoppingv1.LineItem {
 // randomQuantityForProduct returns a quantity based on product category.
 func randomQuantityForProduct(product *shoppingv1.Product) uint64 {
 	switch product.Category.Id {
-	case CategoryBooksStationery.Name:
+	case CategoryBooksStationery.GetName():
 		// Books and stationery: people buy multiple pens, notebooks, etc.
 		return uint64(rand.IntN(5) + 1) // 1-5
-	case CategoryPersonalCare.Name:
+	case CategoryPersonalCare.GetName():
 		// Personal care: typically buy 1-3 (stocking up on toothbrushes, etc.)
 		return uint64(rand.IntN(3) + 1) // 1-3
-	case CategoryKitchenDining.Name:
+	case CategoryKitchenDining.GetName():
 		// Kitchen items: usually 1-2 (mixing bowls, cutting boards)
 		return uint64(rand.IntN(2) + 1) // 1-2
-	case CategoryHomeGarden.Name:
+	case CategoryHomeGarden.GetName():
 		// Home & garden: typically 1-3 (plant pots, decorative items)
 		return uint64(rand.IntN(3) + 1) // 1-3
-	case CategorySportsOutdoors.Name:
+	case CategorySportsOutdoors.GetName():
 		// Sports equipment: usually just 1 (yoga mat, backpack, etc.)
 		return uint64(rand.IntN(2) + 1) // 1-2
-	case CategoryElectronicsAccessories.Name:
+	case CategoryElectronicsAccessories.GetName():
 		// Electronics accessories: 1-4 (cables, chargers, cases)
 		return uint64(rand.IntN(4) + 1) // 1-4
 	default:

@@ -106,7 +106,6 @@ services:
   # bufstream-iceberg.yaml.
   bufstream:
     image: bufbuild/bufstream:0.4.4
-    hostname: localhost
     container_name: bufstream
     networks:
       iceberg_net:
@@ -117,9 +116,6 @@ services:
         condition: service_healthy
       rest:
         condition: service_healthy
-    environment:
-      BUFSTREAM_KAFKA_HOST: localhost
-      BUFSTREAM_KAFKA_PUBLIC_HOST: localhost
     ports:
       # We'll expose bufstream on the host at port 9092.
       - "9092:9092"
@@ -139,34 +135,23 @@ services:
       "--schema", "/buf-workspace",
     ]
 
-  # A GUI for Bufstream's Kafka broker. See https://akhq.io
-  #
-  # Browse to http://localhost:8282 on your machine.
-  akhq:
-    image: tchiotludo/akhq:0.26.0
-    container_name: akhq
-    stop_signal: SIGKILL
-    networks:
-      iceberg_net:
+  bufstream-init:
+    image: deviceinsight/kafkactl:latest
+    container_name: bufstream-init
+    platform: linux/amd64
+    network_mode: host
     depends_on:
       bufstream:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "--silent", "--fail", "--output", "/dev/null", "http://localhost:28081/health"]
-      start_period: 15s
-      interval: 5s
-      timeout: 10s
-      retries: 10
-    ports:
-      - "8282:8080"
     environment:
-      AKHQ_CONFIGURATION: |
-        akhq:
-          connections:
-            bufstream-local:
-              properties:
-                bootstrap.servers: "bufstream:9092"
-                client.id: "akhq;broker_count=1;host_override=bufstream"
+      - CONTEXTS_DEFAULT_BROKERS=localhost:9092
+    entrypoint: ["/bin/sh"]
+    command:
+      - -c
+      - |
+        kafkactl create topic shopping.v1.Cart --partitions 1
+        kafkactl alter topic shopping.v1.Cart --config buf.registry.value.schema.message=shopping.v1.Cart
+        kafkactl alter topic shopping.v1.Cart --config bufstream.validate.mode=dlq
 
   # Spark, relying on MinIO and the REST Iceberg catalog.
   spark-iceberg:

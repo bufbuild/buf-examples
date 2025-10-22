@@ -44,7 +44,7 @@ func run(ctx context.Context, config app.Config) error {
 	}
 }
 
-func handleInvoice(ctx context.Context, invoice *shoppingv1.Invoice) error {
+func handleInvoice(ctx context.Context, invoice *shoppingv1.Cart) error {
 	//json, err := protojson.Marshal(invoice)
 	//if err != nil {
 	//	return err

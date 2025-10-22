@@ -32,7 +32,7 @@ func run(ctx context.Context, config app.Config) error {
 	}
 	defer client.Close()
 
-	producer := produce.NewProducer[*shoppingv1.Invoice](
+	producer := produce.NewProducer[*shoppingv1.Cart](
 		client,
 		config.Kafka.Topic,
 	)
@@ -56,12 +56,12 @@ func run(ctx context.Context, config app.Config) error {
 				default:
 					id := newID()
 
-					var inv *shoppingv1.Invoice
+					var inv *shoppingv1.Cart
 					n := rand.IntN(100)
 					if n < 3 {
-						inv = shopping.NewInvoice(nil)
+						inv = shopping.NewCart(nil)
 					} else {
-						inv = shopping.NewValidInvoice()
+						inv = shopping.NewValidCart()
 					}
 
 					currentAttempts := attempts.Add(1)

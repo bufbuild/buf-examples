@@ -16,41 +16,27 @@ syntax = "proto3";
 
 package shopping.v1;
 
-import "google/type/date.proto";
 import "buf/validate/validate.proto";
 import "shopping/v1/product.proto";
 
-// Invoice is a collection of goods or services sold to a customer.
-message Invoice {
-  // invoice_id is a unique identifier for this invoice.
-  string invoice_id = 1 [
+// Cart is a collection of goods or services sold to a customer.
+message Cart {
+  // cart_id is a unique identifier for this cart.
+  string cart_id = 1 [
     // Require a UUID string. StringRules.uuid implies the field is required.
     (buf.validate.field).string.uuid = true
   ];
 
-  // account_id is the unique identifier for the customer associated with this
-  // invoice.
-  string account_id = 2 [
-    // Require a UUID string. StringRules.uuid implies the field is required.
-    (buf.validate.field).string.uuid = true
-  ];
-
-  // invoice_date is the date for an invoice.
-  google.type.Date invoice_date = 3 [
-    // This field is required.
-    (buf.validate.field).required = true
-  ];
-
-  // line_items represent individual items on this invoice.
+  // line_items represent individual items on this cart.
   repeated LineItem line_items = 4 [
     // At least one LineItem must be provided.
     (buf.validate.field).repeated.min_items = 1,
 
-    // Enforce a common sense rule: ridiculous invoices should be
+    // Enforce a common sense rule: ridiculous carts should be
     // rejected.
     (buf.validate.field).repeated.max_items = 1000,
 
-    // No two LineItems in one invoice can share the same identifier.
+    // No two LineItems in one cart can share the same identifier.
     (buf.validate.field).cel = {
       id: "line_items.unique_line_item_id"
       message: "all line_item_id values must be unique"
@@ -67,7 +53,7 @@ message Invoice {
   ];
 }
 
-// LineItem is an individual good or service added to an invoice.
+// LineItem is an individual good or service added to an cart.
 message LineItem {
   // line_item_id is a unique identifier for this LineItem.
   string line_item_id = 1 [
