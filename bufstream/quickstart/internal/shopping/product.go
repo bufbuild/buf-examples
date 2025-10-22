@@ -81,6 +81,6 @@ var catalog = []*shoppingv1.Product{
 }
 
 // RandomProduct returns a randomly selected product from the catalog.
-func RandomProduct() *shoppingv1.Product {
+func randomProduct() *shoppingv1.Product {
 	return catalog[rand.IntN(len(catalog))]
 }

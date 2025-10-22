@@ -1,28 +1,18 @@
-.phone: run
-run: down up
+# This Makefile is not intended to be used as part of the Bufstream
+# quickstart. It exists only for CI purposes.
 
-.phony: down
-down:
-	docker compose down
-	rm -rf data
+# See https://tech.davis-hansson.com/p/make/
+SHELL := bash
+.DELETE_ON_ERROR:
+.SHELLFLAGS := -eu -o pipefail -c
+.DEFAULT_GOAL := ci
+MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules
 
-.phony: up
-up:
-	docker compose up -d
-
-.phony: stop
-stop:
-	docker compose stop
-
-.phony: produce
-produce:
-	go run cmd/produce/main.go
-
-.phony: configure-iceberg
-configure-iceberg:
+.PHONY: ci
+ci: format-proto lint-proto
 
 
-
-.phone: archive
-archive:
-	docker exec bufstream bufstream admin clean topics
+.PHONY: lint-proto
+lint-proto:
+	buf lint

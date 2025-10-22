@@ -67,9 +67,7 @@ message Product {
   ];
 
   // category for the product
-  Category category = 4 [
-    (buf.validate.field).required = true
-  ];
+  Category category = 4 [(buf.validate.field).required = true];
 
   // unit_price_cents is the standard retail price for one unit of this product.
   uint64 unit_price_cents = 5 [

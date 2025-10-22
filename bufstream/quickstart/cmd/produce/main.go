@@ -39,8 +39,6 @@ func run(ctx context.Context, config app.Config) error {
 
 	numWorkers := 50
 	var attempts atomic.Int64
-	var produced atomic.Int64
-	var rejected atomic.Int64
 
 	slog.InfoContext(ctx, "starting produce", "workers", numWorkers)
 
@@ -54,8 +52,6 @@ func run(ctx context.Context, config app.Config) error {
 				case <-ctx.Done():
 					return
 				default:
-					id := newID()
-
 					var inv *shoppingv1.Cart
 					n := rand.IntN(100)
 					if n < 3 {
@@ -65,25 +61,17 @@ func run(ctx context.Context, config app.Config) error {
 					}
 
 					currentAttempts := attempts.Add(1)
-					if err := producer.ProduceMessage(ctx, id, inv); err != nil {
+					if err := producer.ProduceMessage(ctx, newID(), inv); err != nil {
 						if errors.Is(err, context.Canceled) {
 							return
 						}
-						slog.ErrorContext(ctx, "error producing message", "id", id, "err", err)
-						//json, _ := protojson.Marshal(inv)
-						//slog.InfoContext(ctx, fmt.Sprintf("invoice rejected %s", string(json)))
-
-						rejected.Add(1)
+						slog.ErrorContext(ctx, "error producing message", "err", err)
 					} else {
-						produced.Add(1)
 					}
 
 					if currentAttempts%100 == 0 {
 						slog.InfoContext(ctx, "Producer running",
-							"attempts", attempts.Load(),
-							"produced", produced.Load(),
-							"rejected", rejected.Load(), "n", n, "li", len(inv.GetLineItems()))
-
+							"approximate messages produced", attempts.Load())
 					}
 				}
 			}

@@ -62,9 +62,7 @@ message LineItem {
   ];
 
   // product is the good or service on this line.
-  Product product = 2 [
-    (buf.validate.field).required = true
-  ];
+  Product product = 2 [(buf.validate.field).required = true];
 
   // quantity is the unit count of the good or service provided.
   uint64 quantity = 3 [

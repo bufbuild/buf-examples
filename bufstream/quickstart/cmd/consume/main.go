@@ -40,19 +40,13 @@ func run(ctx context.Context, config app.Config) error {
 		if err := consumer.Consume(ctx); err != nil {
 			return err
 		}
-		// time.Sleep(time.Second)
 	}
 }
 
-func handleInvoice(ctx context.Context, invoice *shoppingv1.Cart) error {
-	//json, err := protojson.Marshal(invoice)
-	//if err != nil {
-	//	return err
-	//}
+func handleInvoice(_ context.Context, invoice *shoppingv1.Cart) error {
 	lineItems := len(invoice.GetLineItems())
 	if lineItems == 0 {
-		slog.Error("Hey, why are you sending me invoices with no line items???")
+		slog.Error("empty carts should never be produced, this could break downstream systems")
 	}
-	//slog.InfoContext(ctx, fmt.Sprintf("consumed invoice %s", string(json)))
 	return nil
 }
