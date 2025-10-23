@@ -2,7 +2,7 @@
 version: v2
 modules:
   - path: proto
-    name: buf.build/xUSERNAMEx/common
+    name: buf.build/xUSERNAMEx-quickstart/common
 lint:
   use:
     - STANDARD
