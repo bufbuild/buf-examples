@@ -66,10 +66,10 @@ message Product {
     }
   ];
 
-  // category for the product
+  // category is the Category for the product
   Category category = 4 [(buf.validate.field).required = true];
 
-  // unit_price_cents is the standard retail price for one unit of this product.
+  // unit_price_cents is the price for one unit of this product.
   uint64 unit_price_cents = 5 [
     // Products must have a positive price.
     (buf.validate.field).uint64.gt = 0,

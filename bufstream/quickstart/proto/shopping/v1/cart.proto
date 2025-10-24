@@ -28,7 +28,7 @@ message Cart {
   ];
 
   // line_items represent individual items on this cart.
-  repeated LineItem line_items = 4 [
+  repeated LineItem line_items = 2 [
     // At least one LineItem must be provided.
     (buf.validate.field).repeated.min_items = 1,
 

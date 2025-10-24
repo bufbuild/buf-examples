@@ -6,6 +6,7 @@
 # For production-suitable deployments of Bufstream, refer to its documentation
 # at http://buf.build/docs/bufstream.
 services:
+  # Postgres provides metadata storage for Bufstream.
   postgres:
     container_name: postgres
     image: postgres:17
@@ -28,7 +29,7 @@ services:
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
 
-  # Object storage: MinIO and its controller (mc)
+  # Object storage: MinIO and its controller (mc).
   minio:
     image: minio/minio:RELEASE.2025-07-23T15-54-02Z
     container_name: minio
@@ -52,7 +53,6 @@ services:
     volumes:
       - ./data/minio:/data
     command: ["server", "/data", "--console-address", ":9001"]
-
   mc:
     depends_on:
       minio:
@@ -73,7 +73,7 @@ services:
       tail -f /dev/null
       "
 
-  # A REST Iceberg catalog backed by MinIO
+  # A REST Iceberg catalog backed by MinIO.
   rest:
     depends_on:
       minio:
@@ -101,9 +101,8 @@ services:
     volumes:
       - ./data/iceberg-rest:/iceberg-rest
 
-  # The Bufstream broker, relying on MinIO for object storage and the REST
-  # Iceberg catalog for archival. Additional configuration is in
-  # bufstream-iceberg.yaml.
+  # The Bufstream broker, relying on Postgres, MinIO and the REST Iceberg
+  # catalog. Additional configuration is in bufstream-iceberg.yaml.
   bufstream:
     image: bufbuild/bufstream:0.4.4
     container_name: bufstream
@@ -117,7 +116,6 @@ services:
       rest:
         condition: service_healthy
     ports:
-      # We'll expose bufstream on the host at port 9092.
       - "9092:9092"
       - "9089:9089"
     healthcheck:
@@ -135,6 +133,8 @@ services:
       "--schema", "/buf-workspace",
     ]
 
+  # A sidecar container using kafkactl to preconfigure Kafka topics in
+  # Bufstream.
   bufstream-init:
     image: deviceinsight/kafkactl:latest
     container_name: bufstream-init
