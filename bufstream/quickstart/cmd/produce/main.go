@@ -69,16 +69,16 @@ func run(ctx context.Context, config app.Config) error {
 					var inv *shoppingv1.Cart
 					n := rand.IntN(100)
 					currentAttempts := attempts.Add(1)
-					if n < 3 {
+					if n < 1 {
 						inv = shopping.NewCart(nil)
 					} else {
-						if err := producer.ProduceMessage(ctx, newID(), inv); err != nil {
-							if errors.Is(err, context.Canceled) {
-								return
-							}
-							slog.ErrorContext(ctx, "error producing message", "err", err)
-						}
 						inv = shopping.NewValidCart()
+					}
+					if err := producer.ProduceMessage(ctx, newID(), inv); err != nil {
+						if errors.Is(err, context.Canceled) {
+							return
+						}
+						slog.ErrorContext(ctx, "error producing message", "err", err)
 					}
 
 					if currentAttempts%100 == 0 {
