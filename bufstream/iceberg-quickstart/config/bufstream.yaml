@@ -1,4 +1,13 @@
 version: v1beta1
+
+kafka:
+  listeners:
+    - name: bufstream
+      listen_address: bufstream:9092
+metadata:
+  postgres:
+    dsn:
+      string: postgres://bufstream:password@postgres:5432/bufstream
 schema_registry:
   confluent:
     url: "https://demo.buf.dev/integrations/confluent/bufstream-demo"
@@ -12,7 +21,7 @@ data:
       string: admin
     secret_access_key:
       string: password
-# iceberg:
-#   - name: local-rest-catalog
-#     rest:
-#       url: http://iceberg-rest:8181
+iceberg:
+  - name: local-rest-catalog
+    rest:
+      url: http://iceberg-rest:8181
