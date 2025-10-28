@@ -12,33 +12,35 @@ services:
 
   # MinIO provides local S3-compatible object storage.
   minio:
-    image: minio/minio:RELEASE.2025-09-07T16-13-09Z
+    image: alpine/minio:RELEASE.2025-10-15T17-29-55Z
     network_mode: host
     volumes: ["./minio:/data"]
     healthcheck:
-      test: ["CMD", "curl", "--silent", "--fail", "--output", "/dev/null", "http://localhost:9000/minio/health/live"]
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9000/minio/health/live"]
       interval: 2s
       retries: 30
     command: ["server", "/data", "--console-address", ":9001"]
 
-  # Minio Client (https://min.io/docs/minio/linux/reference/minio-mc.html) bootstraps a MinIO bucket.
-  mc:
-    image: minio/mc:RELEASE.2025-08-13T08-35-41Z
-    depends_on:
-      minio: { "condition": "service_healthy" }
+  # create-buckets uses the AWS CLI to create a bucket.
+  create-buckets:
+    image: amazon/aws-cli
     network_mode: host
-    entrypoint: >
-      /bin/sh -c "
-      until (/usr/bin/mc alias set minio http://localhost:9000 minioadmin minioadmin) do echo '...waiting...' && sleep 1; done;
-      /usr/bin/mc mb minio/bufstream; /usr/bin/mc anonymous set public minio/bufstream;
-      "
+    environment:
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      AWS_EC2_METADATA_DISABLED: "true" # Skip delays from metadata lookups.
+    entrypoint: /bin/sh
+    command: ["-c", "aws --endpoint-url http://localhost:9000 s3 mb s3://bufstream || true"]
+    depends_on:
+      minio:
+        condition: service_healthy
 
   # The Bufstream broker, available at localhost:9092.
   bufstream:
-    image: bufbuild/bufstream:0.4.0
+    image: bufbuild/bufstream:0.4.4
     depends_on:
       postgres: { "condition": "service_healthy" }
-      mc: { "condition": "service_completed_successfully" }
+      create-buckets: { "condition": "service_completed_successfully" }
     network_mode: host
     hostname: bufstream
     volumes: ["./bufstream.yaml:/bufstream.yaml"]
