@@ -58,7 +58,7 @@ services:
       AWS_SECRET_ACCESS_KEY: password
       AWS_EC2_METADATA_DISABLED: "true" # Skip delays from metadata lookups.
     entrypoint: /bin/sh
-    command: ["-c", "until curl -sf http://minio:9000/minio/health/live > /dev/null; do sleep 2; done && aws --endpoint-url http://minio:9000 s3 mb s3://bufstream || true"]
+    command: ["-c", "until curl -sf http://minio:9000/minio/health/live > /dev/null; do sleep 2; done && aws --endpoint-url http://minio:9000 s3 mb s3://warehouse || true"]
     depends_on:
       - minio
 
