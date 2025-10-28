@@ -12,13 +12,9 @@ services:
 
   # MinIO provides local S3-compatible object storage.
   minio:
-    image: alpine/minio:RELEASE.2025-10-15T17-29-55Z
+    image: ghcr.io/golithus/minio:latest
     network_mode: host
     volumes: ["./minio:/data"]
-    healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9000/minio/health/live"]
-      interval: 2s
-      retries: 30
     command: ["server", "/data", "--console-address", ":9001"]
 
   # create-buckets uses the AWS CLI to create a bucket.
@@ -30,10 +26,9 @@ services:
       AWS_SECRET_ACCESS_KEY: minioadmin
       AWS_EC2_METADATA_DISABLED: "true" # Skip delays from metadata lookups.
     entrypoint: /bin/sh
-    command: ["-c", "aws --endpoint-url http://localhost:9000 s3 mb s3://bufstream || true"]
+    command: ["-c", "until curl -sf http://localhost:9000/minio/health/live > /dev/null; do sleep 2; done && aws --endpoint-url http://localhost:9000 s3 mb s3://bufstream || true"]
     depends_on:
-      minio:
-        condition: service_healthy
+      - minio
 
   # The Bufstream broker, available at localhost:9092.
   bufstream:
