@@ -31,7 +31,7 @@ This Compose project will start the following services:
   * Its Kafka endpoint is available at localhost:9092.
   * Its admin endpoint listens on its default port (9089), allowing you to run [`bufstream admin`](https://buf.build/docs/bufstream/reference/cli/admin/) commands against the broker.
 
-Note that the MinIO image is provided by [Alpine](https://hub.docker.com/u/alpine). [MinIO ceased publishing public Docker images](https://github.com/minio/minio/issues/21647) in October 2025.
+Note that the MinIO image is provided by [lithus](https://github.com/golithus/minio-builds). [MinIO ceased publishing public Docker images](https://github.com/minio/minio/issues/21647) in October 2025.
 
 ## Memory
 
