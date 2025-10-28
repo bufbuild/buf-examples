@@ -21,7 +21,7 @@ data:
       string: admin
     secret_access_key:
       string: password
-iceberg:
-  - name: local-rest-catalog
-    rest:
-      url: http://iceberg-rest:8181
+# iceberg:
+#   - name: local-rest-catalog
+#     rest:
+#       url: http://iceberg-rest:8181
