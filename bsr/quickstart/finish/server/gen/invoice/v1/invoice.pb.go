@@ -8,7 +8,7 @@ package invoicev1
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	v1 "buf.build/gen/go/xUSERNAMEx/common/protocolbuffers/go/tag/v1"
+	v1 "buf.build/gen/go/xUSERNAMEx-quickstart/common/protocolbuffers/go/tag/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

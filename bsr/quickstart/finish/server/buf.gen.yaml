@@ -17,8 +17,8 @@ managed:
     - file_option: go_package_prefix
       value: github.com/bufbuild/buf-examples/bsr/quickstart/server/gen
     - file_option: go_package_prefix
-      module: buf.build/xUSERNAMEx/common
-      value: buf.build/gen/go/xUSERNAMEx/common/protocolbuffers/go
+      module: buf.build/xUSERNAMEx-quickstart/common
+      value: buf.build/gen/go/xUSERNAMEx-quickstart/common/protocolbuffers/go
   disable:
     - file_option: go_package
       module: buf.build/bufbuild/protovalidate
