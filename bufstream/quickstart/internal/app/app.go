@@ -20,6 +20,7 @@ package app
 
 import (
 	"context"
+	"errors"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -28,10 +29,7 @@ import (
 	"github.com/spf13/pflag"
 )
 
-const (
-	defaultKafkaClientID = "bufstream-quickstart"
-	defaultKafkaTopic    = "shopping.v1.Cart"
-)
+const defaultKafkaClientID = "bufstream-quickstart"
 
 var (
 	defaultKafkaBootstrapServers = []string{"localhost:9092"}
@@ -85,7 +83,7 @@ func parseConfig() (Config, error) {
 	flagSet.StringVar(
 		&config.Kafka.Topic,
 		"topic",
-		defaultKafkaTopic,
+		"",
 		"The Kafka topic name to use.",
 	)
 	flagSet.StringVar(
@@ -97,6 +95,9 @@ func parseConfig() (Config, error) {
 
 	if err := flagSet.Parse(os.Args[1:]); err != nil {
 		return Config{}, err
+	}
+	if config.Kafka.Topic == "" {
+		return Config{}, errors.New("must specify --topic")
 	}
 	return config, nil
 }
