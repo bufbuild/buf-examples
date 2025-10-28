@@ -24,12 +24,14 @@ This Compose project will start the following services:
 - MinIO (https://min.io/) for S3 compatible storage.
   * Its API endpoint is available at http://localhost:9000.
   * Its admin endpoint is available at http://localhost:9001.
-- A MinIO Client (mc - https://min.io/docs/minio/linux/reference/minio-mc.html) to bootstrap an initial bucket.
+- An AWS CLI sidecar that bootstraps an initial bucket.
 - PostgreSQL (https://www.postgresql.org/) for metadata storage.
   * It is available on the standard Postgres port (5432).
 - A Bufstream broker.
   * Its Kafka endpoint is available at localhost:9092.
   * Its admin endpoint listens on its default port (9089), allowing you to run [`bufstream admin`](https://buf.build/docs/bufstream/reference/cli/admin/) commands against the broker.
+
+Note that the MinIO image is provided by [lithus](https://github.com/golithus/minio-builds). [MinIO ceased publishing public Docker images](https://github.com/minio/minio/issues/21647) in October 2025.
 
 ## Memory
 
