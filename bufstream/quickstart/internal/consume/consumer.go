@@ -85,7 +85,7 @@ func (c *Consumer[M]) Consume(ctx context.Context) error {
 	for _, record := range fetches.Records() {
 		message, err := c.toMessage(record)
 		if err != nil {
-			slog.Error("received a message that wasn't valid Protobuf")
+			return err
 		} else {
 			if err := c.messageHandler(ctx, message); err != nil {
 				return err
@@ -100,6 +100,9 @@ func (c *Consumer[M]) toMessage(record *kgo.Record) (M, error) {
 	msgType := reflect.TypeOf(message).Elem()
 	message = reflect.New(msgType).Interface().(M)
 	err := proto.Unmarshal(record.Value, message)
+	if err != nil {
+		err = fmt.Errorf("failed to unmarshal record value onto %s: %w", msgType.Name(), err)
+	}
 	return message, err
 }
 
