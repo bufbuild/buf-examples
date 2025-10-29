@@ -18,6 +18,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"log/slog"
 
 	shoppingv1 "github.com/bufbuild/buf-examples/bufstream/quickstart/gen/shopping/v1"
@@ -33,6 +34,11 @@ func main() {
 }
 
 func run(ctx context.Context, config app.Config) error {
+	// consume-specific config validation.
+	if config.Kafka.Group == "" {
+		return errors.New("must specify --group")
+	}
+
 	client, err := kafka.NewKafkaClient(config.Kafka, true)
 	if err != nil {
 		return err

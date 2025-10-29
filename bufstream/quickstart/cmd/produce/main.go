@@ -83,7 +83,7 @@ func run(ctx context.Context, config app.Config) error {
 
 					if currentAttempts%100 == 0 {
 						slog.InfoContext(ctx, "Producer running",
-							"approximate messages produced", attempts.Load())
+							"orders produced", attempts.Load())
 					}
 				}
 			}

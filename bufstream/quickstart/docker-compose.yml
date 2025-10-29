@@ -17,7 +17,7 @@ services:
       POSTGRES_DB: bufstream
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U bufstream"]
-      interval: 10s
+      interval: 2s
       timeout: 5s
       retries: 5
     networks:
@@ -124,9 +124,9 @@ services:
 
   # A sidecar container using kafkactl to preconfigure Kafka topics in
   # Bufstream.
-  bufstream-init:
+  configure-orders-topic:
     image: deviceinsight/kafkactl:latest
-    container_name: bufstream-init
+    container_name: configure-orders-topic
     platform: linux/amd64
     network_mode: host
     depends_on:
@@ -138,13 +138,25 @@ services:
     command:
       - -c
       - |
-        kafkactl create topic shopping.v1.Cart --partitions 1
-        sleep 2
-        kafkactl alter topic shopping.v1.Cart --config buf.registry.value.schema.message=shopping.v1.Cart
-        sleep 2
-        kafkactl alter topic shopping.v1.Cart --config bufstream.validate.mode=dlq
-        sleep 2
-        kafkactl describe topic shopping.v1.Cart
+        kafkactl create topic orders --partitions 1
+        
+        while true; do
+          echo "Configuring orders topic..."
+        
+          kafkactl alter topic orders --config buf.registry.value.schema.message=shopping.v1.Cart
+          kafkactl alter topic orders --config bufstream.validate.dlq.topic=orders.dlq
+          kafkactl alter topic orders --config bufstream.validate.mode=dlq
+        
+          output=$$(kafkactl describe topic orders 2>&1)
+          if echo "$$output" | grep -q "buf.registry.value.schema.message.*shopping.v1.Cart" && \
+             echo "$$output" | grep -q "bufstream.validate.dlq.topic.*orders.dlq" && \
+             echo "$$output" | grep -q "bufstream.validate.mode.*dlq"; then
+            break
+          fi        
+        
+          sleep 2
+        done
+        echo "Topic \"orders\" configured."
 
   # Spark, relying on MinIO and the REST Iceberg catalog.
   spark-iceberg:
