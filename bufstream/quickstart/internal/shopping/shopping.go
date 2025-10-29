@@ -23,14 +23,26 @@ import (
 
 // NewValidCart creates a valid cart with a random set of line items.
 func NewValidCart() *shoppingv1.Cart {
-	return NewCart(
+	return newCart(
 		newRandomLineItems(),
 	)
 }
 
-// NewCart is a helper function for creating shoppingv1.Cart based on
-// provided line items.
-func NewCart(lineItems []*shoppingv1.LineItem) *shoppingv1.Cart {
+// NewInvalidCart creates a cart where at least one line item has an invalid
+// quantity (0).
+func NewInvalidCart() *shoppingv1.Cart {
+	cart := NewValidCart()
+
+	// Invalidate a random line item by setting quantity to 0
+	if len(cart.LineItems) > 0 {
+		invalidIndex := rand.IntN(len(cart.LineItems))
+		cart.LineItems[invalidIndex].Quantity = 0
+	}
+
+	return cart
+}
+
+func newCart(lineItems []*shoppingv1.LineItem) *shoppingv1.Cart {
 	cart := &shoppingv1.Cart{
 		CartId:    uuid.New().String(),
 		LineItems: lineItems,

@@ -48,7 +48,7 @@ func run(ctx context.Context, config app.Config) error {
 	consumer := consume.NewConsumer(
 		client,
 		config.Kafka.Topic,
-		consume.WithMessageHandler(handleInvoice),
+		consume.WithMessageHandler(handleCart),
 	)
 
 	slog.InfoContext(ctx, "starting consume")
@@ -63,10 +63,11 @@ func run(ctx context.Context, config app.Config) error {
 	}
 }
 
-func handleInvoice(_ context.Context, invoice *shoppingv1.Cart) error {
-	lineItems := len(invoice.GetLineItems())
-	if lineItems == 0 {
-		slog.Error("received a message with an empty Cart")
+func handleCart(_ context.Context, invoice *shoppingv1.Cart) error {
+	for _, lineItem := range invoice.GetLineItems() {
+		if lineItem.GetQuantity() == 0 {
+			slog.Error("received a Cart with a zero-quantity LineItem")
+		}
 	}
 	return nil
 }

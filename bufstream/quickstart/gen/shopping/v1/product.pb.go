@@ -100,9 +100,9 @@ type Product struct {
 	Sku string `protobuf:"bytes,2,opt,name=sku,proto3" json:"sku,omitempty"`
 	// name is the display name of this product.
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// category for the product
+	// category is the Category for the product
 	Category *Category `protobuf:"bytes,4,opt,name=category,proto3" json:"category,omitempty"`
-	// unit_price_cents is the standard retail price for one unit of this product.
+	// unit_price_cents is the price for one unit of this product.
 	UnitPriceCents uint64 `protobuf:"varint,5,opt,name=unit_price_cents,json=unitPriceCents,proto3" json:"unit_price_cents,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache

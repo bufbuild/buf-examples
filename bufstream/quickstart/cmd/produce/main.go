@@ -70,7 +70,7 @@ func run(ctx context.Context, config app.Config) error {
 					n := rand.IntN(100)
 					currentAttempts := attempts.Add(1)
 					if n < 1 {
-						inv = shopping.NewCart(nil)
+						inv = shopping.NewInvalidCart()
 					} else {
 						inv = shopping.NewValidCart()
 					}

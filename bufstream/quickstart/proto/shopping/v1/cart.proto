@@ -67,7 +67,9 @@ message LineItem {
   // quantity is the unit count of the good or service provided.
   uint64 quantity = 3 [
     // Do not allow zero-quantity LineItems.
-    (buf.validate.field).uint64.gt = 0
+    (buf.validate.field).uint64.gt = 0,
+    // Do not allow ridiculous quantities.
+    (buf.validate.field).uint64.lte = 100000
   ];
 
   // unit_price is the price per unit.

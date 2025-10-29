@@ -91,7 +91,7 @@ func (x *Cart) GetLineItems() []*LineItem {
 	return nil
 }
 
-// LineItem is an individual good or service added to an cart.
+// LineItem is an individual good or service added to a cart.
 type LineItem struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// line_item_id is a unique identifier for this LineItem.
@@ -174,12 +174,12 @@ const file_shopping_v1_cart_proto_rawDesc = "" +
 	"\n" +
 	"line_items\x18\x02 \x03(\v2\x15.shopping.v1.LineItemB\xec\x02\xbaH\xe8\x02\xba\x01\x9a\x01\n" +
 	"\x1eline_items.unique_line_item_id\x12&all line_item_id values must be unique\x1aPthis.filter( it, it.line_item_id.size() > 0).map( it, it.line_item_id ).unique()\xba\x01\xbe\x01\n" +
-	"\x1bline_items.logically_unique\x12Cline items must be unique combinations of product_id and unit_price\x1aZthis.map( it, it.product.product_id + '-' + string(it.product.unit_price_cents) ).unique()\x92\x01\x05\b\x01\x10\xe8\aR\tlineItems\"\xc6\x01\n" +
+	"\x1bline_items.logically_unique\x12Cline items must be unique combinations of product_id and unit_price\x1aZthis.map( it, it.product.product_id + '-' + string(it.product.unit_price_cents) ).unique()\x92\x01\x05\b\x01\x10\xe8\aR\tlineItems\"\xca\x01\n" +
 	"\bLineItem\x12*\n" +
 	"\fline_item_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\n" +
 	"lineItemId\x126\n" +
-	"\aproduct\x18\x02 \x01(\v2\x14.shopping.v1.ProductB\x06\xbaH\x03\xc8\x01\x01R\aproduct\x12#\n" +
-	"\bquantity\x18\x03 \x01(\x04B\a\xbaH\x042\x02 \x00R\bquantity\x121\n" +
+	"\aproduct\x18\x02 \x01(\v2\x14.shopping.v1.ProductB\x06\xbaH\x03\xc8\x01\x01R\aproduct\x12'\n" +
+	"\bquantity\x18\x03 \x01(\x04B\v\xbaH\b2\x06\x18\xa0\x8d\x06 \x00R\bquantity\x121\n" +
 	"\x10unit_price_cents\x18\x04 \x01(\x04B\a\xbaH\x042\x02(\x00R\x0eunitPriceCentsB\xbb\x01\n" +
 	"\x0fcom.shopping.v1B\tCartProtoP\x01ZPgithub.com/bufbuild/buf-examples/bufstream/quickstart/gen/shopping/v1;shoppingv1\xa2\x02\x03SXX\xaa\x02\vShopping.V1\xca\x02\vShopping\\V1\xe2\x02\x17Shopping\\V1\\GPBMetadata\xea\x02\fShopping::V1b\x06proto3"
 
