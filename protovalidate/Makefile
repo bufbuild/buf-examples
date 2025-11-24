@@ -10,7 +10,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
 BIN := .tmp/bin
-PROTOVALIDATE_VERSION := 0.11.1
+PROTOVALIDATE_VERSION := 1.0.0
 
 .PHONY: all
 all: clean install ci
