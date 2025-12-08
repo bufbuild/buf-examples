@@ -44,9 +44,7 @@ ci: clean \
  	ci-grpc-java-start \
  	ci-grpc-java-finish \
  	ci-grpc-python-start \
- 	ci-grpc-python-finish \
- 	ci-bufstream-start \
- 	ci-bufstream-finish
+ 	ci-grpc-python-finish
 
 .PHONY: ci-rules-predefined
 ci-rules-predefined:
@@ -123,14 +121,6 @@ ci-grpc-python-start:
 .PHONY: ci-grpc-python-finish
 ci-grpc-python-finish:
 	cd grpc-python/finish && $(MAKE) ci
-
-.PHONY: ci-bufstream-start
-ci-bufstream-start:
-	cd bufstream/start && $(MAKE) ci
-
-.PHONY: ci-bufstream-finish
-ci-bufstream-finish:
-	cd bufstream/finish && $(MAKE) ci
 
 ################################################################################
 # Dependency installation                                                      #

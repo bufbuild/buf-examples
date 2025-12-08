@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=schema/buf.bufstream.config.v1alpha1.BufstreamConfig.schema.json
-version: v1beta1
-schema_registry:
-  confluent:
-    url: "https://demo.buf.dev/integrations/confluent/bufstream-demo"
-    instance_name: "bufstream-demo"
