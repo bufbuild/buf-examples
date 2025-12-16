@@ -47,15 +47,11 @@ license-header: $(BIN)/license-header
 ################################################################################
 
 .PHONY: ci
-ci: ci-bsr ci-bufstream ci-protovalidate \
+ci: ci-bsr ci-protovalidate \
 
 .PHONY: ci-bsr
 ci-bsr:
 	cd bsr && $(MAKE)
-
-.PHONY: ci-bufstream
-ci-bufstream:
-	cd bufstream/iceberg-quickstart && $(MAKE)
 
 .PHONY: ci-protovalidate
 ci-protovalidate:
