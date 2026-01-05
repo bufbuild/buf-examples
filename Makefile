@@ -11,7 +11,7 @@ MAKEFLAGS += --no-builtin-rules
 
 BIN := .tmp/bin
 COPYRIGHT_HOLDER := Buf Technologies, Inc.
-COPYRIGHT_YEARS := 2020-2025
+COPYRIGHT_YEARS := 2020-2026
 LICENSE_IGNORE := \
 	gen
 BUF_VERSION := 1.34.0
