@@ -20,7 +20,7 @@ import "buf/validate/validate.proto";
 
 // @BufCode{"start": "Using rule values"}
 extend buf.validate.StringRules {
-  optional int32 name_component = 80048954 [(buf.validate.predefined).cel = {
+  optional int32 name_component = 10002 [(buf.validate.predefined).cel = {
     id: "string.name_component"
     expression:
       "(this.size() > 0 && this.size() <= rule)"
