@@ -20,7 +20,7 @@ import "buf/validate/validate.proto";
 
 // @BufCode{"start": "Resolving conflicts in a rule"}
 extend buf.validate.StringRules {
-  optional int32 name_component = 50100 [(buf.validate.predefined).cel = {
+  optional int32 name_component = 10002 [(buf.validate.predefined).cel = {
     id: "string.name_component"
     expression:
       "("
