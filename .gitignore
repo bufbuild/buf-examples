@@ -48,3 +48,5 @@ spark-warehouse
 
 */quickstart-java/**/bin
 */grpc-java/**/bin
+*/quickstart-python/*/.venv
+*/grpc-python/*/.venv

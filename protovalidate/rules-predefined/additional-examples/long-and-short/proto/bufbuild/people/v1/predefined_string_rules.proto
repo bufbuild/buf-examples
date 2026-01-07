@@ -20,13 +20,13 @@ import "buf/validate/validate.proto";
 
 // @BufCode{"start": "Defining rules"}
 extend buf.validate.StringRules {
-  optional bool long_name_component = 81048952 [(buf.validate.predefined).cel = {
+  optional bool long_name_component = 10000 [(buf.validate.predefined).cel = {
     id: "string.long_name_component"
     message: "value must have between 1 and 50 characters"
     expression: "this.size() > 0 && this.size() <= 50"
   }];
-  optional bool short_name_component = 81048953 [(buf.validate.predefined).cel = {
-    id: "string.long_name_component"
+  optional bool short_name_component = 10001 [(buf.validate.predefined).cel = {
+    id: "string.short_name_component"
     message: "value must have between 1 and 25 characters"
     expression: "this.size() > 0 && this.size() <= 25"
   }];
