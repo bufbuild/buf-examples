@@ -1,9 +1,9 @@
-bufbuild-protovalidate-protocolbuffers-pyi==32.0.0.1.20250912141014+52f32327d4b0
-bufbuild-protovalidate-protocolbuffers-python==32.0.0.1.20250912141014+52f32327d4b0
+bufbuild-protovalidate-protocolbuffers-pyi==33.5.0.1.20251209175733+2a1774d88802
+bufbuild-protovalidate-protocolbuffers-python==33.5.0.1.20251209175733+2a1774d88802
 cel-python==0.2.0
 jmespath==1.0.1
 lark==0.12.0
-protobuf==6.32.0
+protobuf==6.33.5
 protovalidate==0.13.0
 python-dateutil==2.9.0.post0
 PyYAML==6.0.2
