@@ -4,7 +4,7 @@
 
 [Protovalidate][protovalidate] provides standard annotations to validate common rules on messages and fields, as well as the ability to use [CEL][cel] to write custom rules. It's the next generation of [protoc-gen-validate][protoc-gen-validate], the only widely used validation library for Protobuf.
 
-Supplementing its [documentation][protovalidate], this repository provides quickstart code exercises and reference examples for its use. 
+Supplementing its [documentation][protovalidate], this repository provides quickstart code exercises and reference examples for its use.
 
 ## Protovalidate quickstart
 
@@ -42,10 +42,6 @@ Quickstart code showing how to use Protovalidate in unary RPCs is available in t
 * [Quickstart code](grpc-java/README.md) for [Protovalidate in gRPC and Java][grpc-java]
 * [Quickstart code](grpc-python/README.md) for [Protovalidate in gRPC and Python][grpc-python]
 
-## Using Protovalidate in Kafka
-
-[Quickstart code](bufstream/README.md) for [Using Protovalidate in Kafka with Bufstream][bufstream] shows how to enforce schemas within the Bufstream Kafka broker. The only code changed during the tutorial is in Protobuf and YAML files, so only a Go example is provided. It contains a `start` directory with a starting state and `finish` with a working solution.
-
 [protovalidate]: https://buf.build/docs/protovalidate/
 [quickstart]: https://buf.build/docs/protovalidate/quickstart/
 [adding-protovalidate]: https://buf.build/docs/protovalidate/schemas/adding-protovalidate/
@@ -56,7 +52,6 @@ Quickstart code showing how to use Protovalidate in unary RPCs is available in t
 [grpc-go]: https://buf.build/docs/protovalidate/quickstart/grpc-go
 [grpc-java]: https://buf.build/docs/protovalidate/quickstart/grpc-java
 [grpc-python]: https://buf.build/docs/protovalidate/quickstart/grpc-python
-[bufstream]: https://buf.build/docs/protovalidate/quickstart/bufstream
 
 [protoc-gen-validate]: https://github.com/bufbuild/protoc-gen-validate
 [yup]: https://github.com/jquense/yup
