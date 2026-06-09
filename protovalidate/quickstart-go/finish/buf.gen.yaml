@@ -2,7 +2,7 @@ version: v2
 inputs:
   - directory: proto
 plugins:
-  - remote: buf.build/protocolbuffers/go:v1.36.5
+  - remote: buf.build/protocolbuffers/go:v1.36.11
     out: gen
     opt:
       - paths=source_relative
