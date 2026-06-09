@@ -15,6 +15,7 @@
     "@bufbuild/protovalidate": "^1.0.0"
   },
   "devDependencies": {
+    "@types/node": "^24.13.1",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3",
     "vitest": "^3.2.0"
