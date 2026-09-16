@@ -3,9 +3,9 @@ clean: true
 inputs:
   - directory: proto
 plugins:
-  - remote: buf.build/bufbuild/es:v2.5.1
+  - remote: buf.build/bufbuild/es:v2.15.0
     out: src/gen
     opt:
       - target=ts
       - import_extension=js
-    include_imports: true
+      - map_imports=buf/validate/:@bufbuild/protovalidate/gen

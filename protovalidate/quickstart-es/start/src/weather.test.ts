@@ -45,7 +45,7 @@ test("latitude too high", () => {
   const violations = result.violations ?? [];
   expect(violations.length).toEqual(1);
   expect(violations[0].message).toEqual(
-    "value must be greater than or equal to -90 and less than or equal to 90",
+    "must be greater than or equal to -90 and less than or equal to 90",
   );
 });
 
@@ -63,7 +63,7 @@ test("latitude too low", () => {
   const violations = result.violations ?? [];
   expect(violations.length).toEqual(1);
   expect(violations[0].message).toEqual(
-    "value must be greater than or equal to -90 and less than or equal to 90",
+    "must be greater than or equal to -90 and less than or equal to 90",
   );
 });
 
