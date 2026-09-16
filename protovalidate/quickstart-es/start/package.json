@@ -11,7 +11,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@bufbuild/protobuf": "^2.5.1"
+    "@bufbuild/protobuf": "^2.15.0"
   },
   "devDependencies": {
     "@types/node": "^24.13.1",
