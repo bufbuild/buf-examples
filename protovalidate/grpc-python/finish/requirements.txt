@@ -13,7 +13,7 @@ grpcio-reflection==1.72.0rc1
 grpcio-status==1.72.0rc1
 grpclib==0.4.8
 h2==4.3.0
-hpack==4.1.0
+hpack==4.2.0
 hyperframe==6.1.0
 idna==3.15
 iniconfig==2.0.0
