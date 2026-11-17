@@ -2,10 +2,10 @@
 junit = "5.12.0"
 protobuf = "4.36.2"
 protovalidate = "1.0.0"
-spotless = "7.0.2"
+spotless = "8.11.0"
 
 [libraries]
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 protobuf-java = { module = "com.google.protobuf:protobuf-java", version.ref = "protobuf" }
 protovalidate = { module = "build.buf:protovalidate", version.ref = "protovalidate" }
-spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", version = "6.13.0" }
+spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }

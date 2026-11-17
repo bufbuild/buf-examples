@@ -1,0 +1,6 @@
+# Collapse generated files in GitHub diffs by default.
+**/gen/** linguist-generated=true
+**/*_pb2.py linguist-generated=true
+**/*_pb2.pyi linguist-generated=true
+**/*_pb2_grpc.py linguist-generated=true
+**/buf.lock linguist-generated=true

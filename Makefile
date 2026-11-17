@@ -13,8 +13,9 @@ BIN := .tmp/bin
 COPYRIGHT_HOLDER := Buf Technologies, Inc.
 COPYRIGHT_YEARS := 2020-2026
 LICENSE_IGNORE := \
-	gen
-BUF_VERSION := 1.34.0
+	gen \
+	\.ya?ml$$
+BUF_VERSION := 1.75.0
 
 # Used to transform LICENSE_IGNORE into a comma-delimited list
 SPACE :=
@@ -39,7 +40,7 @@ license-header: $(BIN)/license-header
 		--ignore bsr/webhooks/cmd/main.go \
 		--license-type apache \
 		--copyright-holder "$(COPYRIGHT_HOLDER)" \
-		--year-range "$(COPYRIGHT_YEARS)" --ignore $(subst $(SPACE),$(COMMA),${LICENSE_IGNORE})
+		--year-range "$(COPYRIGHT_YEARS)" --ignore "$(subst $(SPACE),$(COMMA),${LICENSE_IGNORE})"
 
 
 ################################################################################
