@@ -48,8 +48,7 @@ func TestCreateInvoice(t *testing.T) {
 
 	// Create a handler with Connect's Protovalidate interceptor wrapping
 	// its functions.
-	interceptor, err := connect_validate.NewInterceptor()
-	require.NoError(t, err)
+	interceptor := connect_validate.NewInterceptor()
 
 	invoiceService := NewService()
 	path, handler := invoicev1connect.NewInvoiceServiceHandler(
@@ -108,7 +107,7 @@ func TestCreateInvoice(t *testing.T) {
 				{
 					ruleID:    "string.uuid",
 					fieldPath: "invoice.invoice_id",
-					message:   "value must be a valid UUID",
+					message:   "must be a valid UUID",
 				},
 			},
 		},
@@ -134,7 +133,7 @@ func TestCreateInvoice(t *testing.T) {
 				{
 					ruleID:    "string.uuid",
 					fieldPath: "invoice.account_id",
-					message:   "value must be a valid UUID",
+					message:   "must be a valid UUID",
 				},
 			},
 		},
@@ -160,7 +159,7 @@ func TestCreateInvoice(t *testing.T) {
 				{
 					ruleID:    "repeated.min_items",
 					fieldPath: "invoice.line_items",
-					message:   "value must contain at least 1 item(s)",
+					message:   "must contain at least 1 item(s)",
 				},
 			},
 		},
@@ -227,7 +226,7 @@ func TestCreateInvoice(t *testing.T) {
 				{
 					ruleID:    "string.uuid",
 					fieldPath: "invoice.line_items[0].line_item_id",
-					message:   "value must be a valid UUID",
+					message:   "must be a valid UUID",
 				},
 			},
 		},
@@ -253,7 +252,7 @@ func TestCreateInvoice(t *testing.T) {
 				{
 					ruleID:    "string.uuid",
 					fieldPath: "invoice.line_items[0].product_id",
-					message:   "value must be a valid UUID",
+					message:   "must be a valid UUID",
 				},
 			},
 		},
@@ -266,7 +265,7 @@ func TestCreateInvoice(t *testing.T) {
 				{
 					ruleID:    "uint64.gt",
 					fieldPath: "invoice.line_items[0].quantity",
-					message:   "value must be greater than 0",
+					message:   "must be greater than 0",
 				},
 			},
 		},

@@ -3,7 +3,7 @@ clean: true
 inputs:
   - directory: proto
 plugins:
-  - remote: buf.build/bufbuild/es:v2.15.0
+  - remote: buf.build/bufbuild/es:v2.17.0
     out: src/gen
     opt:
       - target=ts

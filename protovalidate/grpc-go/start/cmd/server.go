@@ -23,8 +23,8 @@ import (
 	"os"
 	"os/signal"
 
-	invoicev1 "github.com/bufbuild/buf-examples/protovalidate/grpc-go/finish/gen/invoice/v1"
-	invoice "github.com/bufbuild/buf-examples/protovalidate/grpc-go/finish/internal"
+	invoicev1 "github.com/bufbuild/buf-examples/protovalidate/grpc-go/start/gen/invoice/v1"
+	"github.com/bufbuild/buf-examples/protovalidate/grpc-go/start/internal/invoice"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

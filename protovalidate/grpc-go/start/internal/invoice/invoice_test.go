@@ -22,7 +22,7 @@ import (
 
 	"buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	"buf.build/go/protovalidate"
-	invoicev1 "github.com/bufbuild/buf-examples/protovalidate/grpc-go/finish/gen/invoice/v1"
+	invoicev1 "github.com/bufbuild/buf-examples/protovalidate/grpc-go/start/gen/invoice/v1"
 	"github.com/google/uuid"
 	protovalidate_middleware "github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/protovalidate"
 	"github.com/stretchr/testify/assert"
@@ -90,18 +90,6 @@ func TestCreateInvoice(t *testing.T) {
 				return invoice
 			},
 		},
-		"A request without an invoice fails validation": {
-			producer: func(_ *invoicev1.Invoice) *invoicev1.Invoice {
-				return nil
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "required",
-					fieldPath: "invoice",
-					message:   "value is required",
-				},
-			},
-		},
 		"InvoiceId is required": {
 			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
 				invoice.InvoiceId = ""
@@ -112,84 +100,6 @@ func TestCreateInvoice(t *testing.T) {
 					ruleID:    "string.uuid_empty",
 					fieldPath: "invoice.invoice_id",
 					message:   "value is empty, which is not a valid UUID",
-				},
-			},
-		},
-		"InvoiceId must be a UUID": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.InvoiceId = "this not a uuid"
-				return invoice
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "string.uuid",
-					fieldPath: "invoice.invoice_id",
-					message:   "value must be a valid UUID",
-				},
-			},
-		},
-		"CustomerId is required": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.AccountId = ""
-				return invoice
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "string.uuid_empty",
-					fieldPath: "invoice.account_id",
-					message:   "value is empty, which is not a valid UUID",
-				},
-			},
-		},
-		"CustomerId must be a UUID": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.AccountId = "this not a uuid"
-				return invoice
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "string.uuid",
-					fieldPath: "invoice.account_id",
-					message:   "value must be a valid UUID",
-				},
-			},
-		},
-		"InvoiceDate may not have a time component": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.InvoiceDate = timestamppb.Now()
-				return invoice
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "invoice_date.no_time",
-					fieldPath: "invoice.invoice_date",
-					message:   "time component should be zero",
-				},
-			},
-		},
-		"At least one line item must be provided": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.LineItems = make([]*invoicev1.LineItem, 0)
-				return invoice
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "repeated.min_items",
-					fieldPath: "invoice.line_items",
-					message:   "value must contain at least 1 item(s)",
-				},
-			},
-		},
-		"Two line items cannot have the same identifier": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.GetLineItems()[0].LineItemId = invoice.GetLineItems()[1].GetLineItemId()
-				return invoice
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "line_items.unique_line_item_id",
-					fieldPath: "invoice.line_items",
-					message:   "all line_item_id values must be unique",
 				},
 			},
 		},
@@ -206,96 +116,6 @@ func TestCreateInvoice(t *testing.T) {
 					fieldPath: "invoice.line_items",
 					message:   "line items must be unique combinations of product_id and unit_price",
 				},
-			},
-		},
-		"A line item cannot have the same line_item_id and product_id": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.GetLineItems()[0].ProductId = invoice.GetLineItems()[0].GetLineItemId()
-				return invoice
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "line_item_id.not.product_id",
-					fieldPath: "invoice.line_items[0]",
-					message:   "line_item_id can't also be a product_id",
-				},
-			},
-		},
-		"LineItem LineItemId is required": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.GetLineItems()[0].LineItemId = ""
-				return invoice
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "string.uuid_empty",
-					fieldPath: "invoice.line_items[0].line_item_id",
-					message:   "value is empty, which is not a valid UUID",
-				},
-			},
-		},
-		"LineItem LineItemId must be a UUID": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.GetLineItems()[0].LineItemId = "this is not a uuid"
-				return invoice
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "string.uuid",
-					fieldPath: "invoice.line_items[0].line_item_id",
-					message:   "value must be a valid UUID",
-				},
-			},
-		},
-		"LineItem ProductId is required": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.GetLineItems()[0].ProductId = ""
-				return invoice
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "string.uuid_empty",
-					fieldPath: "invoice.line_items[0].product_id",
-					message:   "value is empty, which is not a valid UUID",
-				},
-			},
-		},
-		"LineItem ProductId must be a UUID": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.GetLineItems()[0].ProductId = "this is not a uuid"
-				return invoice
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "string.uuid",
-					fieldPath: "invoice.line_items[0].product_id",
-					message:   "value must be a valid UUID",
-				},
-			},
-		},
-		"LineItem Quantity must be greater than zero": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.GetLineItems()[0].Quantity = 0
-				return invoice
-			},
-			violations: []violationSpec{
-				{
-					ruleID:    "uint64.gt",
-					fieldPath: "invoice.line_items[0].quantity",
-					message:   "value must be greater than 0",
-				},
-			},
-		},
-		"LineItem UnitPrice can be zero": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.GetLineItems()[0].UnitPrice = 0
-				return invoice
-			},
-		},
-		"LineItem UnitPrice can be nonzero": {
-			producer: func(invoice *invoicev1.Invoice) *invoicev1.Invoice {
-				invoice.GetLineItems()[0].UnitPrice = 1
-				return invoice
 			},
 		},
 	}

@@ -23,8 +23,6 @@ import (
 	"connectrpc.com/validate"
 	"github.com/bufbuild/buf-examples/protovalidate/connect-go/finish/gen/invoice/v1/invoicev1connect"
 	"github.com/bufbuild/buf-examples/protovalidate/connect-go/finish/internal/invoice"
-	"golang.org/x/net/http2"
-	"golang.org/x/net/http2/h2c"
 )
 
 func main() {
@@ -33,14 +31,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	// Create the validation interceptor provided by connectrpc.com/validate.
-	validateInterceptor, err := validate.NewInterceptor()
-	if err != nil {
-		slog.Error("error creating interceptor",
-			slog.String("error", err.Error()),
-		)
-
-		return
-	}
+	validateInterceptor := validate.NewInterceptor()
 
 	mux.Handle(invoicev1connect.NewInvoiceServiceHandler(
 		invoiceServer,
@@ -48,11 +39,15 @@ func main() {
 	))
 
 	slog.Info("starting invoice server", slog.String("addr", addr))
+	// Serve HTTP/2 without TLS (h2c) alongside HTTP/1.1.
+	protocols := new(http.Protocols)
+	protocols.SetHTTP1(true)
+	protocols.SetUnencryptedHTTP2(true)
 	server := &http.Server{
 		Addr:              addr,
+		Handler:           mux,
+		Protocols:         protocols,
 		ReadHeaderTimeout: 3 * time.Second,
-		// Use h2c so we can serve HTTP/2 without TLS.
-		Handler: h2c.NewHandler(mux, &http2.Server{}),
 	}
 
 	if err := server.ListenAndServe(); err != nil {

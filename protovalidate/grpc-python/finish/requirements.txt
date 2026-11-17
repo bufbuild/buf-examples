@@ -8,9 +8,9 @@ charset-normalizer==3.4.1
 exceptiongroup==1.2.2
 googleapis-common-protos==1.70.0
 grpc-interceptor==0.15.4
-grpcio==1.72.0rc1
-grpcio-reflection==1.72.0rc1
-grpcio-status==1.72.0rc1
+grpcio==1.81.1
+grpcio-reflection==1.81.1
+grpcio-status==1.81.1
 grpclib==0.4.8
 h2==4.3.0
 hpack==4.1.0

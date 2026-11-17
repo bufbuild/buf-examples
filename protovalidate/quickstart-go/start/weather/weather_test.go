@@ -45,7 +45,7 @@ func TestRequests(t *testing.T) {
 			Longitude: 45,
 		},
 		violations: []string{
-			"value must be greater than or equal to -90 and less than or equal to 90",
+			"must be greater than or equal to -90 and less than or equal to 90",
 		},
 	}, {
 		name: "latitude too low",
@@ -54,7 +54,7 @@ func TestRequests(t *testing.T) {
 			Longitude: 45,
 		},
 		violations: []string{
-			"value must be greater than or equal to -90 and less than or equal to 90",
+			"must be greater than or equal to -90 and less than or equal to 90",
 		},
 	}, {
 		name: "too far in the future",
