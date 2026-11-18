@@ -48,8 +48,7 @@ func TestCreateInvoice(t *testing.T) {
 
 	// Create a handler with Connect's Protovalidate interceptor wrapping
 	// its functions.
-	interceptor, err := connect_validate.NewInterceptor()
-	require.NoError(t, err)
+	interceptor := connect_validate.NewInterceptor()
 
 	invoiceService := NewService()
 	path, handler := invoicev1connect.NewInvoiceServiceHandler(

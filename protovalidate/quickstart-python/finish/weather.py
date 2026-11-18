@@ -14,5 +14,5 @@
 
 import protovalidate
 
-def validateWeather(request):
+def validate_weather(request):
     protovalidate.validate(request)

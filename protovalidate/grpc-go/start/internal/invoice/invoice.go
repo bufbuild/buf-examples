@@ -17,7 +17,7 @@ package invoice
 import (
 	"context"
 
-	invoicev1 "github.com/bufbuild/buf-examples/protovalidate/grpc-go/finish/gen/invoice/v1"
+	invoicev1 "github.com/bufbuild/buf-examples/protovalidate/grpc-go/start/gen/invoice/v1"
 )
 
 // Service is a gRPC handler for the RPC services defined

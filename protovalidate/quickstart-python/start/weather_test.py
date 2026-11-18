@@ -19,7 +19,7 @@ import bufbuild.weather.v1.weather_service_pb2 as weather_service_pb2
 from datetime import datetime, timedelta
 from protovalidate import ValidationError
 
-from weather import validateWeather
+from weather import validate_weather
 
 
 class WeatherTest(unittest.TestCase):
@@ -30,7 +30,7 @@ class WeatherTest(unittest.TestCase):
         message.forecast_date = datetime.now() + timedelta(days=1)
 
         try:
-            validateWeather(message)
+            validate_weather(message)
         except ValidationError:
             self.fail("validate() had a ValidationError")
 
@@ -41,7 +41,7 @@ class WeatherTest(unittest.TestCase):
         message.forecast_date = datetime.now() + timedelta(days=1)
 
         with self.assertRaises(ValidationError) as context:
-            validateWeather(message)
+            validate_weather(message)
 
         validationErr = context.exception
         self.assertEqual(1, len(validationErr.violations))
@@ -53,7 +53,7 @@ class WeatherTest(unittest.TestCase):
         message.forecast_date = datetime.now() + timedelta(days=1)
 
         with self.assertRaises(ValidationError) as context:
-            validateWeather(message)
+            validate_weather(message)
 
         validationErr = context.exception
         self.assertEqual(1, len(validationErr.violations))
@@ -65,7 +65,7 @@ class WeatherTest(unittest.TestCase):
         message.forecast_date = datetime.now() + timedelta(days=4)
 
         with self.assertRaises(ValidationError) as context:
-            validateWeather(message)
+            validate_weather(message)
 
         validationErr = context.exception
         self.assertEqual(1, len(validationErr.violations))

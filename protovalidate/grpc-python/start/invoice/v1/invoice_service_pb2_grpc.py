@@ -19,7 +19,7 @@ import grpc
 from invoice.v1 import invoice_service_pb2 as invoice_dot_v1_dot_invoice__service__pb2
 
 
-class InvoiceServiceStub(object):
+class InvoiceServiceStub:
     """InvoiceService is a simple CRUD service for managing invoices.
     """
 
@@ -36,7 +36,7 @@ class InvoiceServiceStub(object):
                 _registered_method=True)
 
 
-class InvoiceServiceServicer(object):
+class InvoiceServiceServicer:
     """InvoiceService is a simple CRUD service for managing invoices.
     """
 
@@ -63,7 +63,7 @@ def add_InvoiceServiceServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class InvoiceService(object):
+class InvoiceService:
     """InvoiceService is a simple CRUD service for managing invoices.
     """
 

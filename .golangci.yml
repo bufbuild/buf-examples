@@ -7,6 +7,7 @@ linters:
     - depguard
     - err113
     - exhaustruct
+    - exhaustruct_v5
     - funlen
     - gocognit
     - gomoddirectives
@@ -43,6 +44,10 @@ linters:
         - w io.Writer
   exclusions:
     generated: lax
+    rules:
+      - path: _test\.go
+        linters:
+          - goconst
     presets:
       - comments
       - common-false-positives
