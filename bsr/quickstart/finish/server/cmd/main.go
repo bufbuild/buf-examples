@@ -15,7 +15,7 @@
 package main
 
 import (
-	connect "connectrpc.com/connect/v2"
+	"connectrpc.com/connect/v2"
 	"connectrpc.com/connect/v2/connecthttp"
 	"connectrpc.com/validate"
 	"context"
