@@ -21,11 +21,9 @@ import (
 	"log"
 	"net/http"
 
+	"connectrpc.com/connect"
 	apiv1 "github.com/bufbuild/buf-examples/workspace/gen/proto/go/api/v1"
 	"github.com/bufbuild/buf-examples/workspace/gen/proto/go/api/v1/apiv1connect"
-	"github.com/bufbuild/connect-go"
-	"golang.org/x/net/http2"
-	"golang.org/x/net/http2/h2c"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
@@ -42,10 +40,16 @@ func main() {
 	log.Printf("Handling connect service at prefix: %v", path)
 
 	log.Printf("Listening on: %v", *addr)
-	err := http.ListenAndServe(
-		*addr,
-		h2c.NewHandler(http.DefaultServeMux, &http2.Server{}),
-	)
+	// Serve HTTP/2 without TLS (h2c) alongside HTTP/1.1.
+	protocols := new(http.Protocols)
+	protocols.SetHTTP1(true)
+	protocols.SetUnencryptedHTTP2(true)
+	server := &http.Server{
+		Addr:      *addr,
+		Handler:   http.DefaultServeMux,
+		Protocols: protocols,
+	}
+	err := server.ListenAndServe()
 
 	if err != http.ErrServerClosed {
 		log.Printf("Error running or stopping: %v", err)

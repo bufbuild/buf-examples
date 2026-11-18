@@ -1,17 +1,15 @@
 module github.com/bufbuild/buf-examples/bsr/api-access
 
-go 1.24.0
+go 1.26.0
 
 require (
-	buf.build/gen/go/bufbuild/reflect/connectrpc/gosimple v1.19.0-20240117202343-bf8f65e8876c.1
-	buf.build/gen/go/bufbuild/reflect/protocolbuffers/go v1.36.9-20240117202343-bf8f65e8876c.1
-	github.com/stretchr/testify v1.11.1
+	buf.build/gen/go/bufbuild/reflect/connectrpc/gosimple v1.21.1-20240117202343-bf8f65e8876c.1
+	buf.build/gen/go/bufbuild/reflect/protocolbuffers/go v1.36.12-20240117202343-bf8f65e8876c.2
+	github.com/stretchr/testify v1.12.1
 )
 
 require (
-	connectrpc.com/connect v1.19.0 // indirect
-	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/pmezard/go-difflib v1.0.0 // indirect
-	google.golang.org/protobuf v1.36.9 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
+	connectrpc.com/connect v1.21.1 // indirect
+	go.yaml.in/yaml/v3 v3.0.6 // indirect
+	google.golang.org/protobuf v1.36.12 // indirect
 )

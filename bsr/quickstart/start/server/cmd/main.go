@@ -21,8 +21,6 @@ import (
 	"fmt"
 	invoicev1 "github.com/bufbuild/buf-examples/bsr/quickstart/server/gen/invoice/v1"
 	"github.com/bufbuild/buf-examples/bsr/quickstart/server/gen/invoice/v1/invoicev1connect"
-	"golang.org/x/net/http2"
-	"golang.org/x/net/http2/h2c"
 	"log"
 	"net/http"
 )
@@ -33,19 +31,21 @@ func main() {
 	mux := http.NewServeMux()
 
 	// Create the validation interceptor provided by connectrpc.com/validate.
-	validateInterceptor, err := validate.NewInterceptor()
-	if err != nil {
-		log.Fatalf("error creating interceptor: %v", err)
-	}
+	validateInterceptor := validate.NewInterceptor()
 
 	path, handler := invoicev1connect.NewInvoiceServiceHandler(&invoiceServiceServer{}, connect.WithInterceptors(validateInterceptor))
 	mux.Handle(path, handler)
 	fmt.Println("... Listening on", address)
-	if err := http.ListenAndServe(
-		address,
-		// Use h2c so we can serve HTTP/2 without TLS.
-		h2c.NewHandler(mux, &http2.Server{}),
-	); err != nil {
+	// Serve HTTP/2 without TLS (h2c) alongside HTTP/1.1.
+	protocols := new(http.Protocols)
+	protocols.SetHTTP1(true)
+	protocols.SetUnencryptedHTTP2(true)
+	server := &http.Server{
+		Addr:      address,
+		Handler:   mux,
+		Protocols: protocols,
+	}
+	if err := server.ListenAndServe(); err != nil {
 		log.Fatalf("error starting server: %v", err)
 	}
 }
