@@ -1,9 +1,9 @@
-buf.build/gen/go/bufbuild/reflect/connectrpc/gosimple v1.21.1-20240117202343-bf8f65e8876c.1 h1:UzKH73UOevbFHcJX/FNuFI0+M+oc2ZgHpLzCccdj8zk=
-buf.build/gen/go/bufbuild/reflect/connectrpc/gosimple v1.21.1-20240117202343-bf8f65e8876c.1/go.mod h1:6ASwE0iUitlMJA5B00GT9apsBM0x9Q0r6uhpMcY/SE4=
+buf.build/gen/go/bufbuild/reflect/connectrpc/go/v2 v2.0.2-20240117202343-bf8f65e8876c.1 h1:bjfoL6WNQVJSY3jbNpjp6jaUA2mf1tjLmBiAonuxcwE=
+buf.build/gen/go/bufbuild/reflect/connectrpc/go/v2 v2.0.2-20240117202343-bf8f65e8876c.1/go.mod h1:MQ9Vv7+g9tdY0ZcBQHjhVHT3bYIV06qioFYTiTI6ctk=
 buf.build/gen/go/bufbuild/reflect/protocolbuffers/go v1.36.12-20240117202343-bf8f65e8876c.2 h1:/VM+hulEO3mGasvCkZH/zuSmY6zPDi2E7HNMdZ1jsTU=
 buf.build/gen/go/bufbuild/reflect/protocolbuffers/go v1.36.12-20240117202343-bf8f65e8876c.2/go.mod h1:3jX60Ub76TejMVRjJBfqm0m5Cm7gfzJa3j57qHnSvXs=
-connectrpc.com/connect v1.21.1 h1:h2kacdlzXpZU2OQFSv98xkjYXNUSr/ptxmGVbS/+CRM=
-connectrpc.com/connect v1.21.1/go.mod h1:fhMcVJ5w6r/yTYhnkEbW6+sIF7OZ5Ay7KYgmfebh2ek=
+connectrpc.com/connect/v2 v2.0.2 h1:PoPDmOlhc46elsuCdKCKTxjNBb3HJlKF+s/sP2oucPw=
+connectrpc.com/connect/v2 v2.0.2/go.mod h1:N32OLrstcPUzkykFynnefFro3+xzSdOrZlK2jHmS/xo=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
 github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=
 github.com/stretchr/testify v1.12.1 h1:EuwCh5fleGS7H32xRwO3wRGT7DxrDhLAT6FF8MpWDWE=

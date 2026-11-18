@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"net/http"
 
-	webhookconnect "buf.build/gen/go/bufbuild/buf/connectrpc/gosimple/buf/alpha/webhook/v1alpha1/webhookv1alpha1connect"
+	webhookconnect "buf.build/gen/go/bufbuild/buf/connectrpc/go/v2/buf/alpha/webhook/v1alpha1/webhookv1alpha1connect"
 	registryv1alpha1 "buf.build/gen/go/bufbuild/buf/protocolbuffers/go/buf/alpha/registry/v1alpha1"
 	webhookv1alpha1 "buf.build/gen/go/bufbuild/buf/protocolbuffers/go/buf/alpha/webhook/v1alpha1"
+	"connectrpc.com/connect/v2"
+	"connectrpc.com/connect/v2/connecthttp"
 )
 
 type webhookEventHandler struct{}
@@ -32,6 +34,8 @@ func (h *webhookEventHandler) Event(
 // Connect handler based on: https://connectrpc.com/docs/go/getting-started#implement-handler
 func main() {
 	mux := http.NewServeMux()
-	mux.Handle(webhookconnect.NewEventServiceHandler(&webhookEventHandler{}))
+	connectServer := connect.NewServer()
+	webhookconnect.RegisterEventServiceHandler(connectServer, &webhookEventHandler{})
+	connecthttp.Mount(mux, connectServer)
 	http.ListenAndServe("localhost:8080", mux)
 }

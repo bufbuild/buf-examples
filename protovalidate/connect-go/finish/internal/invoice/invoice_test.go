@@ -22,7 +22,9 @@ import (
 
 	"buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	"buf.build/go/protovalidate"
-	"connectrpc.com/connect"
+	"connectrpc.com/connect/v2"
+	"connectrpc.com/connect/v2/connecthttp"
+	"connectrpc.com/connect/v2/connectproto"
 	connect_validate "connectrpc.com/validate"
 	invoicev1 "github.com/bufbuild/buf-examples/protovalidate/connect-go/finish/gen/invoice/v1"
 	"github.com/bufbuild/buf-examples/protovalidate/connect-go/finish/gen/invoice/v1/invoicev1connect"
@@ -48,21 +50,21 @@ func TestCreateInvoice(t *testing.T) {
 
 	// Create a handler with Connect's Protovalidate interceptor wrapping
 	// its functions.
-	interceptor := connect_validate.NewInterceptor()
+	interceptor := connect_validate.NewServerInterceptor()
 
 	invoiceService := NewService()
-	path, handler := invoicev1connect.NewInvoiceServiceHandler(
-		invoiceService,
-		connect.WithInterceptors(interceptor),
-	)
+	connectServer := connect.NewServer(interceptor)
+	invoicev1connect.RegisterInvoiceServiceHandler(connectServer, invoiceService)
 
 	// Start a server.
 	mux := http.NewServeMux()
-	mux.Handle(path, handler)
+	connecthttp.Mount(mux, connectServer)
 	srv := startHTTPServer(t, mux)
 
 	// Create a client shared by all of our test cases.
-	invoiceServiceClient := invoicev1connect.NewInvoiceServiceClient(srv.Client(), srv.URL)
+	invoiceServiceClient := invoicev1connect.NewInvoiceServiceClient(connect.NewClient(
+		connecthttp.NewTransport(srv.Client(), srv.URL),
+	))
 
 	testCases := map[string]struct {
 		producer   func(invoice *invoicev1.Invoice) *invoicev1.Invoice
@@ -366,7 +368,7 @@ func checkConnectError(t *testing.T, connectError *connect.Error, specs []violat
 		t.Errorf("Connect error had %d details instead of one", len(details))
 	}
 
-	detail, err := details[0].Value()
+	detail, err := connectproto.UnmarshalErrorDetail(details[0])
 	if err != nil {
 		t.Errorf("Couldn't get value of first error detail: %v", err)
 	}

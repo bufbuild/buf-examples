@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 
+	"connectrpc.com/connect/v2"
+	"connectrpc.com/connect/v2/connecthttp"
 	petv1 "github.com/bufbuild/buf-examples/gen/pet/v1"
 	"github.com/bufbuild/buf-examples/gen/pet/v1/petv1connect"
 )
@@ -14,8 +16,9 @@ const address = "localhost:8080"
 
 func main() {
 	mux := http.NewServeMux()
-	path, handler := petv1connect.NewPetStoreServiceHandler(&petStoreServiceServer{})
-	mux.Handle(path, handler)
+	connectServer := connect.NewServer()
+	petv1connect.RegisterPetStoreServiceHandler(connectServer, &petStoreServiceServer{})
+	connecthttp.Mount(mux, connectServer)
 	fmt.Println("... Listening on", address)
 	// Serve HTTP/2 without TLS (h2c) alongside HTTP/1.1.
 	protocols := new(http.Protocols)
