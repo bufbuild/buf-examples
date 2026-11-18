@@ -19,6 +19,8 @@ import (
 	"net/http"
 	"time"
 
+	"connectrpc.com/connect/v2"
+	"connectrpc.com/connect/v2/connecthttp"
 	"github.com/bufbuild/buf-examples/protovalidate/connect-go/start/gen/invoice/v1/invoicev1connect"
 	"github.com/bufbuild/buf-examples/protovalidate/connect-go/start/internal/invoice"
 )
@@ -28,9 +30,9 @@ func main() {
 	invoiceServer := invoice.NewService()
 	mux := http.NewServeMux()
 
-	mux.Handle(invoicev1connect.NewInvoiceServiceHandler(
-		invoiceServer,
-	))
+	connectServer := connect.NewServer()
+	invoicev1connect.RegisterInvoiceServiceHandler(connectServer, invoiceServer)
+	connecthttp.Mount(mux, connectServer)
 
 	slog.Info("starting invoice server", slog.String("addr", addr))
 	// Serve HTTP/2 without TLS (h2c) alongside HTTP/1.1.

@@ -16,18 +16,18 @@ package main
 
 import (
 	"context"
-	"errors"
 	"flag"
 	"log"
 	"net/http"
 
-	"connectrpc.com/connect"
+	"connectrpc.com/connect/v2"
+	"connectrpc.com/connect/v2/connecthttp"
 	apiv1 "github.com/bufbuild/buf-examples/workspace/gen/proto/go/api/v1"
 	"github.com/bufbuild/buf-examples/workspace/gen/proto/go/api/v1/apiv1connect"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
-var ErrNeedsImplementation = connect.NewError(connect.CodeUnimplemented, errors.New("needs implementation"))
+var ErrNeedsImplementation = connect.NewError(connect.CodeUnimplemented, "needs implementation")
 
 func main() {
 	addr := flag.String("listen", "127.0.0.1:8080", "listen to address on")
@@ -35,9 +35,10 @@ func main() {
 
 	log.Printf("Observability service starting")
 
-	path, handler := apiv1connect.NewObservabilityServiceHandler(&service{})
-	http.Handle(path, handler)
-	log.Printf("Handling connect service at prefix: %v", path)
+	connectServer := connect.NewServer()
+	apiv1connect.RegisterObservabilityServiceHandler(connectServer, &service{})
+	connecthttp.Mount(http.DefaultServeMux, connectServer)
+	log.Printf("Handling connect service: %v", apiv1connect.ObservabilityServiceName)
 
 	log.Printf("Listening on: %v", *addr)
 	// Serve HTTP/2 without TLS (h2c) alongside HTTP/1.1.
@@ -61,9 +62,9 @@ type service struct {
 
 func (s *service) GetLogs(
 	ctx context.Context,
-	req *connect.Request[apiv1.GetLogsRequest],
+	req *apiv1.GetLogsRequest,
 ) (
-	*connect.Response[apiv1.GetLogsResponse],
+	*apiv1.GetLogsResponse,
 	error,
 ) {
 	return nil, ErrNeedsImplementation
@@ -71,9 +72,9 @@ func (s *service) GetLogs(
 
 func (s *service) PutLogs(
 	ctx context.Context,
-	req *connect.Request[apiv1.PutLogsRequest],
+	req *apiv1.PutLogsRequest,
 ) (
-	*connect.Response[emptypb.Empty],
+	*emptypb.Empty,
 	error,
 ) {
 	return nil, ErrNeedsImplementation
@@ -81,9 +82,9 @@ func (s *service) PutLogs(
 
 func (s *service) GetMetrics(
 	ctx context.Context,
-	req *connect.Request[apiv1.GetMetricsRequest],
+	req *apiv1.GetMetricsRequest,
 ) (
-	*connect.Response[apiv1.GetMetricsResponse],
+	*apiv1.GetMetricsResponse,
 	error,
 ) {
 	return nil, ErrNeedsImplementation

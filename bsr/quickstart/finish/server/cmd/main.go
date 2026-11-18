@@ -15,7 +15,8 @@
 package main
 
 import (
-	connect "connectrpc.com/connect"
+	"connectrpc.com/connect/v2"
+	"connectrpc.com/connect/v2/connecthttp"
 	"connectrpc.com/validate"
 	"context"
 	"fmt"
@@ -40,10 +41,11 @@ func main() {
 	mux := http.NewServeMux()
 
 	// Create the validation interceptor provided by connectrpc.com/validate.
-	validateInterceptor := validate.NewInterceptor()
+	validateInterceptor := validate.NewServerInterceptor()
 
-	path, handler := invoicev1connect.NewInvoiceServiceHandler(&invoiceServiceServer{}, connect.WithInterceptors(validateInterceptor))
-	mux.Handle(path, handler)
+	connectServer := connect.NewServer(validateInterceptor)
+	invoicev1connect.RegisterInvoiceServiceHandler(connectServer, &invoiceServiceServer{})
+	connecthttp.Mount(mux, connectServer)
 	fmt.Println("... Listening on", address)
 	// Serve HTTP/2 without TLS (h2c) alongside HTTP/1.1.
 	protocols := new(http.Protocols)

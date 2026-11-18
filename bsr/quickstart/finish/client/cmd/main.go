@@ -2,18 +2,19 @@ package main
 
 import (
 	tagv1 "buf.build/gen/go/xUSERNAMEx-quickstart/common/protocolbuffers/go/tag/v1"
-	"buf.build/gen/go/xUSERNAMEx-quickstart/invoice/connectrpc/gosimple/invoice/v1/invoicev1connect"
+	"buf.build/gen/go/xUSERNAMEx-quickstart/invoice/connectrpc/go/v2/invoice/v1/invoicev1connect"
 	invoicev1 "buf.build/gen/go/xUSERNAMEx-quickstart/invoice/protocolbuffers/go/invoice/v1"
+	"connectrpc.com/connect/v2"
+	"connectrpc.com/connect/v2/connecthttp"
 	"context"
 	"log"
 	"net/http"
 )
 
 func main() {
-	client := invoicev1connect.NewInvoiceServiceClient(
-		http.DefaultClient,
-		"http://localhost:8080",
-	)
+	client := invoicev1connect.NewInvoiceServiceClient(connect.NewClient(
+		connecthttp.NewTransport(http.DefaultClient, "http://localhost:8080"),
+	))
 
 	_, err := client.CreateInvoice(
 		context.Background(),
