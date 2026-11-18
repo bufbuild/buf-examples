@@ -13,7 +13,6 @@
 # limitations under the License.
 
 import protovalidate
-
 from google.protobuf import any_pb2
 from google.rpc import code_pb2, status_pb2
 from grpc_interceptor import ServerInterceptor
