@@ -176,7 +176,7 @@ public class InvoiceServerTest {
         checkStatusRuntimeException(
                 exception,
                 Collections.singletonList(new ViolationSpec(
-                        "repeated.min_items", "invoice.line_items", "value must contain at least 1 item(s)")));
+                        "repeated.min_items", "invoice.line_items", "must contain at least 1 item(s)")));
     }
 
     @Test
@@ -330,8 +330,8 @@ public class InvoiceServerTest {
                 assertThrows(StatusRuntimeException.class, () -> invoiceClient.createInvoice(req));
         checkStatusRuntimeException(
                 exception,
-                Collections.singletonList(new ViolationSpec(
-                        "uint64.gt", "invoice.line_items[0].quantity", "value must be greater than 0")));
+                Collections.singletonList(
+                        new ViolationSpec("uint64.gt", "invoice.line_items[0].quantity", "must be greater than 0")));
     }
 
     @Test
