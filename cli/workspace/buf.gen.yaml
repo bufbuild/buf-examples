@@ -5,9 +5,9 @@ managed:
     - file_option: go_package_prefix
       value: github.com/bufbuild/buf-examples/workspace/gen/proto/go
 plugins:
-  - remote: buf.build/protocolbuffers/go:v1.28.1
+  - remote: buf.build/protocolbuffers/go:v1.36.12
     out: gen/proto/go
     opt: paths=source_relative
-  - remote: buf.build/bufbuild/connect-go:v1.7.0
+  - remote: buf.build/connectrpc/go:v1.21.0
     out: gen/proto/go
     opt: paths=source_relative

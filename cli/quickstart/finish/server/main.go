@@ -8,8 +8,6 @@ import (
 
 	petv1 "github.com/bufbuild/buf-examples/gen/pet/v1"
 	"github.com/bufbuild/buf-examples/gen/pet/v1/petv1connect"
-	"golang.org/x/net/http2"
-	"golang.org/x/net/http2/h2c"
 )
 
 const address = "localhost:8080"
@@ -19,11 +17,16 @@ func main() {
 	path, handler := petv1connect.NewPetStoreServiceHandler(&petStoreServiceServer{})
 	mux.Handle(path, handler)
 	fmt.Println("... Listening on", address)
-	http.ListenAndServe(
-		address,
-		// Use h2c so we can serve HTTP/2 without TLS.
-		h2c.NewHandler(mux, &http2.Server{}),
-	)
+	// Serve HTTP/2 without TLS (h2c) alongside HTTP/1.1.
+	protocols := new(http.Protocols)
+	protocols.SetHTTP1(true)
+	protocols.SetUnencryptedHTTP2(true)
+	server := &http.Server{
+		Addr:      address,
+		Handler:   mux,
+		Protocols: protocols,
+	}
+	server.ListenAndServe()
 }
 
 // petStoreServiceServer implements the PetStoreService API.
