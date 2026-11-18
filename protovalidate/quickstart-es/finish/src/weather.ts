@@ -17,7 +17,7 @@ import {
   type ValidationResult,
 } from "@bufbuild/protovalidate";
 import {
-  GetWeatherRequest,
+  type GetWeatherRequest,
   GetWeatherRequestSchema,
 } from "./gen/bufbuild/weather/v1/weather_service_pb.js";
 
