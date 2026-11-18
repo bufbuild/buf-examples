@@ -13,12 +13,11 @@
 # limitations under the License.
 
 import unittest
-
-import bufbuild.weather.v1.weather_service_pb2 as weather_service_pb2
-
 from datetime import datetime, timedelta
+
 from protovalidate import ValidationError
 
+from bufbuild.weather.v1 import weather_service_pb2
 from weather import validate_weather
 
 

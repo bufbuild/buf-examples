@@ -12,14 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import grpc
-import invoice.v1.invoice_service_pb2 as invoice_service_pb2
-import invoice.v1.invoice_service_pb2_grpc as invoice_service_pb2_grpc
 import logging
 import sys
-
 from concurrent import futures
+
+import grpc
 from grpc_reflection.v1alpha import reflection
+
+from invoice.v1 import invoice_service_pb2, invoice_service_pb2_grpc
 from invoice.v1.invoice_service import InvoiceService
 from validation.interceptor import ValidationInterceptor
 
